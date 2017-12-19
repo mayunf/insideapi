@@ -1,0 +1,25 @@
+{
+    "name": "mayunfeng/insideapi",
+    "description": "内部SDK 仅供内部使用",
+    "license": "MIT",
+    "keywords": ["内部 api"],
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "mayunfeng",
+            "email": "mayunfeng@jwsem.com"
+        }
+    ],
+    "require-dev": {
+        "guzzlehttp/guzzle": "^6.2",
+        "monolog/monolog": "^1.17",
+    },
+    "require": {
+    	"php": ">=7.0.0"	
+	},
+    "autoload": {
+        "psr-4": {
+            "InsaideApi\\": "src/"
+        }
+    },
+}
