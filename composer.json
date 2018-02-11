@@ -4,6 +4,7 @@
     "license": "MIT",
     "keywords": ["内部 api"],
     "version": "1.0.0",
+    "minimum-stability":"dev",
     "authors": [
         {
             "name": "mayunfeng",
