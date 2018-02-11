@@ -3,8 +3,7 @@
     "description": "内部SDK 仅供内部使用",
     "license": "MIT",
     "keywords": ["内部 api"],
-    "version": "2.0.0",
-    "minimum-stability":"2.0.0",
+    "minimum-stability":"dev",
     "authors": [
         {
             "name": "mayunfeng",
@@ -21,6 +20,11 @@
     "autoload": {
         "psr-4": {
             "InsaideApi\\": "src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0.x-dev"
         }
     }
 }
