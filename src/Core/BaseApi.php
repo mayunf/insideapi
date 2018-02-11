@@ -6,13 +6,13 @@
  * Time: 15:18
  */
 
-namespace InsideApi\Core;
+namespace InsideAPI\Core;
 
-
-use InsideApi\Support\Log;
-use InsideApi\Support\Collection;
-use Psr\Http\Message\RequestInterface;
 use GuzzleHttp\Middleware;
+use Psr\Http\Message\RequestInterface;
+use InsideAPI\Support\Log;
+use InsideAPI\Support\Collection;
+
 /**
  * BaseApi use before login
  * Class BaseApi
@@ -99,7 +99,7 @@ abstract class BaseApi
     protected function logMiddleware()
     {
         return Middleware::tap(function (RequestInterface $request, $options) {
-            Log::debug("请求: {$request->getMethod()} {$request->getUri()} ".json_encode($options));
+//            Log::debug("请求: {$request->getMethod()} {$request->getUri()} ".json_encode($options));
 //            Log::debug('请求头:'.json_encode($request->getHeaders()));
         });
     }
@@ -130,7 +130,7 @@ abstract class BaseApi
     /**
      * @param array $contents
      * @return array
-     * @throws BadRequestHttpException
+     * @throws Exception
      */
     protected function checkAndThrow(array $contents)
     {
@@ -144,6 +144,7 @@ abstract class BaseApi
             $contents['Success'] = false;
             $contents['ErrCode'] = $contents['Header']['Falures'][0]['Code'];
             $contents['ErrMsg'] = ErrCode::getErrMsg($contents['Header']['Falures'][0]['Code']);
+//            throw new Exception($contents['ErrMsg'],$contents['ErrCode']);
         } else {
             $contents['Success'] = true;
             $contents['ErrCode'] = 0;

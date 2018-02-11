@@ -3,7 +3,7 @@
     "description": "内部SDK 仅供内部使用",
     "license": "MIT",
     "keywords": ["内部 api"],
-    "version": "1.0.0",
+    "version": "2.0.0",
     "minimum-stability":"dev",
     "authors": [
         {

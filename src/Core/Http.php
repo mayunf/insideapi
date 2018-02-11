@@ -6,12 +6,13 @@
  * Time: 15:21
  */
 
-namespace InsideApi\Core;
+namespace InsideAPI\Core;
 
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\HandlerStack;
 use Psr\Http\Message\ResponseInterface;
-use InsideApi\Support\Log;
+use InsideAPI\Core\Exceptions\HttpException;
+use InsideAPI\Support\Log;
 class Http
 {
     /**
@@ -193,7 +194,7 @@ class Http
 
         $options = array_merge(self::$defaults, $options);
 
-//        Log::debug('Client 请求:', compact('url', 'method', 'options'));
+        Log::debug('Client 请求:', compact('url', 'method', 'options'));
 
         $options['handler'] = $this->getHandler();
 

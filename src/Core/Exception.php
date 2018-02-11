@@ -6,7 +6,7 @@
  * Time: 15:24
  */
 
-namespace InsideApi\Core;
+namespace InsideAPI\Core;
 
 use Exception as BaseException;
 

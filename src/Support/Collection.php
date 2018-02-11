@@ -12,7 +12,7 @@
 /**
  * Collection.php.
  */
-namespace InsideApi\Support;
+namespace InsideAPI\Support;
 
 use ArrayAccess;
 use ArrayIterator;
