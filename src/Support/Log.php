@@ -6,7 +6,7 @@
  * Time: 15:28
  */
 
-namespace InsideApi\Support;
+namespace InsideAPI\Support;
 
 
 /*
@@ -127,7 +127,7 @@ class Log
             $log->pushHandler(new ErrorLogHandler());
         }
 
-        $log->pushHandler(new StreamHandler(\Yii::getAlias('@common').'/runtime/logs/'.date('Y-m-d').'.log', Logger::DEBUG));
+        $log->pushHandler(new StreamHandler(date('Y-m-d').'.log', Logger::DEBUG));
 //        $log->addInfo('Adding a new user', array('username' => 'ServerAPI'));
         return $log;
     }

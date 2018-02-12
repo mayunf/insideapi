@@ -6,7 +6,7 @@
  * Time: 15:18
  */
 
-namespace InsideApi\Core;
+namespace InsideAPI\Core;
 
 use Psr\Http\Message\RequestInterface;
 

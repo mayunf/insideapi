@@ -6,7 +6,7 @@
  * Time: 20:37
  */
 
-namespace InsideApi\Core;
+namespace InsideAPI\Core;
 
 
 class ErrCode

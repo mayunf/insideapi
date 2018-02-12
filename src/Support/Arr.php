@@ -20,7 +20,7 @@
  * @see      https://github.com/laravel/framework/blob/4.2/src/Illuminate/Support/Arr.php
  */
 
-namespace InsideApi\Support;
+namespace InsideAPI\Support;
 
 use Closure;
 
