@@ -10,21 +10,14 @@
             "email": "mayunfeng@jwsem.com"
         }
     ],
-    "require-dev": {
-        "guzzlehttp/guzzle": "^6.2",
-        "monolog/monolog": "^1.17"
-    },
     "require": {
-    	"php": ">=7.0.0"	
+    	"php": ">=7.0.0",
+        "guzzlehttp/guzzle": "^6.2",
+        "monolog/monolog": "^1.17"	
 	},
     "autoload": {
         "psr-4": {
             "InsaideApi\\": "src/"
-        }
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "2.0.x-dev"
         }
     }
 }
