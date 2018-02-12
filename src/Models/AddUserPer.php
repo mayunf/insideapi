@@ -53,7 +53,7 @@ class AddUserPer extends PermissionDetails
             'IsRun' => (boolean)$this->IsRun,
             'PerName' => $this->PerName,
             'BDate' => $this->BDate,
-            'EDate' => date('Y-m-d H:i:s',strtotime($this->EDate) +3600*24-1),
+            'EDate' => date('Y-m-d H:i:s',strtotime($this->EDate)),
             'Details' => $this->Details,
         ];
     }

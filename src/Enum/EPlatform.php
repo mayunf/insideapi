@@ -27,4 +27,18 @@ class EPlatform
     /// 神马
     /// </summary>
     const Shenma = 3;
+
+    public static function getPlatform($key = null)
+    {
+        $all = [
+            0 => '百度',
+            1 => '360',
+            2 => '搜狗',
+            3 => '神马',
+        ];
+        if (array_key_exists($key,$all)) {
+            return $all[$key];
+        }
+        return $all;
+    }
 }

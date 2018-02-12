@@ -127,7 +127,7 @@ class Log
             $log->pushHandler(new ErrorLogHandler());
         }
 
-        $log->pushHandler(new StreamHandler(date('Y-m-d').'.log', Logger::DEBUG));
+        $log->pushHandler(new StreamHandler(storage_path().'/logs/service/'.date('Y-m-d').'.log', Logger::DEBUG));
 //        $log->addInfo('Adding a new user', array('username' => 'ServerAPI'));
         return $log;
     }

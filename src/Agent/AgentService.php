@@ -24,10 +24,6 @@ class AgentService extends AbstractAPI
 
     const USER_DELETE = 'https://api.xiaolutuiguang.com/api/insideagent/userdelete';
 
-    const USER_EDIT_PWD = 'https://api.xiaolutuiguang.com/api/insideagent/usereditpwd';
-
-    const USER_EDIT_LOGON = 'https://api.xiaolutuiguang.com/api/insideagent/usereditlogon';
-
 
     /**
      * 获取代理商信息
@@ -50,23 +46,13 @@ class AgentService extends AbstractAPI
     }
 
     /**
-     * 编辑代理商下用户
+     * 获取代理商下用户列表
      * @param array $params
      * @return string
      */
     public function userEdit($params = [])
     {
         return $this->parseJSON(static::POST,[self::USER_EDIT,$params]);
-    }
-
-    /**
-     * 获取代理商下用户列表
-     * @param array $params
-     * @return string
-     */
-    public function userList($params = [])
-    {
-        return $this->parseJSON(static::POST,[self::USER_LIST,$params]);
     }
 
     /**
@@ -77,17 +63,5 @@ class AgentService extends AbstractAPI
     public function userDelete($params = [])
     {
         return $this->parseJSON(static::POST,[self::USER_DELETE,$params]);
-    }
-
-    //编辑用户密码
-    public function userEditPwd($params = [])
-    {
-        return $this->parseJSON(static::POST,[self::USER_EDIT_PWD,$params]);
-    }
-
-    //编辑用户登录名
-    public function userEditLogon($params = [])
-    {
-        return $this->parseJSON(static::POST,[self::USER_EDIT_LOGON,$params]);
     }
 }

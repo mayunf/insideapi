@@ -102,21 +102,22 @@ class UserService extends AbstractAPI
     /**
      * 获取用户权限  ---Done
      * @param array $pros
+     * @param int $AgentID
      * @return string
      */
-    public function getPermissions($pros =[])
+    public function getPermissions($pros =[],$AgentID = 0)
     {
         $params = [
-            'AgentID' => 0,
+            'AgentID' => $AgentID,
             'Pros' => $pros
         ];
         return $this->parseJSON(static::POST,[self::GET_PERMISSIONS,$params]);
     }
 
-    public function getProducts($pros =[])
+    public function getProducts($pros =[],$AgentID = 0)
     {
         $params = [
-            'AgentID' => 0,
+            'AgentID' => $AgentID,
             'Pros' => $pros
         ];
         return $this->parseJSON(static::POST,[self::GET_PERMISSIONS_ALL,$params]);
