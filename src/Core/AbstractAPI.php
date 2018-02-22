@@ -19,17 +19,16 @@ abstract class AbstractAPI extends BaseApi
     {
         // after login
         $this->http->addMiddleware($this->sessionIdMiddleware());
-        // log
-        $this->http->addMiddleware($this->logMiddleware());
     }
 
     protected function sessionIdMiddleware()
     {
         return function (callable $handler) {
           return function (RequestInterface $request, array $options) use ($handler) {
-              $request = $request->withHeader('token',ApiConfig::TOKEN);
-              $request = $request->withHeader('accesstoken',ApiConfig::getAccessToken());
-              $request = $request->withHeader('Cookie','JWSEMID='.ApiConfig::getSessionID());
+              $access_token = new AccessToken($this['config']['token'],$this['config']['access_key']);
+              $request = $request->withHeader('token',$access_token->getToken());
+              $request = $request->withHeader('accesstoken',$access_token->getAccessToken());
+              $request = $request->withHeader('Cookie','JWSEMID='.$access_token->getSessionID());
               return $handler($request, $options);
           };
         };

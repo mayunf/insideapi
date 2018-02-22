@@ -6,12 +6,12 @@
  * Time: 20:51
  */
 
-namespace InsideAPI\User;
+namespace InsideAPI\Manage;
 
 
 use InsideAPI\Core\AbstractAPI;
 
-class ManageService extends AbstractAPI
+class Manage extends AbstractAPI
 {
 
     const GET_PERMISSIONS = 'https://api.xiaolutuiguang.com/api/insidemanage/getper'; // 通过权限ID获取权限

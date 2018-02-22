@@ -2,22 +2,16 @@
 /**
  * Created by PhpStorm.
  * User: mayunfeng
- * Date: 2017/11/22
- * Time: 15:36
+ * Date: 2018/2/22
+ * Time: 14:25
  */
 
 namespace InsideAPI\User;
 
 use InsideAPI\Core\AbstractAPI;
 
-/**
- * 用户相关 API
- * Class UserService
- * @package InsideAPI\user
- */
-class UserService extends AbstractAPI
+class User extends AbstractAPI
 {
-
     const GET_INFO = 'https://api.xiaolutuiguang.com/api/insideuser/getinfo';
 
     const EDIT = 'https://api.xiaolutuiguang.com/api/insideuser/edit';
@@ -200,18 +194,16 @@ class UserService extends AbstractAPI
 
     /**
      * 删除账户
+     * $params = [
+     *  'Platform' => $userAcc->Platform,
+     *  'PT' => $userAcc->PT,
+     *  'AccID' => $userAcc->AccID,
+     * ];
      * @param $params = [] 平台ID
      * @return string
      */
     public function accDelete($params = [])
     {
-//        $params = [
-//            'Platform' => $userAcc->Platform,
-//            'PT' => $userAcc->PT,
-//            'AccID' => $userAcc->AccID,
-//        ];
         return $this->parseJSON(static::POST,[self::ACC_DELETE,$params]);
     }
-
-
 }

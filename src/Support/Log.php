@@ -31,7 +31,6 @@ namespace InsideAPI\Support;
 
 use Monolog\Handler\ErrorLogHandler;
 use Monolog\Handler\NullHandler;
-use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Psr\Log\LoggerInterface;
 
@@ -119,16 +118,13 @@ class Log
      */
     private static function createDefaultLogger()
     {
-        $log = new Logger('ServerAPI');
+        $log = new Logger('insideapi');
 
         if (defined('PHPUNIT_RUNNING') || php_sapi_name() === 'cli') {
             $log->pushHandler(new NullHandler());
         } else {
             $log->pushHandler(new ErrorLogHandler());
         }
-
-        $log->pushHandler(new StreamHandler(storage_path().'/logs/service/'.date('Y-m-d').'.log', Logger::DEBUG));
-//        $log->addInfo('Adding a new user', array('username' => 'ServerAPI'));
         return $log;
     }
 }

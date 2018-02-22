@@ -15,7 +15,7 @@ use InsideAPI\Core\BaseApi;
  * Class BaseService
  * @package InsideAPI\user
  */
-class BaseService extends BaseApi
+class UserNotLogin extends BaseApi
 {
     const REGISTER = 'https://api.xiaolutuiguang.com/api/insideuser/register';
 

@@ -11,7 +11,7 @@ namespace InsideAPI\Agent;
 
 use InsideAPI\Core\BaseApi;
 
-class BaseService extends BaseApi
+class AgentNotLogin extends BaseApi
 {
 
     const IS_MOBILE = 'https://api.xiaolutuiguang.com/api/insideagent/ismobile';

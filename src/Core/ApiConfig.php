@@ -28,11 +28,6 @@ class ApiConfig
 
     const USER_ID = 'UserId';
 
-    protected static $AccessToken; //临时请求密钥
-
-    protected static $SessionId; //SessionID
-
-    protected static $UserId; //UserId
 
     /**
      * 获取 SessionID

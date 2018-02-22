@@ -11,7 +11,7 @@ namespace InsideAPI\Agent;
 
 use InsideAPI\Core\AbstractAPI;
 
-class AgentService extends AbstractAPI
+class Agent extends AbstractAPI
 {
 
     const GET_INFO = 'https://api.xiaolutuiguang.com/api/insideagent/getinfo';
