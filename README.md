@@ -9,12 +9,12 @@
     
     $options = [
         'debug'     => true,
-        'token'    => 'wx3cf0f39249eb0e60',
-        'access_key'    => 'f1c242f4f28f735d4687abb469072a29',
+        'token'    => 'token',
+        'access_key'    => 'access_key',
         'cache' => 'Doctrine\Common\Cache\RedisCache', // RedisCache 实例了 `Doctrine\Common\Cache\Cache` 接口
         'log' => [
             'level' => 'debug',
-            'file'  => '/tmp/easywechat.log',
+            'file'  => '/tmp/insideapi.log',
         ],
         /**
          * Guzzle 全局设置
@@ -28,8 +28,8 @@
         // ...
     ];
         
-    $service = new UserService();
-    $result = $service->addUser();
+    $app = new Application($options);
+    $result = $app->manage->addUser();
     if($result['Success']){
         // do something
     } else {
