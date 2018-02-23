@@ -17,9 +17,18 @@
         "symfony/http-foundation": "^3.4",
         "doctrine/cache": "^1.6"	
 	},
+    "require-dev": {
+        "phpunit/phpunit": "~4.0",
+        "mockery/mockery": "^0.9.9"
+    },
     "autoload": {
         "psr-4": {
-            "InsaideApi\\": "src/"
+            "InsideAPI\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "InsideAPI\\Tests\\": "tests/"
         }
     }
 }
