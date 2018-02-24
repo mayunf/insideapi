@@ -58,6 +58,16 @@ class Agent extends AbstractAPI
     }
 
     /**
+     * 获取代理商下用户列表
+     * @param array $params
+     * @return string
+     */
+    public function userList($params = [])
+    {
+        return $this->parseJSON(static::POST,[self::USER_LIST,$params]);
+    }
+    
+    /**
      * 获取用户权限
      * @param array $params
      * @return string
