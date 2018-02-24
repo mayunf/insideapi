@@ -19,7 +19,7 @@ class ManageServiceProvider implements ServiceProviderInterface
     public function register(Container $container)
     {
         $container['manage'] = function ($container) {
-            return new Manage();
+            return new Manage($container['access_token']);
         };
     }
 }

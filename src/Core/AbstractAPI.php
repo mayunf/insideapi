@@ -25,10 +25,10 @@ abstract class AbstractAPI extends BaseApi
     {
         return function (callable $handler) {
           return function (RequestInterface $request, array $options) use ($handler) {
-              $access_token = new AccessToken($this['config']['token'],$this['config']['access_key']);
-              $request = $request->withHeader('token',$access_token->getToken());
-              $request = $request->withHeader('accesstoken',$access_token->getAccessToken());
-              $request = $request->withHeader('Cookie','JWSEMID='.$access_token->getSessionID());
+//              $access_token = new AccessToken($this['config']['token'],$this['config']['access_key']);
+              $request = $request->withHeader('token',$this->access_token->getToken());
+              $request = $request->withHeader('accesstoken',$this->access_token->getAccessToken());
+              $request = $request->withHeader('Cookie','JWSEMID='.$this->access_token->getSessionID());
               return $handler($request, $options);
           };
         };

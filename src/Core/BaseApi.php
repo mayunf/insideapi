@@ -9,6 +9,7 @@
 namespace InsideAPI\Core;
 
 use GuzzleHttp\Middleware;
+use InsideAPI\Foundation\Config;
 use Psr\Http\Message\RequestInterface;
 use InsideAPI\Support\Collection;
 
@@ -24,13 +25,16 @@ abstract class BaseApi
 
     const GET = 'get';
 
-    public $config;
-    /*
-     * @var Http
-     */
+    public $access_token;
+
+    /** @var  Http */
     protected $http;
 
 
+    public function __construct(AccessToken $config)
+    {
+        $this->access_token = $config;
+    }
 
     /**
      * Return the http instance.
@@ -85,8 +89,9 @@ abstract class BaseApi
     {
         return function (callable $handler) {
             return function (RequestInterface $request, array $options) use ($handler) {
-                $request = $request->withHeader('token',$this['config']['token']);
-                $request = $request->withHeader('accesstoken',$this['config']['access_key']);
+//                var_dump($this->access_token);die;
+                $request = $request->withHeader('token',$this->access_token->getToken());
+                $request = $request->withHeader('accesstoken',$this->access_token->getAccessKey());
                 return $handler($request, $options);
             };
         };

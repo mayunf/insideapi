@@ -41,11 +41,7 @@ class User extends AbstractAPI
 
 
 
-    /**
-     * 获取用户信息 -- Done
-     * @param array $params
-     * @return string
-     */
+
     public function getInfo($params = [])
     {
         return $this->parseJSON(static::POST,[self::GET_INFO,$params]);

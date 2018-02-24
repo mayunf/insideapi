@@ -19,7 +19,7 @@ class UserServiceProvider implements ServiceProviderInterface
     public function register(Container $container)
     {
         $container['user'] = function ($container) {
-            return new User();
+            return new User($container['access_token']);
         };
     }
 }

@@ -19,7 +19,7 @@ class AgentNotLoginServiceProvider implements ServiceProviderInterface
     public function register(Container $container)
     {
         $container['agent_not_login'] = function ($container) {
-            return new AgentNotLogin();
+            return new AgentNotLogin($container['access_token']);
         };
     }
 }

@@ -9,9 +9,8 @@
 namespace InsideAPI\Foundation;
 
 
-use Doctrine\Common\Cache\Cache;
-use Doctrine\Common\Cache\FilesystemCache;
 use InsideAPI\Core\AccessToken;
+use InsideAPI\Core\Http;
 use InsideAPI\Support\Log;
 use Monolog\Handler\HandlerInterface;
 use Monolog\Handler\NullHandler;
@@ -35,7 +34,11 @@ class Application extends Container
 {
 
     protected $providers = [
-
+        ServiceProviders\UserServiceProvider::class,
+        ServiceProviders\UserNotLoginServiceProvider::class,
+        ServiceProviders\AgentServiceProvider::class,
+        ServiceProviders\AgentNotLoginServiceProvider::class,
+        ServiceProviders\ManageServiceProvider::class,
     ];
 
     public function __construct($config)
@@ -52,6 +55,7 @@ class Application extends Container
         $this->registerProviders();
         $this->registerBase();
         $this->initializeLogger();
+        Http::setDefaultOptions($this['config']->get('guzzle', ['timeout' => 5.0]));
     }
 
 
@@ -62,18 +66,10 @@ class Application extends Container
             return Request::createFromGlobals();
         };
 
-        if (!empty($this['config']['cache']) && $this['config']['cache'] instanceof Cache) {
-            $this['cache'] = $this['config']['cache'];
-        } else {
-            $this['cache'] = function () {
-                return new FilesystemCache(sys_get_temp_dir());
-            };
-        }
         $this['access_token'] = function () {
             return new AccessToken(
                 $this['config']['token'],
-                $this['config']['access_key'],
-                $this['cache']
+                $this['config']['access_key']
             );
         };
     }
@@ -95,7 +91,14 @@ class Application extends Container
         $logger = new Logger('insideapi');
 
         if (!$this['config']['debug'] || defined('PHPUNIT_RUNNING')) {
-            $logger->pushHandler(new NullHandler());
+//            $logger->pushHandler(new NullHandler());
+            $logFile = $this['config']['log.file'];
+            $logger->pushHandler(new StreamHandler(
+                    $logFile,
+                    $this['config']->get('log.level', Logger::WARNING),
+                    true,
+                    $this['config']->get('log.permission', null))
+            );
         } elseif ($this['config']['log.handler'] instanceof HandlerInterface) {
             $logger->pushHandler($this['config']['log.handler']);
         } elseif ($logFile = $this['config']['log.file']) {

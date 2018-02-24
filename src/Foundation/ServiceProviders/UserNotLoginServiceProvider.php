@@ -19,7 +19,7 @@ class UserNotLoginServiceProvider implements ServiceProviderInterface
     public function register(Container $container)
     {
         $container['user_not_login'] = function ($container) {
-            return new UserNotLogin();
+            return new UserNotLogin($container['access_token']);
         };
     }
 }

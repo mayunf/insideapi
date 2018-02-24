@@ -19,7 +19,7 @@ class AgentServiceProvider implements ServiceProviderInterface
     public function register(Container $container)
     {
         $container['agent'] = function ($container) {
-            return new Agent();
+            return new Agent($container['access_token']);
         };
     }
 }
