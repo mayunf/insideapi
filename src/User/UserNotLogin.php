@@ -37,7 +37,7 @@ class UserNotLogin extends BaseApi
     /**
      * 判断手机是否注册
      * @param string $m
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function isMobile($m)
     {
@@ -50,7 +50,7 @@ class UserNotLogin extends BaseApi
     /**
      * 判断邮箱是否注册
      * @param string $e
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function isEmail($e)
     {
@@ -63,7 +63,7 @@ class UserNotLogin extends BaseApi
     /**
      * 用户注册
      * @param $params = []
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function register($params = [])
     {
@@ -82,7 +82,7 @@ class UserNotLogin extends BaseApi
      * @param $pwd
      * @param $t
      * @param $pt
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function logon($un, $pwd,$t = 0,$pt = 200)
     {
@@ -98,7 +98,7 @@ class UserNotLogin extends BaseApi
     /**
      * 修改密码
      * @param $params = []
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function editPwdMe($params = [])
     {
@@ -112,7 +112,7 @@ class UserNotLogin extends BaseApi
     /**
      * 添加用户权限
      * @param $params = []
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function addUserPer($params = [])
     {
@@ -124,7 +124,7 @@ class UserNotLogin extends BaseApi
      * 获取系统权限
      * @param string $productType
      * @param string $perType
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function getPers($productType = '', $perType = '')
     {
@@ -140,7 +140,7 @@ class UserNotLogin extends BaseApi
      * @param $userId
      * @param $platformId
      * @param $num
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function addAccSetting($userId,$platformId,$num)
     {

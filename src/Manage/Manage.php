@@ -64,7 +64,7 @@ class Manage extends AbstractAPI
     /**
      * 获取用户信息
      * @param $userId
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function getUser($userId)
     {
@@ -77,7 +77,7 @@ class Manage extends AbstractAPI
     /**
      * 获取用户列表
      * @param array $params
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function getUsers($params = [])
     {
@@ -87,7 +87,7 @@ class Manage extends AbstractAPI
     /**
      * 添加用户权限
      * @param $params = []
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function addUserPer($params = [])
     {
@@ -97,7 +97,7 @@ class Manage extends AbstractAPI
     /**
      * 添加权限
      * @param array $params
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function addPer($params = [])
     {
@@ -108,7 +108,7 @@ class Manage extends AbstractAPI
      * 修改权限
      * @param $Id
      * @param $PerType
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function editPer($Id,$PerType)
     {
@@ -123,7 +123,7 @@ class Manage extends AbstractAPI
     /**
      * 根据权限ID获取权限
      * @param $perId
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function getPermissions($perId)
     {
@@ -137,7 +137,7 @@ class Manage extends AbstractAPI
      * 获取系统权限列表
      * @param $ProId
      * @param $PerType
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function getPermissionsList($ProId,$PerType)
     {
@@ -153,7 +153,7 @@ class Manage extends AbstractAPI
      * @param $userId
      * @param $platformId
      * @param $num
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function addAccSetting($userId,$platformId,$num)
     {
@@ -168,7 +168,7 @@ class Manage extends AbstractAPI
     /**
      * 获取用户权限
      * @param $userId
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function getUserPer($userId)
     {
@@ -181,7 +181,7 @@ class Manage extends AbstractAPI
     /**
      * 编辑用户权限
      * @param $params
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function editUserPer($params)
     {
@@ -191,7 +191,7 @@ class Manage extends AbstractAPI
     /**
      * 获取用户余额权限
      * @param $userId
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function getUserPerMores($userId)
     {
@@ -204,7 +204,7 @@ class Manage extends AbstractAPI
     /**
      * 删除用户权限余额
      * @param $id
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function delUserPer($id)
     {
@@ -219,7 +219,7 @@ class Manage extends AbstractAPI
     /**
      * 获取用户账户设置
      * @param $userId
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function getAccSetting($userId)
     {
@@ -232,7 +232,7 @@ class Manage extends AbstractAPI
     /**
      * 编辑用户账户设置
      * @param array $params
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function editAccSetting($params = [])
     {
@@ -242,7 +242,7 @@ class Manage extends AbstractAPI
     /**
      * 获取用户账户列表
      * @param $userId
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function getAccounts($userId)
     {
@@ -257,7 +257,7 @@ class Manage extends AbstractAPI
      * @param $userId
      * @param $accId
      * @param $platform
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function delAccount($userId,$accId,$platform)
     {
@@ -271,7 +271,7 @@ class Manage extends AbstractAPI
 
     /**
      * 获取代理商列表
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function getAgents()
     {
@@ -282,7 +282,7 @@ class Manage extends AbstractAPI
     /**
      * 获取代理商权限
      * @param $AgentId
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function getAgentPer($AgentId)
     {
@@ -295,7 +295,7 @@ class Manage extends AbstractAPI
     /**
      * 获取代理商账户设置
      * @param $Aid
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function getAgentAccSet($Aid)
     {
@@ -308,7 +308,7 @@ class Manage extends AbstractAPI
     /**
      * 编辑代理商账户设置
      * @param array $params
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function editAgentAccSetting($params = [])
     {
@@ -318,7 +318,7 @@ class Manage extends AbstractAPI
     /**
      * 编辑代理商权限
      * @param array $params
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function editAgentPer($params = [])
     {
@@ -328,7 +328,7 @@ class Manage extends AbstractAPI
     /**
      * 添加代理商权限
      * @param array $params
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function addAgentPer($params = [])
     {

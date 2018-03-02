@@ -30,7 +30,7 @@ class Agent extends AbstractAPI
     /**
      * 获取代理商信息
      * @param array $params
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function getInfo($params = [])
     {
@@ -40,7 +40,7 @@ class Agent extends AbstractAPI
     /**
      * 添加代理商下用户信息
      * @param array $params
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function userAdd($params = [])
     {
@@ -50,7 +50,7 @@ class Agent extends AbstractAPI
     /**
      * 获取代理商下用户列表
      * @param array $params
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function userEdit($params = [])
     {
@@ -60,7 +60,7 @@ class Agent extends AbstractAPI
     /**
      * 获取代理商下用户列表
      * @param array $params
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function userList($params = [])
     {
@@ -70,20 +70,28 @@ class Agent extends AbstractAPI
     /**
      * 获取用户权限
      * @param array $params
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function userDelete($params = [])
     {
         return $this->parseJSON(static::POST,[self::USER_DELETE,$params]);
     }
 
-    //编辑用户密码
+    /**
+     * 编辑用户密码
+     * @param array $params
+     * @return \InsideAPI\Support\Collection
+     */
     public function userEditPwd($params = [])
     {
         return $this->parseJSON(static::POST,[self::USER_EDIT_PWD,$params]);
     }
 
-    //编辑用户登录名
+    /**
+     * 编辑用户登录名
+     * @param array $params
+     * @return \InsideAPI\Support\Collection
+     */
     public function userEditLogon($params = [])
     {
         return $this->parseJSON(static::POST,[self::USER_EDIT_LOGON,$params]);

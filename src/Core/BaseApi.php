@@ -116,7 +116,7 @@ abstract class BaseApi
      * @param string $method
      * @param array  $args
      *
-     * @return string
+     * @return Collection
      */
     public function parseJSON($method, array $args)
     {

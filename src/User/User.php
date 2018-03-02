@@ -40,8 +40,10 @@ class User extends AbstractAPI
     const ACC_DELETE = 'https://api.xiaolutuiguang.com/api/insideuser/accdelete';
 
 
-
-
+    /**
+     * @param array $params
+     * @return \InsideAPI\Support\Collection
+     */
     public function getInfo($params = [])
     {
         return $this->parseJSON(static::POST,[self::GET_INFO,$params]);
@@ -50,7 +52,7 @@ class User extends AbstractAPI
     /**
      * 编辑用户信息 --Done
      * @param $params
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function edit($params = [])
     {
@@ -61,7 +63,7 @@ class User extends AbstractAPI
     /**
      * 编辑用户信息 修改密码 --Done
      * @param $params = []
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function editPwd($params = [])
     {
@@ -71,7 +73,7 @@ class User extends AbstractAPI
     /**
      * 编辑用户信息 修改手机号码--Done
      * @param $params = []
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function editMobile($params = [])
     {
@@ -82,7 +84,7 @@ class User extends AbstractAPI
     /**
      * 编辑用户信息 修改邮箱--Done
      * @param $params = []
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function editEmail($params = [])
     {
@@ -93,7 +95,7 @@ class User extends AbstractAPI
      * 获取用户权限  ---Done
      * @param array $pros
      * @param int $AgentID
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function getPermissions($pros =[],$AgentID = 0)
     {
@@ -116,7 +118,7 @@ class User extends AbstractAPI
     /**
      * 获取账户列表  ---Done
      * @param array $pros
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function getAccList($pros = [])
     {
@@ -129,7 +131,7 @@ class User extends AbstractAPI
     /**
      * 获取历史删除账户列表
      * @param array $pros
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function getAccListHistory($pros = [])
     {
@@ -144,7 +146,7 @@ class User extends AbstractAPI
     /**
      * 添加账户 ---Done
      * @param $params = []
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function accAdd($params = [])
     {
@@ -163,7 +165,7 @@ class User extends AbstractAPI
     /**
      * 批量添加账户
      * @param array $params
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function accAdds($params =[])
     {
@@ -173,7 +175,7 @@ class User extends AbstractAPI
     /**
      * 编辑账户信息
      * @param $params = []
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function accEdit($params = [])
     {
@@ -196,7 +198,7 @@ class User extends AbstractAPI
      *  'AccID' => $userAcc->AccID,
      * ];
      * @param $params = [] 平台ID
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function accDelete($params = [])
     {

@@ -23,11 +23,10 @@ class AgentNotLogin extends BaseApi
     const LOGON = 'https://api.xiaolutuiguang.com/api/insideagent/logon';
 
 
-
     /**
      * 判断手机是否注册
-     * @param string $m
-     * @return string
+     * @param $m
+     * @return \InsideAPI\Support\Collection
      */
     public function isMobile($m)
     {
@@ -40,7 +39,7 @@ class AgentNotLogin extends BaseApi
     /**
      * 判断邮箱是否注册
      * @param string $e
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function isEmail($e)
     {
@@ -54,7 +53,7 @@ class AgentNotLogin extends BaseApi
     /**
      * 代理商注册
      * @param  array $params
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function register($params)
     {
@@ -65,7 +64,7 @@ class AgentNotLogin extends BaseApi
      * 代理商登录
      * @param  string $un
      * @param  string $pwd
-     * @return string
+     * @return \InsideAPI\Support\Collection
      */
     public function logon($un,$pwd)
     {
