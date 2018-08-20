@@ -9,6 +9,7 @@
 namespace InsideAPI\User;
 
 use InsideAPI\Core\BaseApi;
+use phpDocumentor\Reflection\Types\Static_;
 
 /**
  * 用户登录前 API
@@ -32,6 +33,8 @@ class UserNotLogin extends BaseApi
     const GET_PERS = 'https://api.xiaolutuiguang.com/api/insidemanage/getpers2'; //不用登录 获取系统权限列表
 
     const ADD_ACC_SETTING = 'https://api.xiaolutuiguang.com/api/insidemanage/addaccsetting2'; //不用登录 增加用户数量
+
+    const GET_BIND_PZ_SM = 'https://api.xiaolutuiguang.com/api/insideCoupons/getbindingpzshenma'; //不用登录 领取优惠券
 
 
     /**
@@ -150,5 +153,21 @@ class UserNotLogin extends BaseApi
             'Num' => $num
         ];
         return $this->parseJSON(static::POST,[self::ADD_ACC_SETTING,$params]);
+    }
+
+    /**
+     * 领取优惠券
+     * @param $params
+     * @return \InsideAPI\Support\Collection
+     */
+    public function getBindingPzSm($params)
+    {
+//        $params = [
+//            'CC' => $params['CC'],
+//            'PT' => $params['PT'],
+//            'R' => $params['R'],
+//            'M' => $params['M'],
+//        ];
+        return $this->parseJSON(static::POST,[self::GET_BIND_PZ_SM,$params]);
     }
 }

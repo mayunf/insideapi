@@ -103,7 +103,7 @@ class Http
         ]);
     }
 
-    /**
+    /**方法
      * JSON request.
      *
      * @param string       $url

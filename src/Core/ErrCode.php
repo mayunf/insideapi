@@ -126,10 +126,13 @@ class ErrCode
             case 40005:
                 $errMsg = '获取的Body 是空的';
                 break;
+                case 90101:
+                $errMsg = '优惠券已经存在';
+                break;
             default:
                 $errMsg = '未知错误';
 
         }
         return $errMsg;
-    } 
+    }
 }
