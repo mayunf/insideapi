@@ -39,8 +39,6 @@ class UserNotLogin extends BaseApi
 
     const BIND_WX = 'https://api.xiaolutuiguang.com/api/insideuser/userbindweixin'; // 用户绑定微信
 
-    const UNBIND_WX = 'https://api.xiaolutuiguang.com/api/insideuser/cancelbindweixin'; // 用户取消绑定微信
-
     const LOGON_WX = 'https://api.xiaolutuiguang.com/api/insideuser/logonwx'; // 微信登录
 
 
@@ -214,27 +212,16 @@ class UserNotLogin extends BaseApi
 
 
     /**
-     * 解绑微信
-     * @param $unionId
-     * @return \InsideAPI\Support\Collection
-     */
-    public function unbindWx($unionId)
-    {
-        $params = [
-            'UnionId' => $unionId
-        ];
-        return $this->parseJSON(static::POST, [self::UNBIND_WX, $params]);
-    }
-
-    /**
      * 检测是否绑定微信
-     * @param $unionId
+     * @param string $unionId
+     * @param int $userId
      * @return \InsideAPI\Support\Collection
      */
-    public function checkBindWx($unionId)
+    public function checkBindWx($unionId = '', $userId = '')
     {
         $params = [
-            'UnionId' => $unionId
+            'UnionId' => $unionId,
+            'Userid' => $userId
         ];
         return $this->parseJSON(static::POST, [self::CHECK_BIND_WX, $params]);
     }

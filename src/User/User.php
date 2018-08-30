@@ -39,6 +39,8 @@ class User extends AbstractAPI
 
     const ACC_DELETE = 'https://api.xiaolutuiguang.com/api/insideuser/accdelete';
 
+    const UNBIND_WX = 'https://api.xiaolutuiguang.com/api/insideuser/cancelbindweixin'; // 用户取消绑定微信
+
 
     /**
      * @param array $params
@@ -46,7 +48,7 @@ class User extends AbstractAPI
      */
     public function getInfo($params = [])
     {
-        return $this->parseJSON(static::POST,[self::GET_INFO,$params]);
+        return $this->parseJSON(static::POST, [self::GET_INFO, $params]);
     }
 
     /**
@@ -56,7 +58,7 @@ class User extends AbstractAPI
      */
     public function edit($params = [])
     {
-        return $this->parseJSON(static::POST,[self::EDIT,$params]);
+        return $this->parseJSON(static::POST, [self::EDIT, $params]);
     }
 
 
@@ -67,7 +69,7 @@ class User extends AbstractAPI
      */
     public function editPwd($params = [])
     {
-        return $this->parseJSON(static::POST,[self::EDIT_PWD,$params]);
+        return $this->parseJSON(static::POST, [self::EDIT_PWD, $params]);
     }
 
     /**
@@ -77,7 +79,7 @@ class User extends AbstractAPI
      */
     public function editMobile($params = [])
     {
-        return $this->parseJSON(static::POST,[self::EDIT_MOBILE,$params]);
+        return $this->parseJSON(static::POST, [self::EDIT_MOBILE, $params]);
     }
 
 
@@ -88,7 +90,7 @@ class User extends AbstractAPI
      */
     public function editEmail($params = [])
     {
-        return $this->parseJSON(static::POST,[self::EDIT_MAIL,$params]);
+        return $this->parseJSON(static::POST, [self::EDIT_MAIL, $params]);
     }
 
     /**
@@ -97,22 +99,22 @@ class User extends AbstractAPI
      * @param int $AgentID
      * @return \InsideAPI\Support\Collection
      */
-    public function getPermissions($pros =[],$AgentID = 0)
+    public function getPermissions($pros = [], $AgentID = 0)
     {
         $params = [
             'AgentID' => $AgentID,
             'Pros' => $pros
         ];
-        return $this->parseJSON(static::POST,[self::GET_PERMISSIONS,$params]);
+        return $this->parseJSON(static::POST, [self::GET_PERMISSIONS, $params]);
     }
 
-    public function getProducts($pros =[],$AgentID = 0)
+    public function getProducts($pros = [], $AgentID = 0)
     {
         $params = [
             'AgentID' => $AgentID,
             'Pros' => $pros
         ];
-        return $this->parseJSON(static::POST,[self::GET_PERMISSIONS_ALL,$params]);
+        return $this->parseJSON(static::POST, [self::GET_PERMISSIONS_ALL, $params]);
     }
 
     /**
@@ -125,7 +127,7 @@ class User extends AbstractAPI
         $params = [
             'Pros' => $pros
         ];
-        return $this->parseJSON(static::POST,[self::GET_ACC_LIST,$params]);
+        return $this->parseJSON(static::POST, [self::GET_ACC_LIST, $params]);
     }
 
     /**
@@ -138,9 +140,8 @@ class User extends AbstractAPI
         $params = [
             'Pros' => $pros
         ];
-        return $this->parseJSON(static::POST,[self::GET_ACC_LIST_HISTORY,$params]);
+        return $this->parseJSON(static::POST, [self::GET_ACC_LIST_HISTORY, $params]);
     }
-
 
 
     /**
@@ -159,7 +160,7 @@ class User extends AbstractAPI
 //            'Pwd' => $userAcc->Pwd,
 //        ];
 
-        return $this->parseJSON(static::POST,[self::ACC_ADD,$params]);
+        return $this->parseJSON(static::POST, [self::ACC_ADD, $params]);
     }
 
     /**
@@ -167,9 +168,9 @@ class User extends AbstractAPI
      * @param array $params
      * @return \InsideAPI\Support\Collection
      */
-    public function accAdds($params =[])
+    public function accAdds($params = [])
     {
-        return $this->parseJSON(static::POST,[self::ACC_ADDS,$params]);
+        return $this->parseJSON(static::POST, [self::ACC_ADDS, $params]);
     }
 
     /**
@@ -187,7 +188,7 @@ class User extends AbstractAPI
 //            'LName' => $userAcc->LName,
 //            'Pwd' => $userAcc->Pwd,
 //        ];
-        return $this->parseJSON(static::POST,[self::ACC_EDIT,$params]);
+        return $this->parseJSON(static::POST, [self::ACC_EDIT, $params]);
     }
 
     /**
@@ -202,6 +203,15 @@ class User extends AbstractAPI
      */
     public function accDelete($params = [])
     {
-        return $this->parseJSON(static::POST,[self::ACC_DELETE,$params]);
+        return $this->parseJSON(static::POST, [self::ACC_DELETE, $params]);
+    }
+
+    /**
+     * 解绑微信
+     * @return \InsideAPI\Support\Collection
+     */
+    public function unbindWx()
+    {
+        return $this->parseJSON(static::POST, [self::UNBIND_WX, []]);
     }
 }
