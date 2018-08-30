@@ -114,6 +114,12 @@ class ErrCode
             case 10210:
                 $errMsg = '添加用户权限失败，此用户权限开通过于频繁';
                 break;
+            case 10031:
+                $errMsg = '微信绑定失败,以前曾经绑定过';
+                break;
+            case 10032:
+                $errMsg = '微信绑定失败,用户不存在需要注册';
+                break;
             case 40002:
                 $errMsg = '竞价返回值是空';
                 break;
@@ -126,8 +132,23 @@ class ErrCode
             case 40005:
                 $errMsg = '获取的Body 是空的';
                 break;
-                case 90101:
-                $errMsg = '优惠券已经存在';
+            case 90101:
+                $errMsg = '已经领取过此优惠券';
+                break;
+            case 90102:
+                $errMsg = '已经不符合领取条件';
+                break;
+            case 90111:
+                $errMsg = '当前优惠活动并不存在';
+                break;
+            case 90112:
+                $errMsg = '优惠券领取活动尚未开启';
+                break;
+            case 90113:
+                $errMsg = '优惠券领取活动已经结束';
+                break;
+            case 90114:
+                $errMsg = '优惠券领取失败';
                 break;
             default:
                 $errMsg = '未知错误';

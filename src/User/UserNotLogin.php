@@ -9,7 +9,6 @@
 namespace InsideAPI\User;
 
 use InsideAPI\Core\BaseApi;
-use phpDocumentor\Reflection\Types\Static_;
 
 /**
  * 用户登录前 API
@@ -36,6 +35,14 @@ class UserNotLogin extends BaseApi
 
     const GET_BIND_PZ_SM = 'https://api.xiaolutuiguang.com/api/insideCoupons/getbindingpzshenma'; //不用登录 领取优惠券
 
+    const CHECK_BIND_WX = 'https://api.xiaolutuiguang.com/api/insideuser/checkbindweixin'; // 检测用户是否绑定微信
+
+    const BIND_WX = 'https://api.xiaolutuiguang.com/api/insideuser/userbindweixin'; // 用户绑定微信
+
+    const UNBIND_WX = 'https://api.xiaolutuiguang.com/api/insideuser/cancelbindweixin'; // 用户取消绑定微信
+
+    const LOGON_WX = 'https://api.xiaolutuiguang.com/api/insideuser/logonwx'; // 微信登录
+
 
     /**
      * 判断手机是否注册
@@ -47,7 +54,7 @@ class UserNotLogin extends BaseApi
         $params = [
             'M' => $m
         ];
-        return $this->parseJSON(static::POST,[self::IS_MOBILE,$params]);
+        return $this->parseJSON(static::POST, [self::IS_MOBILE, $params]);
     }
 
     /**
@@ -60,7 +67,7 @@ class UserNotLogin extends BaseApi
         $params = [
             'E' => $e
         ];
-        return $this->parseJSON(static::POST,[self::IS_EMAIL,$params]);
+        return $this->parseJSON(static::POST, [self::IS_EMAIL, $params]);
     }
 
     /**
@@ -76,7 +83,7 @@ class UserNotLogin extends BaseApi
 //            'IsM' => $userRegister->IsM,
 //            'Pwd' => (string)$userRegister->Pwd
 //        ];
-        return $this->parseJSON(static::POST,[self::REGISTER,$params]);
+        return $this->parseJSON(static::POST, [self::REGISTER, $params]);
     }
 
     /**
@@ -87,7 +94,7 @@ class UserNotLogin extends BaseApi
      * @param $pt
      * @return \InsideAPI\Support\Collection
      */
-    public function logon($un, $pwd,$t = 0,$pt = 200)
+    public function logon($un, $pwd, $t = 0, $pt = 200)
     {
         $params = [
             'PT' => $pt,
@@ -95,7 +102,26 @@ class UserNotLogin extends BaseApi
             'UN' => $un,
             'Pwd' => $pwd
         ];
-        return $this->parseJSON(static::POST,[self::LOGON,$params]);
+        return $this->parseJSON(static::POST, [self::LOGON, $params]);
+    }
+
+
+    /**
+     * 用户登录 （微信UnionId）
+     * @param $unionId
+     * @param int $t
+     * @param int $pt
+     * @return \InsideAPI\Support\Collection
+     */
+    public function logonWx($unionId, $t = 0, $pt = 200)
+    {
+        $params = [
+            'PT' => $pt,
+            'T' => $t,
+            'UnionId' => $unionId
+        ];
+
+        return $this->parseJSON(static::POST, [self::LOGON_WX, $params]);
     }
 
     /**
@@ -105,11 +131,8 @@ class UserNotLogin extends BaseApi
      */
     public function editPwdMe($params = [])
     {
-        return $this->parseJSON(static::POST,[self::EDIT_PWD_ME,$params]);
+        return $this->parseJSON(static::POST, [self::EDIT_PWD_ME, $params]);
     }
-
-
-
 
 
     /**
@@ -119,7 +142,7 @@ class UserNotLogin extends BaseApi
      */
     public function addUserPer($params = [])
     {
-        return $this->parseJSON(static::POST,[self::ADD_USER_PER,$params]);
+        return $this->parseJSON(static::POST, [self::ADD_USER_PER, $params]);
     }
 
 
@@ -135,7 +158,7 @@ class UserNotLogin extends BaseApi
             'ProId' => $productType,
             'PerType' => $perType
         ];
-        return $this->parseJSON(static::POST,[self::GET_PERS,$params]);
+        return $this->parseJSON(static::POST, [self::GET_PERS, $params]);
     }
 
     /**
@@ -145,14 +168,14 @@ class UserNotLogin extends BaseApi
      * @param $num
      * @return \InsideAPI\Support\Collection
      */
-    public function addAccSetting($userId,$platformId,$num)
+    public function addAccSetting($userId, $platformId, $num)
     {
         $params = [
             'Userid' => $userId,
-            'Platform' =>$platformId,
+            'Platform' => $platformId,
             'Num' => $num
         ];
-        return $this->parseJSON(static::POST,[self::ADD_ACC_SETTING,$params]);
+        return $this->parseJSON(static::POST, [self::ADD_ACC_SETTING, $params]);
     }
 
     /**
@@ -168,6 +191,52 @@ class UserNotLogin extends BaseApi
 //            'R' => $params['R'],
 //            'M' => $params['M'],
 //        ];
-        return $this->parseJSON(static::POST,[self::GET_BIND_PZ_SM,$params]);
+        return $this->parseJSON(static::POST, [self::GET_BIND_PZ_SM, $params]);
     }
+
+
+    /**
+     * 绑定微信
+     * @param $unionId
+     * @param $userId
+     * @param string $mobile
+     * @return \InsideAPI\Support\Collection
+     */
+    public function bindWx($unionId, $userId, $mobile = '')
+    {
+        $params = [
+            'UnionId' => $unionId,
+            'Userid' => $userId,
+            'Mobile' => $mobile
+        ];
+        return $this->parseJSON(static::POST, [self::BIND_WX, $params]);
+    }
+
+
+    /**
+     * 解绑微信
+     * @param $unionId
+     * @return \InsideAPI\Support\Collection
+     */
+    public function unbindWx($unionId)
+    {
+        $params = [
+            'UnionId' => $unionId
+        ];
+        return $this->parseJSON(static::POST, [self::UNBIND_WX, $params]);
+    }
+
+    /**
+     * 检测是否绑定微信
+     * @param $unionId
+     * @return \InsideAPI\Support\Collection
+     */
+    public function checkBindWx($unionId)
+    {
+        $params = [
+            'UnionId' => $unionId
+        ];
+        return $this->parseJSON(static::POST, [self::CHECK_BIND_WX, $params]);
+    }
+
 }
