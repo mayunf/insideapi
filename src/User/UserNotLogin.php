@@ -200,7 +200,7 @@ class UserNotLogin extends BaseApi
      * @param string $mobile
      * @return \InsideAPI\Support\Collection
      */
-    public function bindWx($unionId, $userId, $mobile = '')
+    public function bindWx($unionId, $userId = 0, $mobile = '')
     {
         $params = [
             'UnionId' => $unionId,
@@ -217,7 +217,7 @@ class UserNotLogin extends BaseApi
      * @param int $userId
      * @return \InsideAPI\Support\Collection
      */
-    public function checkBindWx($unionId = '', $userId = '')
+    public function checkBindWx($unionId = '', $userId = 0)
     {
         $params = [
             'UnionId' => $unionId,
