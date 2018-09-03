@@ -14,20 +14,11 @@
         "monolog/monolog": "^1.17",
     	"php": ">=7.0.0",
         "pimple/pimple": "~3.0",
-        "symfony/http-foundation": "^3.3"	
+        "symfony/http-foundation": "^3.3"
 	},
-    "require-dev": {
-        "mockery/mockery": "^0.9.9",
-        "phpunit/phpunit": "^6.5"
-    },
     "autoload": {
         "psr-4": {
             "InsideAPI\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "InsideAPI\\Tests\\": "tests/"
         }
     }
 }
