@@ -11,6 +11,7 @@ namespace InsideAPI\Foundation;
 
 use InsideAPI\Core\AccessToken;
 use InsideAPI\Core\Http;
+use InsideAPI\Foundation\ServiceProviders\SoftServiceProvider;
 use InsideAPI\Support\Log;
 use Monolog\Handler\HandlerInterface;
 use Monolog\Handler\NullHandler;
@@ -27,6 +28,7 @@ use Symfony\Component\HttpFoundation\Request;
  * @property \InsideAPI\Agent\Agent             $agent
  * @property \InsideAPI\Agent\AgentNotLogin     $agent_not_login
  * @property \InsideAPI\Manage\Manage           $manage
+ * @property \InsideAPI\Soft\Soft               $soft
  *
  * @package InsideAPI\Foundation
  */
@@ -39,6 +41,7 @@ class Application extends Container
         ServiceProviders\AgentServiceProvider::class,
         ServiceProviders\AgentNotLoginServiceProvider::class,
         ServiceProviders\ManageServiceProvider::class,
+        ServiceProviders\SoftServiceProvider::class
     ];
 
     public function __construct($config)
@@ -48,7 +51,7 @@ class Application extends Container
         $this['config'] = function () use ($config) {
             return new Config($config);
         };
-        
+
         if ($this['config']['debug'] == true) {
             error_reporting(E_ALL);
         }
