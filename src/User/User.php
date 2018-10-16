@@ -22,7 +22,6 @@ class User extends AbstractAPI
 
     const EDIT_MOBILE = 'https://api.xiaolutuiguang.com/api/insideuser/editmobile';
 
-
     const GET_PERMISSIONS = 'https://api.xiaolutuiguang.com/api/insideuser/getpermissions';
 
     const GET_PERMISSIONS_ALL = 'https://api.xiaolutuiguang.com/api/insideuser/getpermissionsall';
@@ -40,6 +39,10 @@ class User extends AbstractAPI
     const ACC_DELETE = 'https://api.xiaolutuiguang.com/api/insideuser/accdelete';
 
     const UNBIND_WX = 'https://api.xiaolutuiguang.com/api/insideuser/cancelbindweixin'; // 用户取消绑定微信
+
+    const GET_GOODS = 'https://api.xiaolutuiguang.com/api/insideuser/getgoods'; // 获取商品列表
+
+    const PAYMENT = 'https://api.xiaolutuiguang.com/api/insideuser/payment'; // 获取付款信息
 
 
     /**
@@ -147,18 +150,19 @@ class User extends AbstractAPI
     /**
      * 添加账户 ---Done
      * @param $params = []
+     *    $params = [
+     *      'Platform' => $userAcc->Platform,
+     *      'PT' => $userAcc->PT,
+     *      'AccID' => $userAcc->AccID,
+     *      'AccName' => $userAcc->AccName,
+     *      'LName' => $userAcc->LName,
+     *      'Pwd' => $userAcc->Pwd,
+     *  ];
      * @return \InsideAPI\Support\Collection
      */
     public function accAdd($params = [])
     {
-//        $params = [
-//            'Platform' => $userAcc->Platform,
-//            'PT' => $userAcc->PT,
-//            'AccID' => $userAcc->AccID,
-//            'AccName' => $userAcc->AccName,
-//            'LName' => $userAcc->LName,
-//            'Pwd' => $userAcc->Pwd,
-//        ];
+
 
         return $this->parseJSON(static::POST, [self::ACC_ADD, $params]);
     }
@@ -176,27 +180,28 @@ class User extends AbstractAPI
     /**
      * 编辑账户信息
      * @param $params = []
+     *    $params = [
+     *          'Platform' => $userAcc->Platform,
+     *         'PT' => $userAcc->PT,
+     *         'AccID' => $userAcc->AccID,
+     *          'AccName' => $userAcc->AccName,
+     *          'LName' => $userAcc->LName,
+     *         'Pwd' => $userAcc->Pwd,
+     *    ];
      * @return \InsideAPI\Support\Collection
      */
     public function accEdit($params = [])
     {
-//        $params = [
-//            'Platform' => $userAcc->Platform,
-//            'PT' => $userAcc->PT,
-//            'AccID' => $userAcc->AccID,
-//            'AccName' => $userAcc->AccName,
-//            'LName' => $userAcc->LName,
-//            'Pwd' => $userAcc->Pwd,
-//        ];
+
         return $this->parseJSON(static::POST, [self::ACC_EDIT, $params]);
     }
 
     /**
      * 删除账户
      * $params = [
-     *  'Platform' => $userAcc->Platform,
-     *  'PT' => $userAcc->PT,
-     *  'AccID' => $userAcc->AccID,
+     *      'Platform' => $userAcc->Platform,
+     *      'PT' => $userAcc->PT,
+     *      'AccID' => $userAcc->AccID,
      * ];
      * @param $params = [] 平台ID
      * @return \InsideAPI\Support\Collection
@@ -214,4 +219,40 @@ class User extends AbstractAPI
     {
         return $this->parseJSON(static::POST, [self::UNBIND_WX, []]);
     }
+
+    /**
+     * 获取商品列表
+     * @param array $params
+     * @return \InsideAPI\Support\Collection
+     */
+    public function getGoods($params = [])
+    {
+        return $this->parseJSON(static::POST, [self::GET_GOODS, $params]);
+    }
+
+    /**
+     * 获取支付信息
+     * @param array $params
+     *
+     *   $params = [
+     *      'payway' => '支付方式 1：支付宝 2：微信',
+     *      'goodsid' => '商品ID',
+     *      'price' => '支付金额',
+     *      'unit' => '支付单位： 1 月 ，2年',
+     *      'describe' => '订单描述',
+     *  ];
+     * @return \InsideAPI\Support\Collection
+     *
+     *  $return = [
+     *      'code_url' => '支付Url',
+     *      'uniqueid' => '唯一ID'
+     *  ]
+     */
+    public function payment($params = [])
+    {
+        return $this->parseJSON(static::POST, [self::PAYMENT, $params]);
+    }
+
+
+
 }
