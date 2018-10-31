@@ -41,6 +41,18 @@ class UserNotLogin extends BaseApi
 
     const LOGON_WX = 'https://api.xiaolutuiguang.com/api/insideuser/logonwx'; // 微信登录
 
+    const PAYMENT_STATE = 'https://api.xiaolutuiguang.com/api/InsideUser/paymentstate'; //支付成功通知
+
+
+    /**
+     * 支付成功通知
+     * @param array $params
+     * @return \InsideAPI\Support\Collection
+     */
+    public function paymentState(array $params)
+    {
+        return $this->parseJSON(static::POST,[self::PAYMENT_STATE,$params]);
+    }
 
     /**
      * 判断手机是否注册
