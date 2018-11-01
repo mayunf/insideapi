@@ -45,16 +45,6 @@ class UserNotLogin extends BaseApi
 
 
     /**
-     * 支付成功通知
-     * @param array $params
-     * @return \InsideAPI\Support\Collection
-     */
-    public function paymentState(array $params)
-    {
-        return $this->parseJSON(static::POST,[self::PAYMENT_STATE,$params]);
-    }
-
-    /**
      * 判断手机是否注册
      * @param string $m
      * @return \InsideAPI\Support\Collection
@@ -82,17 +72,18 @@ class UserNotLogin extends BaseApi
 
     /**
      * 用户注册
+       $params = [
+          'PT' => $userRegister->PT,
+           'M' => (string)$userRegister->M,
+          'IsM' => $userRegister->IsM,
+          'Pwd' => (string)$userRegister->Pwd
+     ];
      * @param $params = []
      * @return \InsideAPI\Support\Collection
      */
     public function register($params = [])
     {
-//        $params = [
-//            'PT' => $userRegister->PT,
-//            'M' => (string)$userRegister->M,
-//            'IsM' => $userRegister->IsM,
-//            'Pwd' => (string)$userRegister->Pwd
-//        ];
+
         return $this->parseJSON(static::POST, [self::REGISTER, $params]);
     }
 
@@ -190,17 +181,18 @@ class UserNotLogin extends BaseApi
 
     /**
      * 领取优惠券
+     * $params = [
+           'CC' => $params['CC'],
+            'PT' => $params['PT'],
+            'R' => $params['R'],
+            'M' => $params['M'],
+        ];
      * @param $params
      * @return \InsideAPI\Support\Collection
      */
     public function getBindingPzSm($params)
     {
-//        $params = [
-//            'CC' => $params['CC'],
-//            'PT' => $params['PT'],
-//            'R' => $params['R'],
-//            'M' => $params['M'],
-//        ];
+
         return $this->parseJSON(static::POST, [self::GET_BIND_PZ_SM, $params]);
     }
 
@@ -236,6 +228,16 @@ class UserNotLogin extends BaseApi
             'Userid' => $userId
         ];
         return $this->parseJSON(static::POST, [self::CHECK_BIND_WX, $params]);
+    }
+
+    /**
+     * 支付成功通知
+     * @param array $params
+     * @return \InsideAPI\Support\Collection
+     */
+    public function paymentState(array $params)
+    {
+        return $this->parseJSON(static::POST,[self::PAYMENT_STATE,$params]);
     }
 
 }

@@ -14,7 +14,9 @@ use InsideAPI\Core\BaseApi;
 class Soft extends BaseApi
 {
 
-    const CONFIG_CLEAR = 'http://api.xiaolutuiguang.com/api/InsideSoft/ConfigClear/';
+    const CONFIG_CLEAR = 'http://api.xiaolutuiguang.com/api/InsideSoft/ConfigClear/'; // 清除config 缓存
+
+    const ABOUT_CLEAR = 'http://api.xiaolutuiguang.com/api/InsideSoft/aboutclear/'; // 清除about 缓存
 
     /**
      * 清除config的cache
@@ -24,5 +26,16 @@ class Soft extends BaseApi
     public function configClear($type)
     {
         return $this->parseJSON(static::POST, [self::CONFIG_CLEAR.$type, []]);
+    }
+
+
+    /**
+     * 清除about缓存
+     * @param integer $proId 产品ID
+     * @return \InsideAPI\Support\Collection
+     */
+    public function aboutClear($proId)
+    {
+        return $this->parseJSON(static::POST,[self::ABOUT_CLEAR.$proId,[]]);
     }
 }
