@@ -11,22 +11,18 @@ namespace InsideAPI\Enum;
 
 class EPlatform
 {
-    /// <summary>
-    /// 百度
-    /// </summary>
+    // 百度
     const Baidu = 0;
-    /// <summary>
-    /// 奇搜360
-    /// </summary>
+    // 奇搜360
     const Qh360 = 1;
-    /// <summary>
-    /// 搜狗
-    /// </summary>
+    // 搜狗
     const Sogou = 2;
-    /// <summary>
-    /// 神马
-    /// </summary>
+    // 神马
     const Shenma = 3;
+    // 腾讯
+    const Tencent = 4;
+    // 微信
+    const Weixin = 5;
 
     public static function getPlatform($key = null)
     {
@@ -35,6 +31,8 @@ class EPlatform
             1 => '360',
             2 => '搜狗',
             3 => '神马',
+            4 => '腾讯',
+            5 => '微信',
         ];
         if (array_key_exists($key,$all)) {
             return $all[$key];
