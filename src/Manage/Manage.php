@@ -14,51 +14,51 @@ use InsideAPI\Core\AbstractAPI;
 class Manage extends AbstractAPI
 {
 
-    const GET_PERMISSIONS = 'https://api.xiaolutuiguang.com/api/insidemanage/getper'; // 通过权限ID获取权限
+    const GET_PERMISSIONS = 'insidemanage/getper'; // 通过权限ID获取权限
 
-    const ADD_PER = 'https://api.xiaolutuiguang.com/api/insidemanage/addper'; // 通过权限ID获取权限
+    const ADD_PER = 'insidemanage/addper'; // 通过权限ID获取权限
 
-    const EDIT_PER = 'https://api.xiaolutuiguang.com/api/insidemanage/editper'; // 修改权限
+    const EDIT_PER = 'insidemanage/editper'; // 修改权限
 
-    const GET_PERMISSIONS_LIST = 'https://api.xiaolutuiguang.com/api/insidemanage/getpers'; // 获取系统权限列表
+    const GET_PERMISSIONS_LIST = 'insidemanage/getpers'; // 获取系统权限列表
 
-    const ADD_ACC_SETTING = 'https://api.xiaolutuiguang.com/api/insidemanage/addaccsetting'; //增加用户数量
+    const ADD_ACC_SETTING = 'insidemanage/addaccsetting'; //增加用户数量
 
-    const GET_USER = 'https://api.xiaolutuiguang.com/api/insidemanage/getuser'; //获取用户信息
+    const GET_USER = 'insidemanage/getuser'; //获取用户信息
 
-    const ADD_USER_PER = 'https://api.xiaolutuiguang.com/api/insidemanage/adduserper'; //添加用户权限
+    const ADD_USER_PER = 'insidemanage/adduserper'; //添加用户权限
 
-    const GET_USERS = 'https://api.xiaolutuiguang.com/api/insidemanage/getusers'; //获取用户列表
+    const GET_USERS = 'insidemanage/getusers'; //获取用户列表
 
-    const GET_USER_PER = 'https://api.xiaolutuiguang.com/api/insidemanage/getuserper'; //获取用户权限
+    const GET_USER_PER = 'insidemanage/getuserper'; //获取用户权限
 
-    const EDIT_USER_PER = 'https://api.xiaolutuiguang.com/api/insidemanage/edituserper'; //编辑用户权限
+    const EDIT_USER_PER = 'insidemanage/edituserper'; //编辑用户权限
 
-    const GET_USER_PER_MORE = 'https://api.xiaolutuiguang.com/api/insidemanage/getuserpers'; //获取用户权限余额
+    const GET_USER_PER_MORE = 'insidemanage/getuserpers'; //获取用户权限余额
 
-    const DEL_USER_PER = 'https://api.xiaolutuiguang.com/api/insidemanage/deluserper'; //删除用户权限余额
-
-
-    const GET_ACC_SETTING = 'https://api.xiaolutuiguang.com/api/insidemanage/getaccsetting'; //获取用户账户设置
-
-    const EDIT_ACC_SETTING = 'https://api.xiaolutuiguang.com/api/insidemanage/editaccsetting'; //编辑用户账户设置
-
-    const GET_ACCOUNTS = 'https://api.xiaolutuiguang.com/api/insidemanage/getaccounts'; // 获取账户列表
-
-    const DEL_ACCOUNT = 'https://api.xiaolutuiguang.com/api/insidemanage/delaccount'; // 删除账户
+    const DEL_USER_PER = 'insidemanage/deluserper'; //删除用户权限余额
 
 
-    const GET_AGENTS = 'https://api.xiaolutuiguang.com/api/insidemanage/getagents'; //获取代理商列表
+    const GET_ACC_SETTING = 'insidemanage/getaccsetting'; //获取用户账户设置
 
-    const GET_AGENT_PER = 'https://api.xiaolutuiguang.com/api/insidemanage/getagentper'; //获取代理商列表
+    const EDIT_ACC_SETTING = 'insidemanage/editaccsetting'; //编辑用户账户设置
 
-    const GET_AGENT_ACC_SET = 'https://api.xiaolutuiguang.com/api/insidemanage/getagentaccset'; //获取代理商账户设置
+    const GET_ACCOUNTS = 'insidemanage/getaccounts'; // 获取账户列表
 
-    const EDIT_AGENT_ACC_SET = 'https://api.xiaolutuiguang.com/api/insidemanage/editagentaccset'; //编辑代理商账户设置
+    const DEL_ACCOUNT = 'insidemanage/delaccount'; // 删除账户
 
-    const EDIT_AGENT_PER = 'https://api.xiaolutuiguang.com/api/insidemanage/editagentper'; //编辑代理商权限
 
-    const ADD_AGENT_PER = 'https://api.xiaolutuiguang.com/api/insidemanage/addagentper'; //添加代理商权限
+    const GET_AGENTS = 'insidemanage/getagents'; //获取代理商列表
+
+    const GET_AGENT_PER = 'insidemanage/getagentper'; //获取代理商列表
+
+    const GET_AGENT_ACC_SET = 'insidemanage/getagentaccset'; //获取代理商账户设置
+
+    const EDIT_AGENT_ACC_SET = 'insidemanage/editagentaccset'; //编辑代理商账户设置
+
+    const EDIT_AGENT_PER = 'insidemanage/editagentper'; //编辑代理商权限
+
+    const ADD_AGENT_PER = 'insidemanage/addagentper'; //添加代理商权限
 
 
     /**
@@ -119,7 +119,7 @@ class Manage extends AbstractAPI
         return $this->parseJSON(static::POST,[self::EDIT_PER,$params]);
     }
 
-    
+
     /**
      * 根据权限ID获取权限
      * @param $perId

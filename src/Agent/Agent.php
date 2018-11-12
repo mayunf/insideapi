@@ -14,19 +14,19 @@ use InsideAPI\Core\AbstractAPI;
 class Agent extends AbstractAPI
 {
 
-    const GET_INFO = 'https://api.xiaolutuiguang.com/api/insideagent/getinfo';
+    const GET_INFO = 'insideagent/getinfo';
 
-    const USER_ADD = 'https://api.xiaolutuiguang.com/api/insideagent/useradd';
+    const USER_ADD = 'insideagent/useradd';
 
-    const USER_LIST = 'https://api.xiaolutuiguang.com/api/insideagent/userlist';
+    const USER_LIST = 'insideagent/userlist';
 
-    const USER_EDIT = 'https://api.xiaolutuiguang.com/api/insideagent/useredit';
+    const USER_EDIT = 'insideagent/useredit';
 
-    const USER_DELETE = 'https://api.xiaolutuiguang.com/api/insideagent/userdelete';
+    const USER_DELETE = 'insideagent/userdelete';
 
-    const USER_EDIT_PWD = 'https://api.xiaolutuiguang.com/api/insideagent/usereditpwd';
+    const USER_EDIT_PWD = 'insideagent/usereditpwd';
 
-    const USER_EDIT_LOGON = 'https://api.xiaolutuiguang.com/api/insideagent/usereditlogon';
+    const USER_EDIT_LOGON = 'insideagent/usereditlogon';
     /**
      * 获取代理商信息
      * @param array $params
@@ -66,7 +66,7 @@ class Agent extends AbstractAPI
     {
         return $this->parseJSON(static::POST,[self::USER_LIST,$params]);
     }
-    
+
     /**
      * 获取用户权限
      * @param array $params

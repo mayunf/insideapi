@@ -14,9 +14,9 @@ use InsideAPI\Core\BaseApi;
 class Soft extends BaseApi
 {
 
-    const CONFIG_CLEAR = 'http://api.xiaolutuiguang.com/api/InsideSoft/ConfigClear/'; // 清除config 缓存
+    const CONFIG_CLEAR = 'InsideSoft/ConfigClear/'; // 清除config 缓存
 
-    const ABOUT_CLEAR = 'http://api.xiaolutuiguang.com/api/InsideSoft/aboutclear/'; // 清除about 缓存
+    const ABOUT_CLEAR = 'InsideSoft/aboutclear/'; // 清除about 缓存
 
     /**
      * 清除config的cache

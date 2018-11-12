@@ -17,31 +17,31 @@ use InsideAPI\Core\BaseApi;
  */
 class UserNotLogin extends BaseApi
 {
-    const REGISTER = 'https://api.xiaolutuiguang.com/api/insideuser/register';
+    const REGISTER = 'insideuser/register';
 
-    const LOGON = 'https://api.xiaolutuiguang.com/api/insideuser/logon';
+    const LOGON = 'insideuser/logon';
 
-    const IS_MOBILE = 'https://api.xiaolutuiguang.com/api/insideuser/ismobile';
+    const IS_MOBILE = 'insideuser/ismobile';
 
-    const IS_EMAIL = 'https://api.xiaolutuiguang.com/api/insideuser/isemail';
+    const IS_EMAIL = 'insideuser/isemail';
 
-    const EDIT_PWD_ME = 'https://api.xiaolutuiguang.com/api/insideuser/editpwdme';
+    const EDIT_PWD_ME = 'insideuser/editpwdme';
 
-    const ADD_USER_PER = 'https://api.xiaolutuiguang.com/api/insidemanage/adduserper2'; //不用登录
+    const ADD_USER_PER = 'insidemanage/adduserper2'; //不用登录
 
-    const GET_PERS = 'https://api.xiaolutuiguang.com/api/insidemanage/getpers2'; //不用登录 获取系统权限列表
+    const GET_PERS = 'insidemanage/getpers2'; //不用登录 获取系统权限列表
 
-    const ADD_ACC_SETTING = 'https://api.xiaolutuiguang.com/api/insidemanage/addaccsetting2'; //不用登录 增加用户数量
+    const ADD_ACC_SETTING = 'insidemanage/addaccsetting2'; //不用登录 增加用户数量
 
-    const GET_BIND_PZ_SM = 'https://api.xiaolutuiguang.com/api/insideCoupons/getbindingpzshenma'; //不用登录 领取优惠券
+    const GET_BIND_PZ_SM = 'insideCoupons/getbindingpzshenma'; //不用登录 领取优惠券
 
-    const CHECK_BIND_WX = 'https://api.xiaolutuiguang.com/api/insideuser/checkbindweixin'; // 检测用户是否绑定微信
+    const CHECK_BIND_WX = 'insideuser/checkbindweixin'; // 检测用户是否绑定微信
 
-    const BIND_WX = 'https://api.xiaolutuiguang.com/api/insideuser/userbindweixin'; // 用户绑定微信
+    const BIND_WX = 'insideuser/userbindweixin'; // 用户绑定微信
 
-    const LOGON_WX = 'https://api.xiaolutuiguang.com/api/insideuser/logonwx'; // 微信登录
+    const LOGON_WX = 'insideuser/logonwx'; // 微信登录
 
-    const PAYMENT_STATE = 'https://api.xiaolutuiguang.com/api/InsideUser/paymentstate'; //支付成功通知
+    const PAYMENT_STATE = 'InsideUser/paymentstate'; //支付成功通知
 
 
     /**

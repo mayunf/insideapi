@@ -14,13 +14,13 @@ use InsideAPI\Core\BaseApi;
 class AgentNotLogin extends BaseApi
 {
 
-    const IS_MOBILE = 'https://api.xiaolutuiguang.com/api/insideagent/ismobile';
+    const IS_MOBILE = 'insideagent/ismobile';
 
-    const IS_EMAIL = 'https://api.xiaolutuiguang.com/api/insideagent/isemail';
+    const IS_EMAIL = 'insideagent/isemail';
 
-    const REGISTER = 'https://api.xiaolutuiguang.com/api/insideagent/register';
+    const REGISTER = 'insideagent/register';
 
-    const LOGON = 'https://api.xiaolutuiguang.com/api/insideagent/logon';
+    const LOGON = 'insideagent/logon';
 
 
     /**

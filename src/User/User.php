@@ -12,37 +12,37 @@ use InsideAPI\Core\AbstractAPI;
 
 class User extends AbstractAPI
 {
-    const GET_INFO = 'https://api.xiaolutuiguang.com/api/insideuser/getinfo';
+    const GET_INFO = 'insideuser/getinfo';
 
-    const EDIT = 'https://api.xiaolutuiguang.com/api/insideuser/edit';
+    const EDIT = 'insideuser/edit';
 
-    const EDIT_PWD = 'https://api.xiaolutuiguang.com/api/insideuser/editpwd';
+    const EDIT_PWD = 'insideuser/editpwd';
 
-    const EDIT_MAIL = 'https://api.xiaolutuiguang.com/api/insideuser/editemail';
+    const EDIT_MAIL = 'insideuser/editemail';
 
-    const EDIT_MOBILE = 'https://api.xiaolutuiguang.com/api/insideuser/editmobile';
+    const EDIT_MOBILE = 'insideuser/editmobile';
 
-    const GET_PERMISSIONS = 'https://api.xiaolutuiguang.com/api/insideuser/getpermissions';
+    const GET_PERMISSIONS = 'insideuser/getpermissions';
 
-    const GET_PERMISSIONS_ALL = 'https://api.xiaolutuiguang.com/api/insideuser/getpermissionsall';
+    const GET_PERMISSIONS_ALL = 'insideuser/getpermissionsall';
 
-    const GET_ACC_LIST = 'https://api.xiaolutuiguang.com/api/insideuser/acclist';
+    const GET_ACC_LIST = 'insideuser/acclist';
 
-    const GET_ACC_LIST_HISTORY = 'https://api.xiaolutuiguang.com/api/insideuser/acclisthistory';
+    const GET_ACC_LIST_HISTORY = 'insideuser/acclisthistory';
 
-    const ACC_ADD = 'https://api.xiaolutuiguang.com/api/insideuser/accadd';
+    const ACC_ADD = 'insideuser/accadd';
 
-    const ACC_ADDS = 'https://api.xiaolutuiguang.com/api/insideuser/accadds';
+    const ACC_ADDS = 'insideuser/accadds';
 
-    const ACC_EDIT = 'https://api.xiaolutuiguang.com/api/insideuser/accedit';
+    const ACC_EDIT = 'insideuser/accedit';
 
-    const ACC_DELETE = 'https://api.xiaolutuiguang.com/api/insideuser/accdelete';
+    const ACC_DELETE = 'insideuser/accdelete';
 
-    const UNBIND_WX = 'https://api.xiaolutuiguang.com/api/insideuser/cancelbindweixin'; // 用户取消绑定微信
+    const UNBIND_WX = 'insideuser/cancelbindweixin'; // 用户取消绑定微信
 
-    const GET_GOODS = 'https://api.xiaolutuiguang.com/api/insideuser/getgoods'; // 获取商品列表
+    const GET_GOODS = 'insideuser/getgoods'; // 获取商品列表
 
-    const PAYMENT = 'https://api.xiaolutuiguang.com/api/insideuser/payment'; // 获取付款信息
+    const PAYMENT = 'insideuser/payment'; // 获取付款信息
 
 
     /**
