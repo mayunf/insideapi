@@ -47,7 +47,7 @@ class User extends AbstractAPI
 
     /**
      * @param array $params
-     * @return \InsideAPI\Support\Collection
+     * @return \Mayunfeng\Supports\Collection
      */
     public function getInfo($params = [])
     {
@@ -57,7 +57,7 @@ class User extends AbstractAPI
     /**
      * 编辑用户信息 --Done
      * @param $params
-     * @return \InsideAPI\Support\Collection
+     * @return \Mayunfeng\Supports\Collection
      */
     public function edit($params = [])
     {
@@ -68,7 +68,7 @@ class User extends AbstractAPI
     /**
      * 编辑用户信息 修改密码 --Done
      * @param $params = []
-     * @return \InsideAPI\Support\Collection
+     * @return \Mayunfeng\Supports\Collection
      */
     public function editPwd($params = [])
     {
@@ -78,7 +78,7 @@ class User extends AbstractAPI
     /**
      * 编辑用户信息 修改手机号码--Done
      * @param $params = []
-     * @return \InsideAPI\Support\Collection
+     * @return \Mayunfeng\Supports\Collection
      */
     public function editMobile($params = [])
     {
@@ -89,7 +89,7 @@ class User extends AbstractAPI
     /**
      * 编辑用户信息 修改邮箱--Done
      * @param $params = []
-     * @return \InsideAPI\Support\Collection
+     * @return \Mayunfeng\Supports\Collection
      */
     public function editEmail($params = [])
     {
@@ -100,7 +100,7 @@ class User extends AbstractAPI
      * 获取用户权限  ---Done
      * @param array $pros
      * @param int $AgentID
-     * @return \InsideAPI\Support\Collection
+     * @return \Mayunfeng\Supports\Collection
      */
     public function getPermissions($pros = [], $AgentID = 0)
     {
@@ -123,7 +123,7 @@ class User extends AbstractAPI
     /**
      * 获取账户列表  ---Done
      * @param array $pros
-     * @return \InsideAPI\Support\Collection
+     * @return \Mayunfeng\Supports\Collection
      */
     public function getAccList($pros = [])
     {
@@ -136,7 +136,7 @@ class User extends AbstractAPI
     /**
      * 获取历史删除账户列表
      * @param array $pros
-     * @return \InsideAPI\Support\Collection
+     * @return \Mayunfeng\Supports\Collection
      */
     public function getAccListHistory($pros = [])
     {
@@ -158,7 +158,7 @@ class User extends AbstractAPI
      *      'LName' => $userAcc->LName,
      *      'Pwd' => $userAcc->Pwd,
      *  ];
-     * @return \InsideAPI\Support\Collection
+     * @return \Mayunfeng\Supports\Collection
      */
     public function accAdd($params = [])
     {
@@ -170,7 +170,7 @@ class User extends AbstractAPI
     /**
      * 批量添加账户
      * @param array $params
-     * @return \InsideAPI\Support\Collection
+     * @return \Mayunfeng\Supports\Collection
      */
     public function accAdds($params = [])
     {
@@ -188,7 +188,7 @@ class User extends AbstractAPI
      *          'LName' => $userAcc->LName,
      *         'Pwd' => $userAcc->Pwd,
      *    ];
-     * @return \InsideAPI\Support\Collection
+     * @return \Mayunfeng\Supports\Collection
      */
     public function accEdit($params = [])
     {
@@ -204,7 +204,7 @@ class User extends AbstractAPI
      *      'AccID' => $userAcc->AccID,
      * ];
      * @param $params = [] 平台ID
-     * @return \InsideAPI\Support\Collection
+     * @return \Mayunfeng\Supports\Collection
      */
     public function accDelete($params = [])
     {
@@ -213,7 +213,7 @@ class User extends AbstractAPI
 
     /**
      * 解绑微信
-     * @return \InsideAPI\Support\Collection
+     * @return \Mayunfeng\Supports\Collection
      */
     public function unbindWx()
     {
@@ -223,7 +223,7 @@ class User extends AbstractAPI
     /**
      * 获取商品列表
      * @param array $params
-     * @return \InsideAPI\Support\Collection
+     * @return \Mayunfeng\Supports\Collection
      */
     public function getGoods($params = [])
     {
@@ -241,7 +241,7 @@ class User extends AbstractAPI
      *      'unit' => '支付单位： 1 月 ，2年',
      *      'describe' => '订单描述',
      *  ];
-     * @return \InsideAPI\Support\Collection
+     * @return \Mayunfeng\Supports\Collection
      *
      *  $return = [
      *      'code_url' => '支付Url',

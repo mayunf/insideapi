@@ -9,9 +9,9 @@
 namespace InsideAPI\Core;
 
 use GuzzleHttp\Middleware;
-use InsideAPI\Foundation\Config;
+use InsideAPI\AccessToken\AccessToken;
 use Psr\Http\Message\RequestInterface;
-use InsideAPI\Support\Collection;
+use Mayunfeng\Supports\Collection;
 
 /**
  * BaseApi use before login
@@ -25,15 +25,15 @@ abstract class BaseApi
 
     const GET = 'get';
 
-    public $access_token;
+    public $accessToken;
 
     /** @var  Http */
     protected $http;
 
 
-    public function __construct(AccessToken $config)
+    public function __construct(AccessToken $accessToken)
     {
-        $this->access_token = $config;
+        $this->accessToken = $accessToken;
     }
 
     /**
@@ -89,9 +89,8 @@ abstract class BaseApi
     {
         return function (callable $handler) {
             return function (RequestInterface $request, array $options) use ($handler) {
-//                var_dump($this->access_token);die;
-                $request = $request->withHeader('token',$this->access_token->getToken());
-                $request = $request->withHeader('accesstoken',$this->access_token->getAccessKey());
+                $request = $request->withHeader('token',$this->accessToken->baseToken);
+                $request = $request->withHeader('accesstoken',$this->accessToken->getAccessToken());
                 return $handler($request, $options);
             };
         };

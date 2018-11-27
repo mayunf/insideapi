@@ -30,7 +30,7 @@ class Agent extends AbstractAPI
     /**
      * 获取代理商信息
      * @param array $params
-     * @return \InsideAPI\Support\Collection
+     * @return \Mayunfeng\Supports\Collection
      */
     public function getInfo($params = [])
     {
@@ -40,7 +40,7 @@ class Agent extends AbstractAPI
     /**
      * 添加代理商下用户信息
      * @param array $params
-     * @return \InsideAPI\Support\Collection
+     * @return \Mayunfeng\Supports\Collection
      */
     public function userAdd($params = [])
     {
@@ -50,7 +50,7 @@ class Agent extends AbstractAPI
     /**
      * 获取代理商下用户列表
      * @param array $params
-     * @return \InsideAPI\Support\Collection
+     * @return \Mayunfeng\Supports\Collection
      */
     public function userEdit($params = [])
     {
@@ -60,7 +60,7 @@ class Agent extends AbstractAPI
     /**
      * 获取代理商下用户列表
      * @param array $params
-     * @return \InsideAPI\Support\Collection
+     * @return \Mayunfeng\Supports\Collection
      */
     public function userList($params = [])
     {
@@ -70,7 +70,7 @@ class Agent extends AbstractAPI
     /**
      * 获取用户权限
      * @param array $params
-     * @return \InsideAPI\Support\Collection
+     * @return \Mayunfeng\Supports\Collection
      */
     public function userDelete($params = [])
     {
@@ -80,7 +80,7 @@ class Agent extends AbstractAPI
     /**
      * 编辑用户密码
      * @param array $params
-     * @return \InsideAPI\Support\Collection
+     * @return \Mayunfeng\Supports\Collection
      */
     public function userEditPwd($params = [])
     {
@@ -90,7 +90,7 @@ class Agent extends AbstractAPI
     /**
      * 编辑用户登录名
      * @param array $params
-     * @return \InsideAPI\Support\Collection
+     * @return \Mayunfeng\Supports\Collection
      */
     public function userEditLogon($params = [])
     {

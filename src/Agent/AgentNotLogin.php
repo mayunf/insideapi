@@ -26,7 +26,7 @@ class AgentNotLogin extends BaseApi
     /**
      * 判断手机是否注册
      * @param $m
-     * @return \InsideAPI\Support\Collection
+     * @return \Mayunfeng\Supports\Collection
      */
     public function isMobile($m)
     {
@@ -39,7 +39,7 @@ class AgentNotLogin extends BaseApi
     /**
      * 判断邮箱是否注册
      * @param string $e
-     * @return \InsideAPI\Support\Collection
+     * @return \Mayunfeng\Supports\Collection
      */
     public function isEmail($e)
     {
@@ -53,7 +53,7 @@ class AgentNotLogin extends BaseApi
     /**
      * 代理商注册
      * @param  array $params
-     * @return \InsideAPI\Support\Collection
+     * @return \Mayunfeng\Supports\Collection
      */
     public function register($params)
     {
@@ -64,7 +64,7 @@ class AgentNotLogin extends BaseApi
      * 代理商登录
      * @param  string $un
      * @param  string $pwd
-     * @return \InsideAPI\Support\Collection
+     * @return \Mayunfeng\Supports\Collection
      */
     public function logon($un,$pwd)
     {

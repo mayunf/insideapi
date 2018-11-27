@@ -47,7 +47,7 @@ class UserNotLogin extends BaseApi
     /**
      * 判断手机是否注册
      * @param string $m
-     * @return \InsideAPI\Support\Collection
+     * @return \Mayunfeng\Supports\Collection
      */
     public function isMobile($m)
     {
@@ -60,7 +60,7 @@ class UserNotLogin extends BaseApi
     /**
      * 判断邮箱是否注册
      * @param string $e
-     * @return \InsideAPI\Support\Collection
+     * @return \Mayunfeng\Supports\Collection
      */
     public function isEmail($e)
     {
@@ -79,7 +79,7 @@ class UserNotLogin extends BaseApi
           'Pwd' => (string)$userRegister->Pwd
      ];
      * @param $params = []
-     * @return \InsideAPI\Support\Collection
+     * @return \Mayunfeng\Supports\Collection
      */
     public function register($params = [])
     {
@@ -93,7 +93,7 @@ class UserNotLogin extends BaseApi
      * @param $pwd
      * @param $t
      * @param $pt
-     * @return \InsideAPI\Support\Collection
+     * @return \Mayunfeng\Supports\Collection
      */
     public function logon($un, $pwd, $t = 0, $pt = 200)
     {
@@ -112,7 +112,7 @@ class UserNotLogin extends BaseApi
      * @param $unionId
      * @param int $t
      * @param int $pt
-     * @return \InsideAPI\Support\Collection
+     * @return \Mayunfeng\Supports\Collection
      */
     public function logonWx($unionId, $t = 0, $pt = 200)
     {
@@ -128,7 +128,7 @@ class UserNotLogin extends BaseApi
     /**
      * 修改密码
      * @param $params = []
-     * @return \InsideAPI\Support\Collection
+     * @return \Mayunfeng\Supports\Collection
      */
     public function editPwdMe($params = [])
     {
@@ -139,7 +139,7 @@ class UserNotLogin extends BaseApi
     /**
      * 添加用户权限
      * @param $params = []
-     * @return \InsideAPI\Support\Collection
+     * @return \Mayunfeng\Supports\Collection
      */
     public function addUserPer($params = [])
     {
@@ -151,7 +151,7 @@ class UserNotLogin extends BaseApi
      * 获取系统权限
      * @param string $productType
      * @param string $perType
-     * @return \InsideAPI\Support\Collection
+     * @return \Mayunfeng\Supports\Collection
      */
     public function getPers($productType = '', $perType = '')
     {
@@ -167,7 +167,7 @@ class UserNotLogin extends BaseApi
      * @param $userId
      * @param $platformId
      * @param $num
-     * @return \InsideAPI\Support\Collection
+     * @return \Mayunfeng\Supports\Collection
      */
     public function addAccSetting($userId, $platformId, $num)
     {
@@ -188,7 +188,7 @@ class UserNotLogin extends BaseApi
             'M' => $params['M'],
         ];
      * @param $params
-     * @return \InsideAPI\Support\Collection
+     * @return \Mayunfeng\Supports\Collection
      */
     public function getBindingPzSm($params)
     {
@@ -202,7 +202,7 @@ class UserNotLogin extends BaseApi
      * @param $unionId
      * @param $userId
      * @param string $mobile
-     * @return \InsideAPI\Support\Collection
+     * @return \Mayunfeng\Supports\Collection
      */
     public function bindWx($unionId, $userId = 0, $mobile = '')
     {
@@ -219,7 +219,7 @@ class UserNotLogin extends BaseApi
      * 检测是否绑定微信
      * @param string $unionId
      * @param int $userId
-     * @return \InsideAPI\Support\Collection
+     * @return \Mayunfeng\Supports\Collection
      */
     public function checkBindWx($unionId = '', $userId = 0)
     {
@@ -233,7 +233,7 @@ class UserNotLogin extends BaseApi
     /**
      * 支付成功通知
      * @param array $params
-     * @return \InsideAPI\Support\Collection
+     * @return \Mayunfeng\Supports\Collection
      */
     public function paymentState(array $params)
     {

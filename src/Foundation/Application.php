@@ -9,16 +9,14 @@
 namespace InsideAPI\Foundation;
 
 
-use InsideAPI\Core\AccessToken;
 use InsideAPI\Core\Http;
-use InsideAPI\Foundation\ServiceProviders\SoftServiceProvider;
-use InsideAPI\Support\Log;
 use Monolog\Handler\HandlerInterface;
-use Monolog\Handler\NullHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Pimple\Container;
 use Symfony\Component\HttpFoundation\Request;
+use Mayunfeng\Supports\Log;
+use Mayunfeng\Supports\Config;
 
 /**
  * Class Application
@@ -29,6 +27,7 @@ use Symfony\Component\HttpFoundation\Request;
  * @property \InsideAPI\Agent\AgentNotLogin     $agent_not_login
  * @property \InsideAPI\Manage\Manage           $manage
  * @property \InsideAPI\Soft\Soft               $soft
+ * @property \InsideAPI\AccessToken\AccessToken $access_token
  *
  * @package InsideAPI\Foundation
  */
@@ -41,7 +40,8 @@ class Application extends Container
         ServiceProviders\AgentServiceProvider::class,
         ServiceProviders\AgentNotLoginServiceProvider::class,
         ServiceProviders\ManageServiceProvider::class,
-        ServiceProviders\SoftServiceProvider::class
+        ServiceProviders\SoftServiceProvider::class,
+        ServiceProviders\AccessTokenServiceProvider::class
     ];
 
     public function __construct($config)
@@ -69,12 +69,14 @@ class Application extends Container
             return Request::createFromGlobals();
         };
 
-        $this['access_token'] = function () {
-            return new AccessToken(
-                $this['config']['token'],
-                $this['config']['access_key']
-            );
-        };
+
+
+//        $this['access_token'] = function () {
+//            return new AccessToken(
+//                $this['config']['token'],
+//                $this['config']['access_key']
+//            );
+//        };
     }
 
     // 注册服务

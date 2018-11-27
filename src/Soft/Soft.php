@@ -21,7 +21,7 @@ class Soft extends BaseApi
     /**
      * 清除config的cache
      * @param $type
-     * @return \InsideAPI\Support\Collection
+     * @return \Mayunfeng\Supports\Collection
      */
     public function configClear($type)
     {
