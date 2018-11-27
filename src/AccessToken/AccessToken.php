@@ -32,7 +32,7 @@ class AccessToken
     protected $cachePrefix = 'insideapi.access_token.';
 
     protected $accessToken;
-    protected $userId;
+    protected $userId = 0;
     protected $sessionId;
 
     public function __construct(Container $app)
@@ -41,9 +41,9 @@ class AccessToken
         $this->cache = $this->app['config']['cache'];
         $this->baseToken = $this->app['config']['token'];
         $this->setAccessToken($this->app['config']['access_key']);
-        if (isset($this->app['config']['user_id']) && $this->app['config']['user_id'] > 0) {
+        $this->setUserId($this->app['config']['user_id'] ?? 0);
+        if ($this->getUserId() > 0) {
             // 已经登录用户 从缓存中获取token信息
-            $this->setUserId($this->app['config']['user_id']);
             $this->setSessionId($this->getSessionId());
             $this->setAccessToken($this->getAccessToken());
         }
@@ -54,7 +54,7 @@ class AccessToken
      */
     public function getAccessToken()
     {
-        return $this->getCache()->get($this->cachePrefix.$this->userId.$this->tokenKey);
+        return $this->getCache()->get($this->cachePrefix.$this->tokenKey.$this->userId);
     }
 
     /**
@@ -79,9 +79,8 @@ class AccessToken
     /**
      * @param mixed $userId
      */
-    public function setUserId($userId)
+    public function setUserId($userId = 0)
     {
-
         $this->userId = $userId;
     }
 
@@ -91,7 +90,7 @@ class AccessToken
      */
     public function getSessionId()
     {
-        return $this->getCache()->get($this->cachePrefix.$this->userId.$this->sessionKey);
+        return $this->getCache()->get($this->cachePrefix.$this->sessionKey.$this->userId);
     }
 
     /**
@@ -169,7 +168,7 @@ class AccessToken
             [
                 'headers' => [
                     'token' => $this->baseToken,
-                    'accesstoken' => $this->getAccessToken()
+                    'accesstoken' => $this->app['config']['access_key']
                 ],
             ]
         );
