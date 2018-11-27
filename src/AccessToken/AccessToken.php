@@ -35,6 +35,8 @@ class AccessToken
     protected $userId = 0;
     protected $sessionId;
 
+    protected $ttl = 7200;
+
     public function __construct(Container $app)
     {
         $this->app = $app;
@@ -64,7 +66,7 @@ class AccessToken
     {
         $cacheKey = $this->cachePrefix.$this->tokenKey.$this->userId;
 
-        $this->accessToken = $this->getCache()->set($cacheKey,$accessToken);
+        $this->accessToken = $this->getCache()->set($cacheKey,$accessToken,$this->ttl);
 
     }
 
@@ -101,7 +103,7 @@ class AccessToken
     {
         $cacheKey = $this->cachePrefix.$this->sessionKey.$this->userId;
 
-        $this->sessionId = $this->getCache()->set($cacheKey,$sessionId);
+        $this->sessionId = $this->getCache()->set($cacheKey,$sessionId,$this->ttl);
     }
 
 
