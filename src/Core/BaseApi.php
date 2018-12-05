@@ -90,7 +90,7 @@ abstract class BaseApi
         return function (callable $handler) {
             return function (RequestInterface $request, array $options) use ($handler) {
                 $request = $request->withHeader('token',$this->accessToken->baseToken);
-                $request = $request->withHeader('accesstoken',$this->accessToken->getAccessToken());
+                $request = $request->withHeader('accesstoken',$this->accessToken->baseAccessToken);
                 return $handler($request, $options);
             };
         };

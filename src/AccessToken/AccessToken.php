@@ -22,8 +22,10 @@ class AccessToken
      */
     protected $app;
     protected $endpointGetToken = 'https://api.xiaolutuiguang.com/api/insideuser/logon';
-    public $baseToken;
+    public $baseToken; // 基础token
+    public $baseAccessToken; // 基础access_token
 
+    /** @var CacheInterface */
     protected $cache;
     //访问token
     protected $tokenKey = 'Accesstoken';
@@ -42,7 +44,8 @@ class AccessToken
         $this->app = $app;
         $this->cache = $this->app['config']['cache'];
         $this->baseToken = $this->app['config']['token'];
-        $this->setAccessToken($this->app['config']['access_key']);
+        $this->baseAccessToken = $this->app['config']['access_key'];
+//        $this->setAccessToken($this->app['config']['access_key']);
         $this->setUserId($this->app['config']['user_id'] ?? 0);
         if ($this->getUserId() > 0) {
             // 已经登录用户 从缓存中获取token信息
