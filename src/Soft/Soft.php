@@ -9,9 +9,9 @@
 namespace InsideAPI\Soft;
 
 
-use InsideAPI\Core\BaseApi;
+use InsideAPI\Core\AbstractAPI;
 
-class Soft extends BaseApi
+class Soft extends AbstractAPI
 {
 
     const CONFIG_CLEAR = 'InsideSoft/ConfigClear/'; // 清除config 缓存

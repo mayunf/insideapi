@@ -9,9 +9,9 @@
 namespace InsideAPI\Agent;
 
 
-use InsideAPI\Core\BaseApi;
+use InsideAPI\Core\AbstractAPI;
 
-class AgentNotLogin extends BaseApi
+class AgentNotLogin extends AbstractAPI
 {
 
     const IS_MOBILE = 'insideagent/ismobile';

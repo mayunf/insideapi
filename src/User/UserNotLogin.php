@@ -8,14 +8,14 @@
 
 namespace InsideAPI\User;
 
-use InsideAPI\Core\BaseApi;
+use InsideAPI\Core\AbstractAPI;
 
 /**
  * 用户登录前 API
  * Class BaseService
  * @package InsideAPI\user
  */
-class UserNotLogin extends BaseApi
+class UserNotLogin extends AbstractAPI
 {
     const REGISTER = 'insideuser/register';
 
