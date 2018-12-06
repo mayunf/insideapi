@@ -12,20 +12,10 @@
     <testsuites>
         <testsuite name="Application Test Suite">
             <directory>./tests/</directory>
+            <file phpVersion="7.0.0" phpVersionOperator=">=">./tests/</file>
         </testsuite>
     </testsuites>
-    <filter>
-        <whitelist>
-            <directory suffix=".php">src/</directory>
-            <exclude>
-                <directory suffix="ServiceProvider.php">src/</directory>
-                <directory suffix="Exception.php">src/</directory>
-                <directory>src/Encryption</directory>
-                <directory>src/Support</directory>
-            </exclude>
-        </whitelist>
-    </filter>
     <php>
-        <const name="PHPUNIT_RUNNING" value="true" />
+        <const name="PHPUNIT_RUNNING" value="true"/>
     </php>
 </phpunit>
