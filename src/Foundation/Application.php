@@ -3,23 +3,22 @@
  * Created by PhpStorm.
  * User: mayunfeng
  * Date: 2018/2/22
- * Time: 14:02
+ * Time: 14:02.
  */
 
 namespace InsideAPI\Foundation;
 
-
 use InsideAPI\Core\Http;
+use Mayunfeng\Supports\Config;
+use Mayunfeng\Supports\Log;
 use Monolog\Handler\HandlerInterface;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Pimple\Container;
 use Symfony\Component\HttpFoundation\Request;
-use Mayunfeng\Supports\Log;
-use Mayunfeng\Supports\Config;
 
 /**
- * Class Application
+ * Class Application.
  *
  * @property \InsideAPI\User\User               $user
  * @property \InsideAPI\User\UserNotLogin       $user_not_login
@@ -28,12 +27,9 @@ use Mayunfeng\Supports\Config;
  * @property \InsideAPI\Manage\Manage           $manage
  * @property \InsideAPI\Soft\Soft               $soft
  * @property \InsideAPI\AccessToken\AccessToken $access_token
- *
- * @package InsideAPI\Foundation
  */
 class Application extends Container
 {
-
     protected $providers = [
         ServiceProviders\UserServiceProvider::class,
         ServiceProviders\UserNotLoginServiceProvider::class,
@@ -41,7 +37,7 @@ class Application extends Container
         ServiceProviders\AgentNotLoginServiceProvider::class,
         ServiceProviders\ManageServiceProvider::class,
         ServiceProviders\SoftServiceProvider::class,
-        ServiceProviders\AccessTokenServiceProvider::class
+        ServiceProviders\AccessTokenServiceProvider::class,
     ];
 
     public function __construct($config)
@@ -61,15 +57,12 @@ class Application extends Container
         Http::setDefaultOptions($this['config']->get('guzzle', ['timeout' => 5.0]));
     }
 
-
     // 初始化token信息
     private function registerBase()
     {
         $this['request'] = function () {
             return Request::createFromGlobals();
         };
-
-
 
 //        $this['access_token'] = function () {
 //            return new AccessToken(

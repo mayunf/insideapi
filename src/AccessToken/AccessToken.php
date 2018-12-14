@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: mayunfeng
  * Date: 2018/11/27
- * Time: 14:33
+ * Time: 14:33.
  */
 
 namespace InsideAPI\AccessToken;
@@ -69,8 +69,7 @@ class AccessToken
     {
         $cacheKey = $this->cachePrefix.$this->tokenKey.$this->userId;
 
-        $this->accessToken = $this->getCache()->set($cacheKey,$accessToken,$this->ttl);
-
+        $this->accessToken = $this->getCache()->set($cacheKey, $accessToken, $this->ttl);
     }
 
     /**
@@ -90,7 +89,8 @@ class AccessToken
     }
 
     /**
-     * Get session id
+     * Get session id.
+     *
      * @return mixed
      */
     public function getSessionId()
@@ -99,16 +99,16 @@ class AccessToken
     }
 
     /**
-     * Set session id
+     * Set session id.
+     *
      * @param $sessionId
      */
     public function setSessionId($sessionId)
     {
         $cacheKey = $this->cachePrefix.$this->sessionKey.$this->userId;
 
-        $this->sessionId = $this->getCache()->set($cacheKey,$sessionId,$this->ttl);
+        $this->sessionId = $this->getCache()->set($cacheKey, $sessionId, $this->ttl);
     }
-
 
     protected function getCacheKey()
     {
@@ -134,20 +134,25 @@ class AccessToken
         }
         $token = $this->requestToken($arguments);
         $this->setToken($token);
+
         return $token;
     }
 
     /**
-     * Set token
+     * Set token.
+     *
      * @param $token
-     * @return $this
+     *
      * @throws \Psr\SimpleCache\InvalidArgumentException
+     *
+     * @return $this
      */
     public function setToken($token)
     {
         $this->setUserId($token[$this->userIdKey]);
         $this->setSessionId($token[$this->sessionKey]);
         $this->setAccessToken($token[$this->tokenKey]);
+
         return $this;
     }
 
@@ -158,7 +163,7 @@ class AccessToken
         $token = json_decode($response['Body'], true);
 
         if (empty($token[$this->tokenKey]) || empty($token[$this->sessionKey]) || empty($token[$this->userIdKey])) {
-            throw new HttpException('Request access_token fail:' . json_encode($response, JSON_UNESCAPED_UNICODE));
+            throw new HttpException('Request access_token fail:'.json_encode($response, JSON_UNESCAPED_UNICODE));
         }
 
         return $token;
@@ -168,20 +173,20 @@ class AccessToken
     {
         return $this->post($this->endpointGetToken,
             [
-                'data' => json_encode($arguments, JSON_UNESCAPED_UNICODE)
+                'data' => json_encode($arguments, JSON_UNESCAPED_UNICODE),
             ],
             [
                 'headers' => [
-                    'token' => $this->baseToken,
-                    'accesstoken' => $this->app['config']['access_key']
+                    'token'       => $this->baseToken,
+                    'accesstoken' => $this->app['config']['access_key'],
                 ],
             ]
         );
     }
 
-
     /**
-     * Get cache instance
+     * Get cache instance.
+     *
      * @return CacheInterface
      */
     public function getCache(): CacheInterface
@@ -198,9 +203,9 @@ class AccessToken
         return $this->cache = $this->createDefaultCache();
     }
 
-
     /**
-     * Set default cache
+     * Set default cache.
+     *
      * @return FilesystemCache
      */
     private function createDefaultCache()

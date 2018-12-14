@@ -3,33 +3,30 @@
  * Created by PhpStorm.
  * User: mayunfeng
  * Date: 2017/11/15
- * Time: 15:18
+ * Time: 15:18.
  */
 
 namespace InsideAPI\Core;
 
 use GuzzleHttp\Middleware;
 use InsideAPI\AccessToken\AccessToken;
-use Psr\Http\Message\RequestInterface;
 use Mayunfeng\Supports\Collection;
+use Psr\Http\Message\RequestInterface;
 
 /**
  * BaseApi use before login
- * Class BaseApi
- * @package common\library\api\core
+ * Class BaseApi.
  */
 abstract class AbstractAPI
 {
-
     const POST = 'post';
 
     const GET = 'get';
 
     public $accessToken;
 
-    /** @var  Http */
+    /** @var Http */
     protected $http;
-
 
     public function __construct(AccessToken $accessToken)
     {
@@ -68,13 +65,11 @@ abstract class AbstractAPI
         return $this;
     }
 
-
     /**
-     * 注册中间件
+     * 注册中间件.
      */
     protected function registerHttpMiddlewares()
     {
-
         $this->http->addMiddleware($this->accessTokenMiddleware());
         // log
         $this->http->addMiddleware($this->logMiddleware());
@@ -89,9 +84,10 @@ abstract class AbstractAPI
     {
         return function (callable $handler) {
             return function (RequestInterface $request, array $options) use ($handler) {
-                $request = $request->withHeader('token',$this->accessToken->baseToken);
-                $request = $request->withHeader('accesstoken',$this->accessToken->getAccessToken());
-                $request = $request->withHeader('Cookie','JWSEMID='.$this->accessToken->getSessionID());
+                $request = $request->withHeader('token', $this->accessToken->baseToken);
+                $request = $request->withHeader('accesstoken', $this->accessToken->getAccessToken());
+                $request = $request->withHeader('Cookie', 'JWSEMID='.$this->accessToken->getSessionID());
+
                 return $handler($request, $options);
             };
         };
@@ -106,8 +102,9 @@ abstract class AbstractAPI
     {
         return function (callable $handler) {
             return function (RequestInterface $request, array $options) use ($handler) {
-                $request = $request->withHeader('token',$this->accessToken->baseToken);
-                $request = $request->withHeader('accesstoken',$this->accessToken->baseAccessToken);
+                $request = $request->withHeader('token', $this->accessToken->baseToken);
+                $request = $request->withHeader('accesstoken', $this->accessToken->baseAccessToken);
+
                 return $handler($request, $options);
             };
         };
@@ -141,18 +138,19 @@ abstract class AbstractAPI
         $contents = $http->parseJSON(call_user_func_array([$http, $method], $args));
 
         if (isset($contents['Body']) && !empty($contents['Body'])) {
-            $contents['Body'] = \GuzzleHttp\json_decode($contents['Body'],true);
+            $contents['Body'] = \GuzzleHttp\json_decode($contents['Body'], true);
         }
         $contents = $this->checkAndThrow($contents);
 
         return new Collection($contents);
     }
 
-
     /**
      * @param array $contents
-     * @return array
+     *
      * @throws Exception
+     *
+     * @return array
      */
     protected function checkAndThrow(array $contents)
     {
@@ -170,10 +168,8 @@ abstract class AbstractAPI
         } else {
             $contents['Success'] = true;
             $contents['ErrCode'] = 0;
-
         }
 
         return $contents;
     }
-
 }
