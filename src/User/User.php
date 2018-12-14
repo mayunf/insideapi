@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: mayunfeng
  * Date: 2018/2/22
- * Time: 14:25
+ * Time: 14:25.
  */
 
 namespace InsideAPI\User;
@@ -44,9 +44,9 @@ class User extends AbstractAPI
 
     const PAYMENT = 'insideuser/payment'; // 获取付款信息
 
-
     /**
      * @param array $params
+     *
      * @return \Mayunfeng\Supports\Collection
      */
     public function getInfo($params = [])
@@ -55,8 +55,10 @@ class User extends AbstractAPI
     }
 
     /**
-     * 编辑用户信息 --Done
+     * 编辑用户信息 --Done.
+     *
      * @param $params
+     *
      * @return \Mayunfeng\Supports\Collection
      */
     public function edit($params = [])
@@ -64,10 +66,11 @@ class User extends AbstractAPI
         return $this->parseJSON(static::POST, [self::EDIT, $params]);
     }
 
-
     /**
-     * 编辑用户信息 修改密码 --Done
+     * 编辑用户信息 修改密码 --Done.
+     *
      * @param $params = []
+     *
      * @return \Mayunfeng\Supports\Collection
      */
     public function editPwd($params = [])
@@ -76,8 +79,10 @@ class User extends AbstractAPI
     }
 
     /**
-     * 编辑用户信息 修改手机号码--Done
+     * 编辑用户信息 修改手机号码--Done.
+     *
      * @param $params = []
+     *
      * @return \Mayunfeng\Supports\Collection
      */
     public function editMobile($params = [])
@@ -85,10 +90,11 @@ class User extends AbstractAPI
         return $this->parseJSON(static::POST, [self::EDIT_MOBILE, $params]);
     }
 
-
     /**
-     * 编辑用户信息 修改邮箱--Done
+     * 编辑用户信息 修改邮箱--Done.
+     *
      * @param $params = []
+     *
      * @return \Mayunfeng\Supports\Collection
      */
     public function editEmail($params = [])
@@ -97,17 +103,20 @@ class User extends AbstractAPI
     }
 
     /**
-     * 获取用户权限  ---Done
+     * 获取用户权限  ---Done.
+     *
      * @param array $pros
-     * @param int $AgentID
+     * @param int   $AgentID
+     *
      * @return \Mayunfeng\Supports\Collection
      */
     public function getPermissions($pros = [], $AgentID = 0)
     {
         $params = [
             'AgentID' => $AgentID,
-            'Pros' => $pros
+            'Pros'    => $pros,
         ];
+
         return $this->parseJSON(static::POST, [self::GET_PERMISSIONS, $params]);
     }
 
@@ -115,40 +124,47 @@ class User extends AbstractAPI
     {
         $params = [
             'AgentID' => $AgentID,
-            'Pros' => $pros
+            'Pros'    => $pros,
         ];
+
         return $this->parseJSON(static::POST, [self::GET_PERMISSIONS_ALL, $params]);
     }
 
     /**
-     * 获取账户列表  ---Done
+     * 获取账户列表  ---Done.
+     *
      * @param array $pros
+     *
      * @return \Mayunfeng\Supports\Collection
      */
     public function getAccList($pros = [])
     {
         $params = [
-            'Pros' => $pros
+            'Pros' => $pros,
         ];
+
         return $this->parseJSON(static::POST, [self::GET_ACC_LIST, $params]);
     }
 
     /**
-     * 获取历史删除账户列表
+     * 获取历史删除账户列表.
+     *
      * @param array $pros
+     *
      * @return \Mayunfeng\Supports\Collection
      */
     public function getAccListHistory($pros = [])
     {
         $params = [
-            'Pros' => $pros
+            'Pros' => $pros,
         ];
+
         return $this->parseJSON(static::POST, [self::GET_ACC_LIST_HISTORY, $params]);
     }
 
-
     /**
-     * 添加账户 ---Done
+     * 添加账户 ---Done.
+     *
      * @param $params = []
      *    $params = [
      *      'Platform' => $userAcc->Platform,
@@ -158,18 +174,19 @@ class User extends AbstractAPI
      *      'LName' => $userAcc->LName,
      *      'Pwd' => $userAcc->Pwd,
      *  ];
+     *
      * @return \Mayunfeng\Supports\Collection
      */
     public function accAdd($params = [])
     {
-
-
         return $this->parseJSON(static::POST, [self::ACC_ADD, $params]);
     }
 
     /**
-     * 批量添加账户
+     * 批量添加账户.
+     *
      * @param array $params
+     *
      * @return \Mayunfeng\Supports\Collection
      */
     public function accAdds($params = [])
@@ -178,7 +195,8 @@ class User extends AbstractAPI
     }
 
     /**
-     * 编辑账户信息
+     * 编辑账户信息.
+     *
      * @param $params = []
      *    $params = [
      *          'Platform' => $userAcc->Platform,
@@ -188,11 +206,11 @@ class User extends AbstractAPI
      *          'LName' => $userAcc->LName,
      *         'Pwd' => $userAcc->Pwd,
      *    ];
+     *
      * @return \Mayunfeng\Supports\Collection
      */
     public function accEdit($params = [])
     {
-
         return $this->parseJSON(static::POST, [self::ACC_EDIT, $params]);
     }
 
@@ -202,8 +220,10 @@ class User extends AbstractAPI
      *      'Platform' => $userAcc->Platform,
      *      'PT' => $userAcc->PT,
      *      'AccID' => $userAcc->AccID,
-     * ];
+     * ];.
+     *
      * @param $params = [] 平台ID
+     *
      * @return \Mayunfeng\Supports\Collection
      */
     public function accDelete($params = [])
@@ -213,6 +233,7 @@ class User extends AbstractAPI
 
     /**
      * 解绑微信
+     *
      * @return \Mayunfeng\Supports\Collection
      */
     public function unbindWx()
@@ -221,8 +242,10 @@ class User extends AbstractAPI
     }
 
     /**
-     * 获取商品列表
+     * 获取商品列表.
+     *
      * @param array $params
+     *
      * @return \Mayunfeng\Supports\Collection
      */
     public function getGoods($params = [])
@@ -231,7 +254,8 @@ class User extends AbstractAPI
     }
 
     /**
-     * 获取支付信息
+     * 获取支付信息.
+     *
      * @param array $params
      *
      *   $params = [
@@ -241,6 +265,7 @@ class User extends AbstractAPI
      *      'unit' => '支付单位： 1 月 ，2年',
      *      'describe' => '订单描述',
      *  ];
+     *
      * @return \Mayunfeng\Supports\Collection
      *
      *  $return = [
@@ -252,7 +277,4 @@ class User extends AbstractAPI
     {
         return $this->parseJSON(static::POST, [self::PAYMENT, $params]);
     }
-
-
-
 }

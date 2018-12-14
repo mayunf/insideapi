@@ -3,15 +3,13 @@
  * Created by PhpStorm.
  * User: mayunfeng
  * Date: 2018/1/23
- * Time: 9:42
+ * Time: 9:42.
  */
 
 namespace InsideAPI\Models\Permission;
 
-
 class Website extends PermissionDetails
 {
-
     public $IsUse; // 是否具有权限管理工具的权限
 
     public $IsUser; // 是否具有用户授权功能
@@ -31,14 +29,14 @@ class Website extends PermissionDetails
     public function attributes()
     {
         return [
-            'IsUse' => (boolean)$this->IsUse,
-            'IsSys' => (boolean)$this->IsSys,
-            'IsAgent' => (boolean)$this->IsAgent,
-            'IsUser' => (boolean)$this->IsUser,
-            'IsAP' => (boolean)$this->IsAP,
-            'IsMAU' => (boolean)$this->IsMAU,
-            'IsDB' => (boolean)$this->IsDB,
-            'IsDA' => (boolean)$this->IsDA,
+            'IsUse'   => (bool) $this->IsUse,
+            'IsSys'   => (bool) $this->IsSys,
+            'IsAgent' => (bool) $this->IsAgent,
+            'IsUser'  => (bool) $this->IsUser,
+            'IsAP'    => (bool) $this->IsAP,
+            'IsMAU'   => (bool) $this->IsMAU,
+            'IsDB'    => (bool) $this->IsDB,
+            'IsDA'    => (bool) $this->IsDA,
         ];
     }
 }
