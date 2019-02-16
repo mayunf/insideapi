@@ -15,141 +15,139 @@ class ErrCode
     public static function getErrMsg($code)
     {
         switch ($code){
-            case 1000:
+            case 1001:
                 $errMsg = '系统错误';
                 break;
-            case 1001:
-                $errMsg = '服务端错误';
-                break;
             case 1002:
-                $errMsg = 'Token 为空';
+                $errMsg = '请求IP不在安全范围内（IP白名单）';
                 break;
             case 1003:
-                $errMsg = 'Token 过期';
+                $errMsg = '请求IP在排除的范围内（IP黑名单）';
                 break;
             case 1004:
-                $errMsg = 'Token 不可用';
+                $errMsg = '请求数据不能为空';
                 break;
             case 1005:
-                $errMsg = 'Accesstoken 错误';
+                $errMsg = '请求数据不合法';
                 break;
             case 1006:
-                $errMsg = 'Accesstoken 为空';
+                $errMsg = '请求时间不能为空';
                 break;
             case 1007:
-                $errMsg = 'Accesstoken 过期';
+                $errMsg = '请求时间不合法';
                 break;
-            case 1008:
-                $errMsg = 'Timestamp 为空';
+            case 2001:
+                $errMsg = '令牌（token）不能为空';
                 break;
-            case 1010:
-                $errMsg = '数据为空';
+            case 2002:
+                $errMsg = '令牌（token）已经过期';
                 break;
-            case 1011:
-                $errMsg = '数据不合法';
+            case 2003:
+                $errMsg = '令牌（token）不合法';
                 break;
-            case 10001:
-                $errMsg = '系统登录错误';
+            case 2010:
+                $errMsg = '用户未登录';
                 break;
-            case 10002:
-                $errMsg = '登录名不能为空';
+            case 2011:
+                $errMsg = '访问令牌（Accesstoken）不能为空';
                 break;
-            case 10003:
-                $errMsg = '登录密码不能为空';
+            case 2012:
+                $errMsg = '访问令牌（Accesstoken）不合法';
                 break;
-            case 10004:
-                $errMsg = '获取用户信息失败';
+            case 100001:
+                $errMsg = '用户登录名为空';
                 break;
-            case 10005:
-                $errMsg = '手机号码未验证';
+            case 100002:
+                $errMsg = '用户登录密码为空';
                 break;
-            case 10006:
-                $errMsg = '添加账户错误';
+            case 100003:
+                $errMsg = '用户登录名不合法';
                 break;
-            case 10007:
-                $errMsg = '帐户数量达到上限';
+            case 100004:
+                $errMsg = '登录密码错误';
                 break;
-            case 10008:
-                $errMsg = '编辑账户失败';
+            case 100005:
+                $errMsg = '登录手机号不存在';
                 break;
-            case 10009:
-                $errMsg = '删除账户失败';
+            case 100006:
+                $errMsg = '登录邮箱不存在';
                 break;
-            case 10010:
+            case 100101:
+                $errMsg = '用户手机号无效';
+                break;
+            case 100102:
+                $errMsg = '手机号已经存在';
+                break;
+            case 100201:
+                $errMsg = '用户邮箱无效';
+                break;
+            case 100202:
+                $errMsg = '用户邮箱已经存在';
+                break;
+            case 100301:
+                $errMsg = '用户手机号无效';
+                break;
+            case 100302:
+                $errMsg = '发送短信超出了限制';
+                break;
+            case 100303:
+                $errMsg = '发送短信太频繁';
+                break;
+            case 100304:
+                $errMsg = '发送短信失败';
+                break;
+            case 100401:
+                $errMsg = '用户手机号已经存在';
+                break;
+            case 100402:
+                $errMsg = '用户手机号不能为空';
+                break;
+            case 100403:
+                $errMsg = '用户手机号无效';
+                break;
+            case 100404:
+                $errMsg = '短信验证失败';
+                break;
+            case 100405:
+                $errMsg = '登录密码为空';
+                break;
+            case 100406:
+                $errMsg = '用户主ID注册错误';
+                break;
+            case 100407:
+                $errMsg = '登录手机号注册错误';
+                break;
+            case 100408:
                 $errMsg = '注册失败';
                 break;
-            case 10011:
-                $errMsg = '用户已存在';
+            case 100501:
+                $errMsg = '用户手机号已经存在';
                 break;
-            case 10012:
-                $errMsg = '密码不能为空';
+            case 100502:
+                $errMsg = '用户手机号不能为空';
                 break;
-            case 10013:
-                $errMsg = '密码错误';
+            case 100503:
+                $errMsg = '用户手机号无效';
                 break;
-            case 10014:
-                $errMsg = '编辑失败';
+            case 100504:
+                $errMsg = '短信验证失败';
                 break;
-            case 10015:
-                $errMsg = '发送失败';
+            case 100505:
+                $errMsg = '登录密码为空';
                 break;
-            case 10016:
-                $errMsg = '发送太频繁';
+            case 100506:
+                $errMsg = '用户主ID注册错误';
                 break;
-            case 10101:
-                $errMsg = '账户不存在';
+            case 100507:
+                $errMsg = '登录手机号注册错误';
                 break;
-            case 10102:
-                $errMsg = '刷新Token 失败';
+            case 100508:
+                $errMsg = '注册失败';
                 break;
-            case 10103:
-                $errMsg = '刷新Token 不存在';
+            case 100509:
+                $errMsg = '用户自动注册代理商错误';
                 break;
-            case 10201:
-                $errMsg = '产品权限已经存在';
-                break;
-            case 10202:
-                $errMsg = '产品权限添加失败';
-                break;
-            case 10210:
-                $errMsg = '添加用户权限失败，此用户权限开通过于频繁';
-                break;
-            case 10031:
-                $errMsg = '微信绑定失败,以前曾经绑定过';
-                break;
-            case 10032:
-                $errMsg = '微信绑定失败,用户不存在需要注册';
-                break;
-            case 40002:
-                $errMsg = '竞价返回值是空';
-                break;
-            case 40003:
-                $errMsg = 'Text 转化  ResModel=>MyData 失败';
-                break;
-            case 40004:
-                $errMsg = '获取的 Header 是空的';
-                break;
-            case 40005:
-                $errMsg = '获取的Body 是空的';
-                break;
-            case 90101:
-                $errMsg = '已经领取过此优惠券';
-                break;
-            case 90102:
-                $errMsg = '已经不符合领取条件';
-                break;
-            case 90111:
-                $errMsg = '当前优惠活动并不存在';
-                break;
-            case 90112:
-                $errMsg = '优惠券领取活动尚未开启';
-                break;
-            case 90113:
-                $errMsg = '优惠券领取活动已经结束';
-                break;
-            case 90114:
-                $errMsg = '优惠券领取失败';
-                break;
+
             default:
                 $errMsg = '未知错误';
 

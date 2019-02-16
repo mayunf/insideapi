@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: mayunfeng
- * Date: 2018/2/22
- * Time: 14:25
+ * Date: 2019/2/14
+ * Time: 15:50
  */
 
 namespace InsideAPI\User;
@@ -12,51 +12,195 @@ use InsideAPI\Core\AbstractAPI;
 
 class User extends AbstractAPI
 {
-    const GET_INFO = 'insideuser/getinfo';
 
-    const EDIT = 'insideuser/edit';
+    const PULSE = 'ins/v2/user/pulse'; // API心跳请求
 
-    const EDIT_PWD = 'insideuser/editpwd';
+    const IS_MOBILE = 'ins/v2/user/ismobile'; // 判断手机号是否存在
 
-    const EDIT_MAIL = 'insideuser/editemail';
+    const IS_EMAIL = 'ins/v2/user/isemail'; // 判断邮箱是否存在
 
-    const EDIT_MOBILE = 'insideuser/editmobile';
+    const SEND_SMS = 'ins/v2/user/sendsms'; // 发送短信
 
-    const GET_PERMISSIONS = 'insideuser/getpermissions';
+    const REGISTER = 'ins/v2/user/register'; // 用户注册
 
-    const GET_PERMISSIONS_ALL = 'insideuser/getpermissionsall';
+    const REGISTER_AU = 'ins/v2/user/registerau'; // 用户代理商注册
 
-    const GET_ACC_LIST = 'insideuser/acclist';
+    const LOGON = 'ins/v2/user/logon'; // 用户登录
 
-    const GET_ACC_LIST_HISTORY = 'insideuser/acclisthistory';
+    const SET_USER = 'ins/v2/user/setuser'; // 设置当前用户
 
-    const ACC_ADD = 'insideuser/accadd';
+    const INFO = 'ins/v2/user/info'; // 获取用户信息
 
-    const ACC_ADDS = 'insideuser/accadds';
+    const EDIT = 'ins/v2/user/edit'; // 编辑用户信息
 
-    const ACC_EDIT = 'insideuser/accedit';
+    const EDIT_U_NAME = 'ins/v2/user/edituname'; // 编辑用户名称
 
-    const ACC_DELETE = 'insideuser/accdelete';
+    const EDIT_PWD_BY_OLD = 'ins/v2/user/editpwdbyold'; // 修改用户密码（根据旧密码）
 
-    const UNBIND_WX = 'insideuser/cancelbindweixin'; // 用户取消绑定微信
+    const EDIT_PWD = 'ins/v2/user/editpwd'; // 修改用户密码
 
-    const GET_GOODS = 'insideuser/getgoods'; // 获取商品列表
+    const ACC_ADD = 'ins/v2/user/accadd'; // 添加单个账户
 
-    const PAYMENT = 'insideuser/payment'; // 获取付款信息
-
+    const ACC_ADDS = 'ins/v2/user/accadds'; // 添加多个账户
 
     /**
+     * API 心跳
      * @param array $params
      * @return \Mayunfeng\Supports\Collection
      */
-    public function getInfo($params = [])
+    public function pulse($params = [])
     {
-        return $this->parseJSON(static::POST, [self::GET_INFO, $params]);
+        return $this->parseJSON(static::POST, [self::PULSE, $params]);
     }
 
     /**
-     * 编辑用户信息 --Done
-     * @param $params
+     * 判断手机号是否存在
+     * @param string $m
+     * @return \Mayunfeng\Supports\Collection
+     */
+    public function isMobile(string $m)
+    {
+        return $this->parseJSON(static::POST, [
+            self::IS_MOBILE,
+            [
+                'M' => $m
+            ]
+        ]);
+    }
+
+    /**
+     * 判断邮箱是否存在
+     * @param string $e
+     * @return \Mayunfeng\Supports\Collection
+     */
+    public function isEmail(string $e)
+    {
+        return $this->parseJSON(static::POST, [
+            self::IS_EMAIL,
+            [
+                'E' => $e
+            ]
+        ]);
+    }
+
+    /**
+     * 发送短信
+     * @param string $m 手机号
+     * @param int $st 短信类型
+     * @return \Mayunfeng\Supports\Collection
+     */
+    public function sendSms(string $m, int $st = 0)
+    {
+        return $this->parseJSON(static::POST, [
+            self::SEND_SMS,
+            [
+                'ST' => $st,
+                'M' => $m
+            ]
+        ]);
+    }
+
+    /**
+     * 提交用户注册信息
+     * @param string $m 手机号
+     * @param string $pwd 用户密码
+     * @param int $pt 产品类型
+     * @param int $isM 手机号是否验证过（0表示未验证，1表示验证成功）
+     * @return \Mayunfeng\Supports\Collection
+     */
+    public function register(string $m, string $pwd,int $pt = 200,  int $isM = 1)
+    {
+        return $this->parseJSON(static::POST, [
+            self::REGISTER,
+            [
+                'M' => $m,
+                'Pwd' => $pwd,
+                'PT' => $pt,
+                'IsM' => $isM,
+            ]
+        ]);
+    }
+
+    /**
+     * 提交用户代理商注册信息
+     * @param int $pt 产品类型
+     * @param string $m 手机号
+     * @param string $pwd 用户密码
+     * @param int $isM 手机号是否验证过（0表示未验证，1表示验证成功）
+     * @param string $an 代理商用户名
+     * @return \Mayunfeng\Supports\Collection
+     */
+    public function registerAu(string $m, string $pwd, string $an, int $pt = 200, int $isM = 1)
+    {
+        return $this->parseJSON(static::POST, [
+            self::REGISTER_AU,
+            [
+                'PT' => $pt,
+                'M' => $m,
+                'Pwd' => $pwd,
+                'AN' => $an,
+                'IsM' => $isM,
+            ]
+        ]);
+    }
+
+    /**
+     * 用户登录
+     * @param int $pt 产品类型
+     * @param int $t 用户类型（0表示 小鹿用户，1表示代理商用户）
+     * @param string $un 用户名称
+     * @param string $pwd 用户密码
+     * @return \Mayunfeng\Supports\Collection
+     */
+    public function logon(string $un, string $pwd, int $pt = 200, int $t = 0)
+    {
+        return $this->parseJSON(static::POST, [
+            self::LOGON,
+            [
+                'UN' => $un,
+                'Pwd' => $pwd,
+                'PT' => $pt,
+                'T' => $t,
+            ]
+        ]);
+    }
+
+
+    /**
+     * 设置当前用户
+     * @param int $agId 当前代理商 ID
+     * @param int $uMainId 用户主ID
+     * @param int $uId 用户 ID
+     * @param int $t 用户类型（0表示 小鹿用户，1表示代理商用户）
+     * @return \Mayunfeng\Supports\Collection
+     */
+    public function setUser(int $agId, int $uMainId, int $uId,int $t = 0)
+    {
+        return $this->parseJSON(static::POST, [
+            self::SET_USER,
+            [
+                'AgId' => $agId,
+                'T' => $t,
+                'UMID' => $uMainId,
+                'Uid' => $uId
+            ]
+        ]);
+    }
+
+    /**
+     * 获取用户信息
+     * @param array $params
+     * @return \Mayunfeng\Supports\Collection
+     */
+    public function info($params = [])
+    {
+        return $this->parseJSON(static::POST, [self::INFO, $params]);
+    }
+
+    /**
+     * 编辑用户信息
+     * {"UMainId":103,"UName":"","Company":"","WebSite":"","Province":"","City":"","County":"","Address":"","Industry":"","Mobile":"","Email":"","QQ":""}
+     * @param array $params
      * @return \Mayunfeng\Supports\Collection
      */
     public function edit($params = [])
@@ -64,111 +208,87 @@ class User extends AbstractAPI
         return $this->parseJSON(static::POST, [self::EDIT, $params]);
     }
 
-
     /**
-     * 编辑用户信息 修改密码 --Done
-     * @param $params = []
+     * 编辑用户名称
+     * @param int $agentId 用户所属代理商信息（0 表示小鹿平台用户，大于0 表示指定代理商信息）
+     * @param string $uName 用户名称
      * @return \Mayunfeng\Supports\Collection
      */
-    public function editPwd($params = [])
+    public function editUName(int $agentId, string $uName)
     {
-        return $this->parseJSON(static::POST, [self::EDIT_PWD, $params]);
+        return $this->parseJSON(static::POST, [
+            self::EDIT_U_NAME,
+            [
+                'AgentId' => $agentId,
+                'UName' => $uName,
+            ]
+        ]);
     }
 
     /**
-     * 编辑用户信息 修改手机号码--Done
-     * @param $params = []
+     * 修改用户密码（根据旧密码）
+     * @param int $sProId 来源的产品ID
+     * @param string $oldPwd 老密码
+     * @param string $newPwd 新密码
      * @return \Mayunfeng\Supports\Collection
      */
-    public function editMobile($params = [])
+    public function editPwdByOld(int $sProId, string $oldPwd, string $newPwd)
     {
-        return $this->parseJSON(static::POST, [self::EDIT_MOBILE, $params]);
+        return $this->parseJSON(static::POST, [
+            self::EDIT_PWD_BY_OLD,
+            [
+                'SProId' => $sProId,
+                'Old' => $oldPwd,
+                'Pwd' => $newPwd,
+            ]
+        ]);
     }
 
-
     /**
-     * 编辑用户信息 修改邮箱--Done
-     * @param $params = []
+     * 修改用户密码
+     * @param int $sProId 来源的产品ID
+     * @param string $newPwd 新密码
      * @return \Mayunfeng\Supports\Collection
      */
-    public function editEmail($params = [])
+    public function editPwd(int $sProId, string $newPwd)
     {
-        return $this->parseJSON(static::POST, [self::EDIT_MAIL, $params]);
+        return $this->parseJSON(static::POST, [
+            self::EDIT_PWD,
+            [
+                'SProId' => $sProId,
+                'Pwd' => $newPwd,
+            ]
+        ]);
     }
 
+
     /**
-     * 获取用户权限  ---Done
-     * @param array $pros
-     * @param int $AgentID
+     * 添加单个账户
+     * @param int $pro 产品类型
+     * @param int $plat 平台类型（0 百度，1 点睛，2 搜狗，3 神马）
+     * @param int $aId 账户ID
+     * @param string $an 账户名称
+     * @param string $ln 账户登录名称
+     * @param string $lp 账户密码
      * @return \Mayunfeng\Supports\Collection
      */
-    public function getPermissions($pros = [], $AgentID = 0)
+    public function accAdd(int $pro, int $plat, int $aId, string $an, string $ln, string $lp)
     {
-        $params = [
-            'AgentID' => $AgentID,
-            'Pros' => $pros
-        ];
-        return $this->parseJSON(static::POST, [self::GET_PERMISSIONS, $params]);
-    }
-
-    public function getProducts($pros = [], $AgentID = 0)
-    {
-        $params = [
-            'AgentID' => $AgentID,
-            'Pros' => $pros
-        ];
-        return $this->parseJSON(static::POST, [self::GET_PERMISSIONS_ALL, $params]);
+        return $this->parseJSON(static::POST, [
+            self::ACC_ADD,
+            [
+                'Pro' => $pro,
+                'Plat' => $plat,
+                'AId' => $aId,
+                'AN' => $an,
+                'LN' => $ln,
+                'LP' => $lp,
+            ]
+        ]);
     }
 
     /**
-     * 获取账户列表  ---Done
-     * @param array $pros
-     * @return \Mayunfeng\Supports\Collection
-     */
-    public function getAccList($pros = [])
-    {
-        $params = [
-            'Pros' => $pros
-        ];
-        return $this->parseJSON(static::POST, [self::GET_ACC_LIST, $params]);
-    }
-
-    /**
-     * 获取历史删除账户列表
-     * @param array $pros
-     * @return \Mayunfeng\Supports\Collection
-     */
-    public function getAccListHistory($pros = [])
-    {
-        $params = [
-            'Pros' => $pros
-        ];
-        return $this->parseJSON(static::POST, [self::GET_ACC_LIST_HISTORY, $params]);
-    }
-
-
-    /**
-     * 添加账户 ---Done
-     * @param $params = []
-     *    $params = [
-     *      'Platform' => $userAcc->Platform,
-     *      'PT' => $userAcc->PT,
-     *      'AccID' => $userAcc->AccID,
-     *      'AccName' => $userAcc->AccName,
-     *      'LName' => $userAcc->LName,
-     *      'Pwd' => $userAcc->Pwd,
-     *  ];
-     * @return \Mayunfeng\Supports\Collection
-     */
-    public function accAdd($params = [])
-    {
-
-
-        return $this->parseJSON(static::POST, [self::ACC_ADD, $params]);
-    }
-
-    /**
-     * 批量添加账户
+     *  添加多个账户 -- 具体参数参考添加单个账户
      * @param array $params
      * @return \Mayunfeng\Supports\Collection
      */
@@ -176,83 +296,5 @@ class User extends AbstractAPI
     {
         return $this->parseJSON(static::POST, [self::ACC_ADDS, $params]);
     }
-
-    /**
-     * 编辑账户信息
-     * @param $params = []
-     *    $params = [
-     *          'Platform' => $userAcc->Platform,
-     *         'PT' => $userAcc->PT,
-     *         'AccID' => $userAcc->AccID,
-     *          'AccName' => $userAcc->AccName,
-     *          'LName' => $userAcc->LName,
-     *         'Pwd' => $userAcc->Pwd,
-     *    ];
-     * @return \Mayunfeng\Supports\Collection
-     */
-    public function accEdit($params = [])
-    {
-
-        return $this->parseJSON(static::POST, [self::ACC_EDIT, $params]);
-    }
-
-    /**
-     * 删除账户
-     * $params = [
-     *      'Platform' => $userAcc->Platform,
-     *      'PT' => $userAcc->PT,
-     *      'AccID' => $userAcc->AccID,
-     * ];
-     * @param $params = [] 平台ID
-     * @return \Mayunfeng\Supports\Collection
-     */
-    public function accDelete($params = [])
-    {
-        return $this->parseJSON(static::POST, [self::ACC_DELETE, $params]);
-    }
-
-    /**
-     * 解绑微信
-     * @return \Mayunfeng\Supports\Collection
-     */
-    public function unbindWx()
-    {
-        return $this->parseJSON(static::POST, [self::UNBIND_WX, []]);
-    }
-
-    /**
-     * 获取商品列表
-     * @param array $params
-     * @return \Mayunfeng\Supports\Collection
-     */
-    public function getGoods($params = [])
-    {
-        return $this->parseJSON(static::POST, [self::GET_GOODS, $params]);
-    }
-
-    /**
-     * 获取支付信息
-     * @param array $params
-     *
-     *   $params = [
-     *      'payway' => '支付方式 1：支付宝 2：微信',
-     *      'goodsid' => '商品ID',
-     *      'price' => '支付金额',
-     *      'unit' => '支付单位： 1 月 ，2年',
-     *      'describe' => '订单描述',
-     *  ];
-     * @return \Mayunfeng\Supports\Collection
-     *
-     *  $return = [
-     *      'code_url' => '支付Url',
-     *      'uniqueid' => '唯一ID'
-     *  ]
-     */
-    public function payment($params = [])
-    {
-        return $this->parseJSON(static::POST, [self::PAYMENT, $params]);
-    }
-
-
 
 }

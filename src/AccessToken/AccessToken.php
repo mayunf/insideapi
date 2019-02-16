@@ -21,19 +21,16 @@ class AccessToken
      * @var \Pimple\Container
      */
     protected $app;
-    protected $endpointGetToken = 'https://api.xiaolutuiguang.com/api/insideuser/logon';
-    public $baseToken; // 基础token
-    public $baseAccessToken; // 基础access_token
+//    protected $endpointGetToken = 'https://api.xiaolutuiguang.com/api/user/logon';
+    protected $endpointGetToken = 'http://api.xiaolutuiguang.com/api/ins/v2/user/logon';
 
     /** @var CacheInterface */
     protected $cache;
-    //访问token
-    protected $tokenKey = 'Accesstoken';
-    protected $sessionKey = 'SessionID';
-    protected $userIdKey = 'UserId';
-    protected $cachePrefix = 'insideapi.access_token.';
 
-    protected $accessToken;
+    //访问token
+    protected $sessionKey = 'SID';
+    protected $userIdKey = 'Uid';
+    protected $cachePrefix = 'insideapi.access_token.';
     protected $userId = 0;
     protected $sessionId;
 
@@ -43,35 +40,13 @@ class AccessToken
     {
         $this->app = $app;
         $this->cache = $this->app['config']['cache'];
-        $this->baseToken = $this->app['config']['token'];
-        $this->baseAccessToken = $this->app['config']['access_key'];
-//        $this->setAccessToken($this->app['config']['access_key']);
         $this->setUserId($this->app['config']['user_id'] ?? 0);
         if ($this->getUserId() > 0) {
             // 已经登录用户 从缓存中获取token信息
             $this->setSessionId($this->getSessionId());
-            $this->setAccessToken($this->getAccessToken());
         }
     }
 
-    /**
-     * @return mixed
-     */
-    public function getAccessToken()
-    {
-        return $this->getCache()->get($this->cachePrefix.$this->tokenKey.$this->userId);
-    }
-
-    /**
-     * @param mixed $accessToken
-     */
-    public function setAccessToken($accessToken)
-    {
-        $cacheKey = $this->cachePrefix.$this->tokenKey.$this->userId;
-
-        $this->accessToken = $this->getCache()->set($cacheKey,$accessToken,$this->ttl);
-
-    }
 
     /**
      * @return mixed
@@ -95,7 +70,7 @@ class AccessToken
      */
     public function getSessionId()
     {
-        return $this->getCache()->get($this->cachePrefix.$this->sessionKey.$this->userId);
+        return $this->getCache()->get($this->cachePrefix . $this->sessionKey . $this->userId);
     }
 
     /**
@@ -104,9 +79,9 @@ class AccessToken
      */
     public function setSessionId($sessionId)
     {
-        $cacheKey = $this->cachePrefix.$this->sessionKey.$this->userId;
+        $cacheKey = $this->cachePrefix . $this->sessionKey . $this->userId;
 
-        $this->sessionId = $this->getCache()->set($cacheKey,$sessionId,$this->ttl);
+        $this->sessionId = $this->getCache()->set($cacheKey, $sessionId, $this->ttl);
     }
 
 
@@ -115,24 +90,29 @@ class AccessToken
         return $this->cachePrefix;
     }
 
-    public function setCacheKey($key)
-    {
-        $this->tokenKey = $key;
-    }
 
-    public function getTokenKey()
-    {
-        return $this->tokenKey;
-    }
-
-    public function getToken(array $arguments): array
+    /**
+     * 获取token
+     * @param string $un 用户名
+     * @param string $pwd 密码
+     * @param int $pt 产品类型
+     * @param int $t 用户类型
+     * @return array 返回数组
+     * @throws HttpException
+     */
+    public function getToken(string $un, string $pwd, int $pt = 200, int $t = 0): array
     {
         $cacheKey = $this->getCacheKey();
         $cache = $this->getCache();
         if ($cache->has($cacheKey)) {
             return $cache->get($cacheKey);
         }
-        $token = $this->requestToken($arguments);
+        $token = $this->requestToken([
+            'PT' => $pt,
+            'T' => $t,
+            'UN' => $un,
+            'Pwd' => $pwd,
+        ]);
         $this->setToken($token);
         return $token;
     }
@@ -141,13 +121,11 @@ class AccessToken
      * Set token
      * @param $token
      * @return $this
-     * @throws \Psr\SimpleCache\InvalidArgumentException
      */
     public function setToken($token)
     {
         $this->setUserId($token[$this->userIdKey]);
         $this->setSessionId($token[$this->sessionKey]);
-        $this->setAccessToken($token[$this->tokenKey]);
         return $this;
     }
 
@@ -155,9 +133,9 @@ class AccessToken
     {
         $response = $this->sendRequest($arguments);
 
-        $token = json_decode($response['Body'], true);
+        $token = json_decode($response['body'], true);
 
-        if (empty($token[$this->tokenKey]) || empty($token[$this->sessionKey]) || empty($token[$this->userIdKey])) {
+        if (empty($token[$this->sessionKey]) || empty($token[$this->userIdKey])) {
             throw new HttpException('Request access_token fail:' . json_encode($response, JSON_UNESCAPED_UNICODE));
         }
 
@@ -169,12 +147,6 @@ class AccessToken
         return $this->post($this->endpointGetToken,
             [
                 'data' => json_encode($arguments, JSON_UNESCAPED_UNICODE)
-            ],
-            [
-                'headers' => [
-                    'token' => $this->baseToken,
-                    'accesstoken' => $this->app['config']['access_key']
-                ],
             ]
         );
     }

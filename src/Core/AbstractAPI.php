@@ -74,8 +74,6 @@ abstract class AbstractAPI
      */
     protected function registerHttpMiddlewares()
     {
-
-        $this->http->addMiddleware($this->accessTokenMiddleware());
         // log
         $this->http->addMiddleware($this->logMiddleware());
 
@@ -89,29 +87,12 @@ abstract class AbstractAPI
     {
         return function (callable $handler) {
             return function (RequestInterface $request, array $options) use ($handler) {
-                $request = $request->withHeader('token',$this->accessToken->baseToken);
-                $request = $request->withHeader('accesstoken',$this->accessToken->getAccessToken());
                 $request = $request->withHeader('Cookie','JWSEMID='.$this->accessToken->getSessionID());
                 return $handler($request, $options);
             };
         };
     }
 
-    /**
-     * Attache access token to request query.
-     *
-     * @return \Closure
-     */
-    protected function accessTokenMiddleware()
-    {
-        return function (callable $handler) {
-            return function (RequestInterface $request, array $options) use ($handler) {
-                $request = $request->withHeader('token',$this->accessToken->baseToken);
-                $request = $request->withHeader('accesstoken',$this->accessToken->baseAccessToken);
-                return $handler($request, $options);
-            };
-        };
-    }
 
     /**
      * Log the request.
@@ -140,9 +121,10 @@ abstract class AbstractAPI
 
         $contents = $http->parseJSON(call_user_func_array([$http, $method], $args));
 
-        if (isset($contents['Body']) && !empty($contents['Body'])) {
-            $contents['Body'] = \GuzzleHttp\json_decode($contents['Body'],true);
+        if (isset($contents['body']) && !empty($contents['body'])) {
+            $contents['body'] = \GuzzleHttp\json_decode($contents['body'],true);
         }
+
         $contents = $this->checkAndThrow($contents);
 
         return new Collection($contents);
@@ -152,27 +134,9 @@ abstract class AbstractAPI
     /**
      * @param array $contents
      * @return array
-     * @throws Exception
      */
     protected function checkAndThrow(array $contents)
     {
-        if (isset($contents['Header']['Status']) && 0 !== $contents['Header']['Status']) {
-            if (empty($contents['Header']['Falures'])) {
-                $contents['Header']['Falures'][0]['Mess'] = '未知原因';
-            }
-            if (empty($contents['Header']['Falures'])) {
-                $contents['Header']['Falures'][0]['Code'] = '-1';
-            }
-            $contents['Success'] = false;
-            $contents['ErrCode'] = $contents['Header']['Falures'][0]['Code'];
-            $contents['ErrMsg'] = ErrCode::getErrMsg($contents['Header']['Falures'][0]['Code']);
-//            throw new Exception($contents['ErrMsg'],$contents['ErrCode']);
-        } else {
-            $contents['Success'] = true;
-            $contents['ErrCode'] = 0;
-
-        }
-
         return $contents;
     }
 

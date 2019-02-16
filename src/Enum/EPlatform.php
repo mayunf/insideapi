@@ -11,18 +11,18 @@ namespace InsideAPI\Enum;
 
 class EPlatform
 {
-    // 百度
-    const Baidu = 0;
-    // 奇搜360
-    const Qh360 = 1;
-    // 搜狗
-    const Sogou = 2;
-    // 神马
-    const Shenma = 3;
-    // 腾讯
-    const Tencent = 4;
-    // 微信
-    const Weixin = 5;
+
+    const Baidu = 0; // 百度
+
+    const Qh360 = 1; // 奇搜360
+
+    const Sogou = 2; // 搜狗
+
+    const Shenma = 3; // 神马
+
+    const Tencent = 4; // 腾讯
+
+    const Weixin = 5; // 微信
 
     public static function getPlatform($key = null)
     {

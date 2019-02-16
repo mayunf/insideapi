@@ -22,11 +22,8 @@ use Mayunfeng\Supports\Config;
  * Class Application
  *
  * @property \InsideAPI\User\User               $user
- * @property \InsideAPI\User\UserNotLogin       $user_not_login
- * @property \InsideAPI\Agent\Agent             $agent
- * @property \InsideAPI\Agent\AgentNotLogin     $agent_not_login
- * @property \InsideAPI\Manage\Manage           $manage
  * @property \InsideAPI\Soft\Soft               $soft
+ * @property \InsideAPI\Redis\Redis             $redis
  * @property \InsideAPI\AccessToken\AccessToken $access_token
  *
  * @package InsideAPI\Foundation
@@ -36,11 +33,8 @@ class Application extends Container
 
     protected $providers = [
         ServiceProviders\UserServiceProvider::class,
-        ServiceProviders\UserNotLoginServiceProvider::class,
-        ServiceProviders\AgentServiceProvider::class,
-        ServiceProviders\AgentNotLoginServiceProvider::class,
-        ServiceProviders\ManageServiceProvider::class,
         ServiceProviders\SoftServiceProvider::class,
+        ServiceProviders\RedisServiceProvider::class,
         ServiceProviders\AccessTokenServiceProvider::class
     ];
 

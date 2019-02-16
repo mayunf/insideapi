@@ -232,7 +232,7 @@ class Http
 
         $contents = json_decode($body, true);
 
-//        Log::debug('API 响应:', compact('contents'));
+        Log::debug('API 响应:', compact('contents'));
 
         if (JSON_ERROR_NONE !== json_last_error()) {
             throw new HttpException('Failed to parse JSON: '.json_last_error_msg());
