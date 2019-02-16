@@ -23,7 +23,6 @@ use Mayunfeng\Supports\Config;
  *
  * @property \InsideAPI\User\User               $user
  * @property \InsideAPI\Soft\Soft               $soft
- * @property \InsideAPI\Redis\Redis             $redis
  * @property \InsideAPI\AccessToken\AccessToken $access_token
  *
  * @package InsideAPI\Foundation
@@ -34,7 +33,6 @@ class Application extends Container
     protected $providers = [
         ServiceProviders\UserServiceProvider::class,
         ServiceProviders\SoftServiceProvider::class,
-        ServiceProviders\RedisServiceProvider::class,
         ServiceProviders\AccessTokenServiceProvider::class
     ];
 
