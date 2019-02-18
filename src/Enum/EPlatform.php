@@ -3,15 +3,13 @@
  * Created by PhpStorm.
  * User: mayunfeng
  * Date: 2018/1/8
- * Time: 16:04
+ * Time: 16:04.
  */
 
 namespace InsideAPI\Enum;
 
-
 class EPlatform
 {
-
     const Baidu = 0; // 百度
 
     const Qh360 = 1; // 奇搜360
@@ -34,9 +32,10 @@ class EPlatform
             4 => '腾讯',
             5 => '微信',
         ];
-        if (array_key_exists($key,$all)) {
+        if (array_key_exists($key, $all)) {
             return $all[$key];
         }
+
         return $all;
     }
 }

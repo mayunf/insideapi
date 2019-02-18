@@ -3,11 +3,10 @@
  * Created by PhpStorm.
  * User: mayunfeng
  * Date: 2018/1/8
- * Time: 16:02
+ * Time: 16:02.
  */
 
 namespace InsideAPI\Enum;
-
 
 class ELogonType
 {

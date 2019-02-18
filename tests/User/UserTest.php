@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: mayunfeng
  * Date: 2018/12/6
- * Time: 11:37
+ * Time: 11:37.
  */
 
 namespace InsideAPI\Test\User;
@@ -14,38 +14,38 @@ class UserTest extends TestCase
 {
     public function testLogon()
     {
-        $res = $this->getInstance()->user->logon('18137813353','ff84643364');
-        $this->assertFalse(boolval($res['head']['s']),$res['head']['des']);
+        $res = $this->getInstance()->user->logon('18137813353', 'ff84643364');
+        $this->assertFalse(boolval($res['head']['s']), $res['head']['des']);
     }
 
     public function testGenToken()
     {
-        $res = $this->getInstance()->access_token->getToken('18137813353','ff84643364');
-        $this->assertArrayHasKey('Uid',$res);
+        $res = $this->getInstance()->access_token->getToken('18137813353', 'ff84643364');
+        $this->assertArrayHasKey('Uid', $res);
     }
-
 
     public function testIsMobile()
     {
         $res = $this->getInstance()->user->isMobile('18137813353');
-        $this->assertArrayHasKey('head',$res);
+        $this->assertArrayHasKey('head', $res);
     }
 
     public function testIsEmail()
     {
         $res = $this->getInstance()->user->isMobile('mayunfeng@jwsem.com');
-        $this->assertArrayHasKey('head',$res);
+        $this->assertArrayHasKey('head', $res);
     }
+
     public function testPulse()
     {
         $res = $this->getInstance(5512)->user->pulse();
-        $this->assertFalse(boolval($res['head']['s']),$res['head']['des']);
+        $this->assertFalse(boolval($res['head']['s']), $res['head']['des']);
     }
 
     public function testInfo()
     {
         $res = $this->getInstance(5512)->user->info();
-        $this->assertFalse(boolval($res['head']['s']),$res['head']['des']);
+        $this->assertFalse(boolval($res['head']['s']), $res['head']['des']);
     }
 
 //    public function testSendSms()
@@ -99,6 +99,4 @@ class UserTest extends TestCase
 //    {
 //
 //    }
-
-
 }
