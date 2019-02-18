@@ -3,11 +3,10 @@
  * Created by PhpStorm.
  * User: mayunfeng
  * Date: 2018/1/8
- * Time: 16:06
+ * Time: 16:06.
  */
 
 namespace InsideAPI\Enum;
-
 
 class EUserType
 {
@@ -26,7 +25,6 @@ class EUserType
     /// </summary>
     const Pay = 2;
 
-
     public static function getUserType($key = null)
     {
         $all = [
@@ -34,10 +32,10 @@ class EUserType
             1 => '试用用户',
             2 => '付费用户',
         ];
-        if (array_key_exists($key,$all)) {
+        if (array_key_exists($key, $all)) {
             return $all[$key];
         }
+
         return $all;
     }
-
 }

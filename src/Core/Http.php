@@ -3,16 +3,16 @@
  * Created by PhpStorm.
  * User: mayunfeng
  * Date: 2017/11/15
- * Time: 15:21
+ * Time: 15:21.
  */
 
 namespace InsideAPI\Core;
 
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\HandlerStack;
-use Psr\Http\Message\ResponseInterface;
 use InsideAPI\Core\Exceptions\HttpException;
 use Mayunfeng\Supports\Log;
+use Psr\Http\Message\ResponseInterface;
 
 class Http
 {
@@ -44,7 +44,7 @@ class Http
     protected static $defaults = [
         'curl' => [
             CURLOPT_IPRESOLVE => CURL_IPRESOLVE_V4,
-        ]
+        ],
     ];
 
     /**
@@ -73,9 +73,9 @@ class Http
      * @param string $url
      * @param array  $options
      *
-     * @return ResponseInterface
-     *
      * @throws HttpException
+     *
+     * @return ResponseInterface
      */
     public function get($url, array $options = [])
     {
@@ -88,9 +88,9 @@ class Http
      * @param string       $url
      * @param array|string $options
      *
-     * @return ResponseInterface
-     *
      * @throws HttpException
+     *
+     * @return ResponseInterface
      */
     public function post($url, $options = [])
     {
@@ -99,8 +99,8 @@ class Http
 //        return $this->request($url, 'POST', [$key => $options]);
         return $this->request($url, 'POST', [
             $key => [
-                'data'=>json_encode($options)
-            ]
+                'data'=> json_encode($options),
+            ],
         ]);
     }
 
@@ -122,8 +122,6 @@ class Http
 
         return $this->request($url, 'POST', ['query' => $queries, 'body' => $options, 'headers' => ['content-type' => 'application/json']]);
     }
-
-
 
     /**
      * Set GuzzleHttp\Client.
@@ -184,9 +182,9 @@ class Http
      * @param string $method
      * @param array  $options
      *
-     * @return ResponseInterface
-     *
      * @throws HttpException
+     *
+     * @return ResponseInterface
      */
     public function request($url, $method = 'GET', $options = [])
     {
@@ -201,10 +199,10 @@ class Http
         $response = $this->getClient()->request($method, $url, $options);
 
         Log::debug('API 响应:', [
-            'Status' => $response->getStatusCode(),
-            'Reason' => $response->getReasonPhrase(),
+            'Status'  => $response->getStatusCode(),
+            'Reason'  => $response->getReasonPhrase(),
             'Headers' => $response->getHeaders(),
-            'Body' => strval($response->getBody()),
+            'Body'    => strval($response->getBody()),
         ]);
 
         return $response;
@@ -213,9 +211,9 @@ class Http
     /**
      * @param \Psr\Http\Message\ResponseInterface|string $body
      *
-     * @return mixed
-     *
      * @throws HttpException
+     *
+     * @return mixed
      */
     public function parseJSON($body)
     {

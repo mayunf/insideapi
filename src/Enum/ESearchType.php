@@ -3,11 +3,10 @@
  * Created by PhpStorm.
  * User: mayunfeng
  * Date: 2018/1/8
- * Time: 19:04
+ * Time: 19:04.
  */
 
 namespace InsideAPI\Enum;
-
 
 class ESearchType
 {

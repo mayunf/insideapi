@@ -3,11 +3,10 @@
  * Created by PhpStorm.
  * User: mayunfeng
  * Date: 2018/1/8
- * Time: 16:04
+ * Time: 16:04.
  */
 
 namespace InsideAPI\Enum;
-
 
 class EPerType
 {
@@ -32,13 +31,14 @@ class EPerType
     {
         $all = [
             -1 => '全部权限',
-            0 => '自定义权限',
-            1 => '免费版权限',
-            2 => '系统权限',
+            0  => '自定义权限',
+            1  => '免费版权限',
+            2  => '系统权限',
         ];
-        if (array_key_exists($key,$all)) {
+        if (array_key_exists($key, $all)) {
             return $all[$key];
         }
+
         return $all;
     }
 }

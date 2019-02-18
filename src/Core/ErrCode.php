@@ -3,18 +3,16 @@
  * Created by PhpStorm.
  * User: mayunfeng
  * Date: 2017/11/27
- * Time: 20:37
+ * Time: 20:37.
  */
 
 namespace InsideAPI\Core;
 
-
 class ErrCode
 {
-
     public static function getErrMsg($code)
     {
-        switch ($code){
+        switch ($code) {
             case 1001:
                 $errMsg = '系统错误';
                 break;
@@ -152,6 +150,7 @@ class ErrCode
                 $errMsg = '未知错误';
 
         }
+
         return $errMsg;
     }
 }

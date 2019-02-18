@@ -3,33 +3,30 @@
  * Created by PhpStorm.
  * User: mayunfeng
  * Date: 2017/11/15
- * Time: 15:18
+ * Time: 15:18.
  */
 
 namespace InsideAPI\Core;
 
 use GuzzleHttp\Middleware;
 use InsideAPI\AccessToken\AccessToken;
-use Psr\Http\Message\RequestInterface;
 use Mayunfeng\Supports\Collection;
+use Psr\Http\Message\RequestInterface;
 
 /**
  * BaseApi use before login
- * Class BaseApi
- * @package common\library\api\core
+ * Class BaseApi.
  */
 abstract class AbstractAPI
 {
-
     const POST = 'post';
 
     const GET = 'get';
 
     public $accessToken;
 
-    /** @var  Http */
+    /** @var Http */
     protected $http;
-
 
     public function __construct(AccessToken $accessToken)
     {
@@ -68,9 +65,8 @@ abstract class AbstractAPI
         return $this;
     }
 
-
     /**
-     * 注册中间件
+     * 注册中间件.
      */
     protected function registerHttpMiddlewares()
     {
@@ -87,12 +83,12 @@ abstract class AbstractAPI
     {
         return function (callable $handler) {
             return function (RequestInterface $request, array $options) use ($handler) {
-                $request = $request->withHeader('Cookie','JWSEMID='.$this->accessToken->getSessionID());
+                $request = $request->withHeader('Cookie', 'JWSEMID='.$this->accessToken->getSessionID());
+
                 return $handler($request, $options);
             };
         };
     }
-
 
     /**
      * Log the request.
@@ -122,7 +118,7 @@ abstract class AbstractAPI
         $contents = $http->parseJSON(call_user_func_array([$http, $method], $args));
 
         if (isset($contents['body']) && !empty($contents['body'])) {
-            $contents['body'] = \GuzzleHttp\json_decode($contents['body'],true);
+            $contents['body'] = \GuzzleHttp\json_decode($contents['body'], true);
         }
 
         $contents = $this->checkAndThrow($contents);
@@ -130,14 +126,13 @@ abstract class AbstractAPI
         return new Collection($contents);
     }
 
-
     /**
      * @param array $contents
+     *
      * @return array
      */
     protected function checkAndThrow(array $contents)
     {
         return $contents;
     }
-
 }

@@ -3,11 +3,10 @@
  * Created by PhpStorm.
  * User: mayunfeng
  * Date: 2018/1/12
- * Time: 16:31
+ * Time: 16:31.
  */
 
 namespace InsideAPI\Enum;
-
 
 class EStatus
 {
@@ -32,9 +31,10 @@ class EStatus
             2 => '暂停',
             3 => '删除',
         ];
-        if (array_key_exists($key,$all)) {
+        if (array_key_exists($key, $all)) {
             return $all[$key];
         }
+
         return $all;
     }
 }

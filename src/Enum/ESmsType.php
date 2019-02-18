@@ -3,14 +3,13 @@
  * Created by PhpStorm.
  * User: mayunfeng
  * Date: 2018/1/8
- * Time: 16:04
+ * Time: 16:04.
  */
 
 namespace InsideAPI\Enum;
 
 /**
- * Class ESmsType
- * @package InsideAPI\Enum
+ * Class ESmsType.
  */
 class ESmsType
 {
