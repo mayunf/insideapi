@@ -108,7 +108,7 @@ class User extends AbstractAPI
      * @param int $isM 手机号是否验证过（0表示未验证，1表示验证成功）
      * @return \Mayunfeng\Supports\Collection
      */
-    public function register(string $m, string $pwd,int $pt = 200,  int $isM = 1)
+    public function register(string $m, string $pwd, int $pt = 200, int $isM = 1)
     {
         return $this->parseJSON(static::POST, [
             self::REGISTER,
@@ -169,14 +169,14 @@ class User extends AbstractAPI
     /**
      * 设置当前用户
      * @param int $agId 当前代理商 ID
-     * @param int $uMainId 用户主ID
      * @param int $uId 用户 ID
+     * @param int $uMainId 用户主ID
      * @param int $t 用户类型（0表示 小鹿用户，1表示代理商用户）
      * @return \Mayunfeng\Supports\Collection
      */
-    public function setUser(int $agId, int $uMainId, int $uId,int $t = 0)
+    public function setUser(int $agId, int $uId, int $uMainId, int $t = 0)
     {
-        return $this->parseJSON(static::POST, [
+        $response = $this->parseJSON(static::POST, [
             self::SET_USER,
             [
                 'AgId' => $agId,
@@ -185,6 +185,14 @@ class User extends AbstractAPI
                 'Uid' => $uId
             ]
         ]);
+
+        if ($response['head']['s'] == 0) {
+            $token[$this->accessToken->userIdKey] = $uId;
+            $token[$this->accessToken->userIdKey] = $this->accessToken->getSessionId();
+            $this->accessToken->setToken($token);
+        }
+        return $response;
+
     }
 
     /**

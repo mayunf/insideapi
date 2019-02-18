@@ -23,13 +23,14 @@ class AccessToken
     protected $app;
 //    protected $endpointGetToken = 'https://api.xiaolutuiguang.com/api/user/logon';
     protected $endpointGetToken = 'http://api.xiaolutuiguang.com/api/ins/v2/user/logon';
+    protected $switchTokenUrl = 'http://api.xiaolutuiguang.com/api/ins/v2/user/setuser';
 
     /** @var CacheInterface */
     protected $cache;
 
     //访问token
-    protected $sessionKey = 'SID';
-    protected $userIdKey = 'Uid';
+    public $sessionKey = 'SID';
+    public $userIdKey = 'Uid';
     protected $cachePrefix = 'insideapi.access_token.';
     protected $userId = 0;
     protected $sessionId;

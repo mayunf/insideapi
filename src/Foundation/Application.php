@@ -60,15 +60,6 @@ class Application extends Container
         $this['request'] = function () {
             return Request::createFromGlobals();
         };
-
-
-
-//        $this['access_token'] = function () {
-//            return new AccessToken(
-//                $this['config']['token'],
-//                $this['config']['access_key']
-//            );
-//        };
     }
 
     // 注册服务
