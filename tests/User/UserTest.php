@@ -8,25 +8,30 @@
 
 namespace InsideAPI\Test\User;
 
+use InsideAPI\Core\Exceptions\HttpException;
 use InsideAPI\Test\TestCase;
 
 class UserTest extends TestCase
 {
     public function testLogon()
     {
-        $res = $this->getInstance()->user->logon('18137813353', 'ff84643364');
-        $this->assertFalse(boolval($res['head']['s']), $res['head']['des']);
+        $res = $this->getInstance()->user->logon('18888888888', '88888888');
+        $this->assertArrayHasKey('head',$res);
     }
 
     public function testGenToken()
     {
-        $res = $this->getInstance()->access_token->getToken('18137813353', 'ff84643364');
-        $this->assertArrayHasKey('Uid', $res);
+        try{
+            $res = $this->getInstance()->access_token->getToken('18888888888', '88888888');
+            $this->assertArrayHasKey('Uid', $res);
+        } catch (HttpException $exception) {
+            $this->assertInstanceOf(HttpException::class,$exception);
+        }
     }
 
     public function testIsMobile()
     {
-        $res = $this->getInstance()->user->isMobile('18137813353');
+        $res = $this->getInstance()->user->isMobile('18888888888');
         $this->assertArrayHasKey('head', $res);
     }
 
@@ -50,7 +55,7 @@ class UserTest extends TestCase
 
 //    public function testSendSms()
 //    {
-//        $res = $this->getInstance()->user->sendSms('18137813353');
+//        $res = $this->getInstance()->user->sendSms('18888888888');
 //        $this->assertFalse(boolval($res['head']['s']),$res['head']['des']);
 //    }
 

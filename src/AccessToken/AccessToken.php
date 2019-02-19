@@ -22,9 +22,9 @@ class AccessToken
      */
     protected $app;
 //    protected $endpointGetToken = 'https://api.xiaolutuiguang.com/api/user/logon';
-    protected $endpointGetToken = 'http://api.xiaolutuiguang.com/api/ins/v2/user/logon';
-    protected $switchTokenUrl = 'http://api.xiaolutuiguang.com/api/ins/v2/user/setuser';
+    protected $endpointGetToken = 'ins/v2/user/logon';
 
+    public $baseUri = '';
     /** @var CacheInterface */
     protected $cache;
 
@@ -151,7 +151,7 @@ class AccessToken
 
     protected function sendRequest($arguments)
     {
-        return $this->post($this->endpointGetToken,
+        return $this->post($this->app['config']['guzzle']['base_uri'].$this->endpointGetToken,
             [
                 'data' => json_encode($arguments, JSON_UNESCAPED_UNICODE),
             ]
