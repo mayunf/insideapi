@@ -10,6 +10,7 @@ namespace InsideAPI\Enum;
 
 class ELogonType
 {
-    const User = 0; //普通用户
-    const Agent = 1; //代理商用户
+    const User = 0; // 普通用户
+    const Agent = 1; // 代理商用户
+    const Customer = -1; // 全部
 }
