@@ -202,7 +202,7 @@ class User extends AbstractAPI
 
         if ($response['head']['s'] == 0) {
             $token[$this->accessToken->userIdKey] = $uId;
-            $token[$this->accessToken->userIdKey] = $this->accessToken->getSessionId();
+            $token[$this->accessToken->sessionKey] = $this->accessToken->getSessionId();
             $this->accessToken->setToken($token);
         }
 
