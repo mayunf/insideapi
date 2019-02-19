@@ -16,16 +16,16 @@ class UserTest extends TestCase
     public function testLogon()
     {
         $res = $this->getInstance()->user->logon('18888888888', '88888888');
-        $this->assertArrayHasKey('head',$res);
+        $this->assertArrayHasKey('head', $res);
     }
 
     public function testGenToken()
     {
-        try{
+        try {
             $res = $this->getInstance()->access_token->getToken('18888888888', '88888888');
             $this->assertArrayHasKey('Uid', $res);
         } catch (HttpException $exception) {
-            $this->assertInstanceOf(HttpException::class,$exception);
+            $this->assertInstanceOf(HttpException::class, $exception);
         }
     }
 
