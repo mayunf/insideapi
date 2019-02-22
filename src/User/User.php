@@ -34,6 +34,8 @@ class User extends AbstractAPI
 
     const EDIT_U_NAME = 'ins/v2/user/edituname'; // 编辑用户名称
 
+    const OTHER_EDIT_U_NAME = 'ins/v2/user/ohteredituname'; // 编辑其他用户名称
+
     const EDIT_PWD_BY_OLD = 'ins/v2/user/editpwdbyold'; // 修改用户密码（根据旧密码）
 
     const EDIT_PWD = 'ins/v2/user/editpwd'; // 修改用户密码
@@ -243,6 +245,27 @@ class User extends AbstractAPI
         return $this->parseJSON(static::POST, [
             self::EDIT_U_NAME,
             [
+                'AgentId' => $agentId,
+                'UName'   => $uName,
+            ],
+        ]);
+    }
+
+    /**
+     * 编辑其他用户名称
+     *
+     * @param int  $agentId   用户所属代理商信息（0 表示小鹿平台用户，大于0 表示指定代理商信息）
+     * @param string $uName   用户名称
+     * @param int $uMainId    主ID
+     *
+     * @return \Mayunfeng\Supports\Collection
+     */
+    public function OtherEditUName(int $agentId, string $uName,int $uMainId)
+    {
+        return $this->parseJSON(static::POST, [
+            self::OTHER_EDIT_U_NAME,
+            [
+                'UMainId' => $uMainId,
                 'AgentId' => $agentId,
                 'UName'   => $uName,
             ],
