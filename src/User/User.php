@@ -22,9 +22,9 @@ class User extends AbstractAPI
 
     const REGISTER = 'ins/v2/user/register'; // 用户注册
 
-    const REGISTER_AU = 'ins/v2/user/registerau'; // 用户代理商注册
-
     const LOGON = 'ins/v2/user/logon'; // 用户登录
+
+    const EXIT = 'ins/v2/user/exit'; // 用户退出登录
 
     const SET_USER = 'ins/v2/user/setuser'; // 设置当前用户
 
@@ -70,7 +70,7 @@ class User extends AbstractAPI
         return $this->parseJSON(static::POST, [
             self::IS_MOBILE,
             [
-                'M' => $m,
+                'Mob' => $m,
             ],
         ]);
     }
@@ -87,7 +87,7 @@ class User extends AbstractAPI
         return $this->parseJSON(static::POST, [
             self::IS_EMAIL,
             [
-                'E' => $e,
+                'Email' => $e,
             ],
         ]);
     }
@@ -106,7 +106,7 @@ class User extends AbstractAPI
             self::SEND_SMS,
             [
                 'ST' => $st,
-                'M'  => $m,
+                'Mob'  => $m,
             ],
         ]);
     }
@@ -114,47 +114,28 @@ class User extends AbstractAPI
     /**
      * 提交用户注册信息.
      *
+     * @param int    $pt  产品类型
      * @param string $m   手机号
      * @param string $pwd 用户密码
-     * @param int    $pt  产品类型
      * @param int    $isM 手机号是否验证过（0表示未验证，1表示验证成功）
+     * @param int $agId   代理id
+     * @param string $an  代理商用户名
+     * @param string $un  用户名称
      *
      * @return \Mayunfeng\Supports\Collection
      */
-    public function register(string $m, string $pwd, int $pt = 200, int $isM = 1)
+    public function register(string $m, string $pwd, int $pt = 200, int $agId = 0, string $an = '', string $un = '', int $isM = 1)
     {
         return $this->parseJSON(static::POST, [
             self::REGISTER,
             [
-                'M'   => $m,
-                'Pwd' => $pwd,
-                'PT'  => $pt,
+                'Mob'   => $m,
                 'IsM' => $isM,
-            ],
-        ]);
-    }
-
-    /**
-     * 提交用户代理商注册信息.
-     *
-     * @param int    $pt  产品类型
-     * @param string $m   手机号
-     * @param string $pwd 用户密码
-     * @param int    $isM 手机号是否验证过（0表示未验证，1表示验证成功）
-     * @param string $an  代理商用户名
-     *
-     * @return \Mayunfeng\Supports\Collection
-     */
-    public function registerAu(string $m, string $pwd, string $an, int $pt = 200, int $isM = 1)
-    {
-        return $this->parseJSON(static::POST, [
-            self::REGISTER_AU,
-            [
-                'PT'  => $pt,
-                'M'   => $m,
                 'Pwd' => $pwd,
-                'AN'  => $an,
-                'IsM' => $isM,
+                'Agid'  => $agId,
+                'AgName'  => $an,
+                'UName'  => $un,
+                'SProid'  => $pt,
             ],
         ]);
     }
@@ -162,22 +143,22 @@ class User extends AbstractAPI
     /**
      * 用户登录.
      *
-     * @param int    $pt  产品类型
-     * @param int    $t   用户类型（0表示 小鹿用户，1表示代理商用户）
+     * @param int    $proId  产品类型
+     * @param int    $role   用户类型（0 代表小鹿用户；1 代表客户服务；2 代表代理商管理员）
      * @param string $un  用户名称
      * @param string $pwd 用户密码
      *
      * @return \Mayunfeng\Supports\Collection
      */
-    public function logon(string $un, string $pwd, int $pt = 200, int $t = 0)
+    public function logon(string $un, string $pwd, int $proId = 200, int $role = 0)
     {
         return $this->parseJSON(static::POST, [
             self::LOGON,
             [
                 'UN'  => $un,
                 'Pwd' => $pwd,
-                'PT'  => $pt,
-                'T'   => $t,
+                'Proid'  => $proId,
+                'Role'   => $role,
             ],
         ]);
     }
@@ -187,27 +168,38 @@ class User extends AbstractAPI
      *
      * @param int $agId    当前代理商 ID
      * @param int $uId     用户 ID
-     * @param int $uMainId 用户主ID
-     * @param int $t       用户类型（0表示 小鹿用户，1表示代理商用户）
      *
      * @return \Mayunfeng\Supports\Collection
      */
-    public function setUser(int $agId, int $uId, int $uMainId, int $t = 0)
+    public function setUser(int $agId, int $uId)
     {
         $response = $this->parseJSON(static::POST, [
             self::SET_USER,
             [
                 'AgId' => $agId,
-                'T'    => $t,
-                'UMID' => $uMainId,
                 'Uid'  => $uId,
             ],
         ]);
-
         if ($response['head']['s'] == 0) {
             $token[$this->accessToken->userIdKey] = $uId;
             $token[$this->accessToken->sessionKey] = $this->accessToken->getSessionId();
             $this->accessToken->setToken($token);
+        }
+        return $response;
+    }
+
+
+    /**
+     * 退出登录
+     *
+     * @return \Mayunfeng\Supports\Collection
+     */
+    public function exit()
+    {
+        $response = $this->parseJSON(static::POST, [self::EXIT,[]]);
+
+        if ($response['head']['s'] == 0) {
+            $this->accessToken->removeToken();
         }
 
         return $response;
@@ -338,29 +330,35 @@ class User extends AbstractAPI
 
     /**
      * 获取子用户.
-     *
-     * @param array $params
-     *
+     * @param int $page 页数
+     * @param int $size 页大小
+     * @param string $search 搜索内容
+     * @param string $order 排序
      * @return \Mayunfeng\Supports\Collection
      */
-    public function users($params = [])
+    public function users(int $page = 1, int $size = 10, string $search = '', string $order = '')
     {
-        return $this->parseJSON(static::POST, [self::USERS, $params]);
+        return $this->parseJSON(static::POST, [self::USERS, [
+            'page' => $page,
+            'page_size' => $size,
+            'search' => $search,
+            'order' => $order,
+        ]]);
     }
 
     /**
      * 根据手机号获取用户信息.
      *
      * @param string $mobile 手机号码
-     * @param int    $role   角色（-1：全部；0：普通用户；1：代理商用户）
+     * @param int    $role   角色（-1：全部；0：普通用户；1：代理商用户；2：代理商管理员）
      *
      * @return \Mayunfeng\Supports\Collection
      */
     public function userByMobile(string $mobile, int $role = -1)
     {
         return $this->parseJSON(static::POST, [self::USERS_BY_MOBILE, [
-            'R' => $role,
-            'M' => $mobile,
+            'Role' => $role,
+            'Mob' => $mobile,
         ]]);
     }
 }

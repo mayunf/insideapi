@@ -21,7 +21,7 @@ class UserTest extends TestCase
     public function testGenToken()
     {
         try {
-            $res = $this->getInstance()->access_token->getToken('18888888888', '000000');
+            $res = $this->getInstance()->access_token->getToken('18888888888', '18888888888');
             $this->assertArrayHasKey('Uid', $res);
 
             return $res['Uid'];
@@ -36,9 +36,8 @@ class UserTest extends TestCase
      */
     public function testIsMobile($user_id)
     {
-//        var_dump($user_id);exit();
         $res = $this->getInstance($user_id)->user->isMobile('18888888888');
-        $this->assertArrayHasKey('head', $res);
+        $this->assertFalse(boolval($res['head']['s']), $res['head']['des']);
     }
 
     /**
@@ -47,8 +46,8 @@ class UserTest extends TestCase
      */
     public function testIsEmail($user_id)
     {
-        $res = $this->getInstance($user_id)->user->isMobile('mayunfeng@jwsem.com');
-        $this->assertArrayHasKey('head', $res);
+        $res = $this->getInstance($user_id)->user->isEmail('mayunfeng@jwsem.com2');
+        $this->assertFalse(boolval($res['head']['s']), $res['head']['des']);
     }
 
     /**
@@ -71,55 +70,20 @@ class UserTest extends TestCase
         $this->assertFalse(boolval($res['head']['s']), $res['head']['des']);
     }
 
-//    public function testSendSms()
-//    {
-//        $res = $this->getInstance()->user->sendSms('18888888888');
-//        $this->assertFalse(boolval($res['head']['s']),$res['head']['des']);
-//    }
+    /**
+     * @depends testGenToken
+     */
+    public function testSendSms()
+    {
+        $res = $this->getInstance()->user->sendSms('18888888888');
+        $this->assertFalse(boolval($res['head']['s']),$res['head']['des']);
+    }
 
 //    public function testRegister()
 //    {
-//        $res = $this->getInstance()->user->register('15637192429','111111');
+//        $res = $this->getInstance()->user->register('18888888888','111111');
 //        $this->assertFalse(boolval($res['head']['s']),$res['head']['des']);
 //    }
 //
-//    public function testRegisterAu()
-//    {
-//        $res = $this->getInstance()->user->registerAu('15637192429','111111','代理商名称');
-//        $this->assertFalse(boolval($res['head']['s']),$res['head']['des']);
-//    }
-//    public function testSetUser()
-//    {
-//        $res = $this->getInstance()->user->setUser(1,1,123);
-//        $this->assertFalse(boolval($res['head']['s']),$res['head']['des']);
-//    }
-//
-//    public function testEdit()
-//    {
-//
-//    }
-//
-//    public function testEditName()
-//    {
-//
-//    }
-//
-//    public function testEditPwdByOld()
-//    {
-//
-//    }
-//
-//    public function testEditPwd()
-//    {
-//
-//    }
-//
-//    public function testAccAdd()
-//    {
-//
-//    }
-//    public function testAccAdds()
-//    {
-//
-//    }
+
 }

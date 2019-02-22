@@ -136,6 +136,12 @@ class AccessToken
         return $this;
     }
 
+    public function removeToken()
+    {
+        $this->cache->delete($this->getSessionId());
+    }
+
+
     public function requestToken(array $arguments): array
     {
         $response = $this->sendRequest($arguments);
