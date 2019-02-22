@@ -76,7 +76,7 @@ class UserTest extends TestCase
     public function testSendSms()
     {
         $res = $this->getInstance()->user->sendSms('18888888888');
-        $this->assertFalse(boolval($res['head']['s']),$res['head']['des']);
+        $this->assertFalse(boolval($res['head']['s']), $res['head']['des']);
     }
 
 //    public function testRegister()
@@ -85,5 +85,4 @@ class UserTest extends TestCase
 //        $this->assertFalse(boolval($res['head']['s']),$res['head']['des']);
 //    }
 //
-
 }

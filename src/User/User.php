@@ -107,7 +107,7 @@ class User extends AbstractAPI
         return $this->parseJSON(static::POST, [
             self::SEND_SMS,
             [
-                'ST' => $st,
+                'ST'   => $st,
                 'Mob'  => $m,
             ],
         ]);
@@ -116,13 +116,13 @@ class User extends AbstractAPI
     /**
      * 提交用户注册信息.
      *
-     * @param int    $pt  产品类型
-     * @param string $m   手机号
-     * @param string $pwd 用户密码
-     * @param int    $isM 手机号是否验证过（0表示未验证，1表示验证成功）
-     * @param int $agId   代理id
-     * @param string $an  代理商用户名
-     * @param string $un  用户名称
+     * @param int    $pt   产品类型
+     * @param string $m    手机号
+     * @param string $pwd  用户密码
+     * @param int    $isM  手机号是否验证过（0表示未验证，1表示验证成功）
+     * @param int    $agId 代理id
+     * @param string $an   代理商用户名
+     * @param string $un   用户名称
      *
      * @return \Mayunfeng\Supports\Collection
      */
@@ -131,12 +131,12 @@ class User extends AbstractAPI
         return $this->parseJSON(static::POST, [
             self::REGISTER,
             [
-                'Mob'   => $m,
-                'IsM' => $isM,
-                'Pwd' => $pwd,
-                'Agid'  => $agId,
+                'Mob'     => $m,
+                'IsM'     => $isM,
+                'Pwd'     => $pwd,
+                'Agid'    => $agId,
                 'AgName'  => $an,
-                'UName'  => $un,
+                'UName'   => $un,
                 'SProid'  => $pt,
             ],
         ]);
@@ -145,10 +145,10 @@ class User extends AbstractAPI
     /**
      * 用户登录.
      *
-     * @param int    $proId  产品类型
-     * @param int    $role   用户类型（0 代表小鹿用户；1 代表客户服务；2 代表代理商管理员）
-     * @param string $un  用户名称
-     * @param string $pwd 用户密码
+     * @param int    $proId 产品类型
+     * @param int    $role  用户类型（0 代表小鹿用户；1 代表客户服务；2 代表代理商管理员）
+     * @param string $un    用户名称
+     * @param string $pwd   用户密码
      *
      * @return \Mayunfeng\Supports\Collection
      */
@@ -157,8 +157,8 @@ class User extends AbstractAPI
         return $this->parseJSON(static::POST, [
             self::LOGON,
             [
-                'UN'  => $un,
-                'Pwd' => $pwd,
+                'UN'     => $un,
+                'Pwd'    => $pwd,
                 'Proid'  => $proId,
                 'Role'   => $role,
             ],
@@ -168,8 +168,8 @@ class User extends AbstractAPI
     /**
      * 设置当前用户.
      *
-     * @param int $agId    当前代理商 ID
-     * @param int $uId     用户 ID
+     * @param int $agId 当前代理商 ID
+     * @param int $uId  用户 ID
      *
      * @return \Mayunfeng\Supports\Collection
      */
@@ -187,18 +187,18 @@ class User extends AbstractAPI
             $token[$this->accessToken->sessionKey] = $this->accessToken->getSessionId();
             $this->accessToken->setToken($token);
         }
+
         return $response;
     }
 
-
     /**
-     * 退出登录
+     * 退出登录.
      *
      * @return \Mayunfeng\Supports\Collection
      */
     public function exit()
     {
-        $response = $this->parseJSON(static::POST, [self::EXIT,[]]);
+        $response = $this->parseJSON(static::POST, [self::EXIT, []]);
 
         if ($response['head']['s'] == 0) {
             $this->accessToken->removeToken();
@@ -252,15 +252,15 @@ class User extends AbstractAPI
     }
 
     /**
-     * 编辑其他用户名称
+     * 编辑其他用户名称.
      *
-     * @param int  $agentId   用户所属代理商信息（0 表示小鹿平台用户，大于0 表示指定代理商信息）
+     * @param int    $agentId 用户所属代理商信息（0 表示小鹿平台用户，大于0 表示指定代理商信息）
      * @param string $uName   用户名称
-     * @param int $uMainId    主ID
+     * @param int    $uMainId 主ID
      *
      * @return \Mayunfeng\Supports\Collection
      */
-    public function OtherEditUName(int $agentId, string $uName,int $uMainId)
+    public function OtherEditUName(int $agentId, string $uName, int $uMainId)
     {
         return $this->parseJSON(static::POST, [
             self::OTHER_EDIT_U_NAME,
@@ -353,19 +353,21 @@ class User extends AbstractAPI
 
     /**
      * 获取子用户.
-     * @param int $page 页数
-     * @param int $size 页大小
+     *
+     * @param int    $page   页数
+     * @param int    $size   页大小
      * @param string $search 搜索内容
-     * @param string $order 排序
+     * @param string $order  排序
+     *
      * @return \Mayunfeng\Supports\Collection
      */
     public function users(int $page = 1, int $size = 10, string $search = '', string $order = '')
     {
         return $this->parseJSON(static::POST, [self::USERS, [
-            'page' => $page,
+            'page'      => $page,
             'page_size' => $size,
-            'search' => $search,
-            'order' => $order,
+            'search'    => $search,
+            'order'     => $order,
         ]]);
     }
 
@@ -381,7 +383,7 @@ class User extends AbstractAPI
     {
         return $this->parseJSON(static::POST, [self::USERS_BY_MOBILE, [
             'Role' => $role,
-            'Mob' => $mobile,
+            'Mob'  => $mobile,
         ]]);
     }
 }
