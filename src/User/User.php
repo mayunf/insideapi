@@ -42,6 +42,10 @@ class User extends AbstractAPI
 
     const ACC_ADDS = 'ins/v2/user/accadds'; // 添加多个账户
 
+    const USERS = 'ins/v2/user/users'; // 获取子用户
+
+    const USERS_BY_MOBILE = 'ins/v2/user/usersbymobile'; // 根据手机号获取用户信息
+
     /**
      * API 心跳.
      *
@@ -330,5 +334,29 @@ class User extends AbstractAPI
     public function accAdds($params = [])
     {
         return $this->parseJSON(static::POST, [self::ACC_ADDS, $params]);
+    }
+
+    /**
+     * 获取子用户
+     * @param array $params
+     * @return \Mayunfeng\Supports\Collection
+     */
+    public function users($params = [])
+    {
+        return $this->parseJSON(static::POST, [self::USERS, $params]);
+    }
+
+    /**
+     * 根据手机号获取用户信息
+     * @param string $mobile 手机号码
+     * @param int $role 角色（-1：全部；0：普通用户；1：代理商用户）
+     * @return \Mayunfeng\Supports\Collection
+     */
+    public function userByMobile(string $mobile, int $role = -1)
+    {
+        return $this->parseJSON(static::POST, [self::USERS_BY_MOBILE, [
+            'R' => $role,
+            'M' => $mobile
+        ]]);
     }
 }
