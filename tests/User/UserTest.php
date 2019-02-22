@@ -14,7 +14,8 @@ use InsideAPI\Test\TestCase;
 class UserTest extends TestCase
 {
     /**
-     * 登录
+     * 登录.
+     *
      * @return mixed
      */
     public function testGenToken()
@@ -22,6 +23,7 @@ class UserTest extends TestCase
         try {
             $res = $this->getInstance()->access_token->getToken('18888888888', '000000');
             $this->assertArrayHasKey('Uid', $res);
+
             return $res['Uid'];
         } catch (HttpException $exception) {
             $this->assertInstanceOf(HttpException::class, $exception);
@@ -38,6 +40,7 @@ class UserTest extends TestCase
         $res = $this->getInstance($user_id)->user->isMobile('18888888888');
         $this->assertArrayHasKey('head', $res);
     }
+
     /**
      * @param $user_id
      * @depends testGenToken
@@ -67,7 +70,6 @@ class UserTest extends TestCase
         $res = $this->getInstance($user_id)->user->info();
         $this->assertFalse(boolval($res['head']['s']), $res['head']['des']);
     }
-
 
 //    public function testSendSms()
 //    {
