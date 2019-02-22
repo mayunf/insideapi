@@ -43,5 +43,4 @@ class TestCase extends BaseTestCase
 
         return self::$_instance;
     }
-
 }

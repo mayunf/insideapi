@@ -337,8 +337,10 @@ class User extends AbstractAPI
     }
 
     /**
-     * 获取子用户
+     * 获取子用户.
+     *
      * @param array $params
+     *
      * @return \Mayunfeng\Supports\Collection
      */
     public function users($params = [])
@@ -347,16 +349,18 @@ class User extends AbstractAPI
     }
 
     /**
-     * 根据手机号获取用户信息
+     * 根据手机号获取用户信息.
+     *
      * @param string $mobile 手机号码
-     * @param int $role 角色（-1：全部；0：普通用户；1：代理商用户）
+     * @param int    $role   角色（-1：全部；0：普通用户；1：代理商用户）
+     *
      * @return \Mayunfeng\Supports\Collection
      */
     public function userByMobile(string $mobile, int $role = -1)
     {
         return $this->parseJSON(static::POST, [self::USERS_BY_MOBILE, [
             'R' => $role,
-            'M' => $mobile
+            'M' => $mobile,
         ]]);
     }
 }
