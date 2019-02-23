@@ -94,10 +94,10 @@ class AccessToken
     /**
      * 获取token.
      *
-     * @param string $un  用户名
-     * @param string $pwd 密码
-     * @param int    $proId  产品类型
-     * @param int    $role   用户类型
+     * @param string $un    用户名
+     * @param string $pwd   密码
+     * @param int    $proId 产品类型
+     * @param int    $role  用户类型
      *
      * @throws HttpException
      *
@@ -113,8 +113,8 @@ class AccessToken
         $token = $this->requestToken([
             'Proid'  => $proId,
             'Role'   => $role,
-            'UN'  => $un,
-            'Pwd' => $pwd,
+            'UN'     => $un,
+            'Pwd'    => $pwd,
         ]);
         $this->setToken($token);
 
