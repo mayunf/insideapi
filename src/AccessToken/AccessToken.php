@@ -96,14 +96,14 @@ class AccessToken
      *
      * @param string $un  用户名
      * @param string $pwd 密码
-     * @param int    $pt  产品类型
-     * @param int    $t   用户类型
+     * @param int    $proId  产品类型
+     * @param int    $role   用户类型
      *
      * @throws HttpException
      *
      * @return array 返回数组
      */
-    public function getToken(string $un, string $pwd, int $pt = 200, int $t = 0): array
+    public function getToken(string $un, string $pwd, int $proId = 200, int $role = 0): array
     {
         $cacheKey = $this->getCacheKey();
         $cache = $this->getCache();
@@ -111,8 +111,8 @@ class AccessToken
             return $cache->get($cacheKey);
         }
         $token = $this->requestToken([
-            'PT'  => $pt,
-            'T'   => $t,
+            'Proid'  => $proId,
+            'Role'   => $role,
             'UN'  => $un,
             'Pwd' => $pwd,
         ]);
