@@ -245,7 +245,7 @@ class User extends AbstractAPI
         return $this->parseJSON(static::POST, [
             self::EDIT_U_NAME,
             [
-                'AgentId' => $agentId,
+                'Agid' => $agentId,
                 'UName'   => $uName,
             ],
         ]);
@@ -265,8 +265,8 @@ class User extends AbstractAPI
         return $this->parseJSON(static::POST, [
             self::OTHER_EDIT_U_NAME,
             [
-                'UMainId' => $uMainId,
-                'AgentId' => $agentId,
+                'UMid' => $uMainId,
+                'Agid' => $agentId,
                 'UName'   => $uName,
             ],
         ]);
