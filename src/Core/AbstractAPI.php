@@ -84,7 +84,7 @@ abstract class AbstractAPI
     {
         return function (callable $handler) {
             return function (RequestInterface $request, array $options) use ($handler) {
-                $request = $request->withHeader('Cookie', 'JWSEMID=' . $this->accessToken->getSessionID());
+                $request = $request->withHeader('Cookie', 'JWSEMID='.$this->accessToken->getSessionID());
 
                 return $handler($request, $options);
             };
@@ -99,8 +99,8 @@ abstract class AbstractAPI
     protected function logMiddleware()
     {
         return Middleware::tap(function (RequestInterface $request, $options) {
-            Log::debug("请求: {$request->getMethod()} {$request->getUri()} " . json_encode(array_merge($options, [
-                    'Sid' => $this->accessToken->getSessionId()
+            Log::debug("请求: {$request->getMethod()} {$request->getUri()} ".json_encode(array_merge($options, [
+                    'Sid' => $this->accessToken->getSessionId(),
                 ])));
 //            Log::debug('请求头:'.json_encode($request->getHeaders()));
         });
@@ -110,7 +110,7 @@ abstract class AbstractAPI
      * Parse JSON from response and check error.
      *
      * @param string $method
-     * @param array $args
+     * @param array  $args
      *
      * @return Collection
      */
