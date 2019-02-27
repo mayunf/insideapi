@@ -178,7 +178,7 @@ class User extends AbstractAPI
         $response = $this->parseJSON(static::POST, [
             self::SET_USER,
             [
-                'AgId' => $agId,
+                'Agid' => $agId,
                 'Uid'  => $uId,
             ],
         ]);
