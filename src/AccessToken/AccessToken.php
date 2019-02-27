@@ -29,7 +29,7 @@ class AccessToken
     protected $cache;
 
     //访问token
-    public $sessionKey = 'SID';
+    public $sessionKey = 'Sid';
     public $userIdKey = 'Uid';
     protected $cachePrefix = 'insideapi.access_token.';
     protected $userId = 0;
