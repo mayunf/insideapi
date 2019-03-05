@@ -9,6 +9,9 @@
 namespace InsideAPI\User;
 
 use InsideAPI\Core\AbstractAPI;
+use InsideAPI\Enum\ELogonType;
+use InsideAPI\Enum\EPlatform;
+use InsideAPI\Enum\EProductType;
 
 class User extends AbstractAPI
 {
@@ -64,6 +67,11 @@ class User extends AbstractAPI
 
     const USERS_BY_MOBILE = 'ins/v2/user/usersbymobile'; // 根据手机号获取用户信息
 
+    const WX_LOGON = 'ins/v2/user/wxlogon'; // 微信用户登录
+
+    const WX_BIND = 'ins/v2/user/wxbind'; // 微信用户绑定
+
+    const WX_DIS_BIND = 'ins/v2/user/wxdisbind'; // 微信用户取消绑定
 
     /**
      * API 心跳.
@@ -410,7 +418,7 @@ class User extends AbstractAPI
      * @param array $accIds 账户ID数组
      * @return \Mayunfeng\Supports\Collection
      */
-    public function accDel(string $proId, int $plat, array $accIds)
+    public function accDel(array $accIds, string $proId = EProductType::XLTG_Web, int $plat = EPlatform::Baidu)
     {
         return $this->parseJSON(static::POST, [
             self::ACC_DEL,
@@ -428,7 +436,7 @@ class User extends AbstractAPI
      * @param array $proIds 产品类型
      * @return \Mayunfeng\Supports\Collection
      */
-    public function accList(array $plats = [],array $proIds = [])
+    public function accList(array $plats = [], array $proIds = [])
     {
         return $this->parseJSON(static::POST, [
             self::ACC_LIST,
@@ -503,7 +511,7 @@ class User extends AbstractAPI
     public function paInfo(int $id, int $plat = 0)
     {
         return $this->parseJSON(static::POST, [
-            self::PA_E_PWD,
+            self::PA_INFO,
             [
                 'Plat' => $plat,
                 'Id' => $id,
@@ -563,13 +571,67 @@ class User extends AbstractAPI
      *
      * @return \Mayunfeng\Supports\Collection
      */
-    public function userByMobile(string $mobile, int $role = -1)
+    public function userByMobile(string $mobile, int $role = ELogonType::All)
     {
         return $this->parseJSON(static::POST, [
             self::USERS_BY_MOBILE,
             [
                 'Role' => $role,
                 'Mob' => $mobile,
+            ]
+        ]);
+    }
+
+
+    /**
+     * 微信用户登录
+     * @param string $unionId 微信关系ID
+     * @param string $proId 产品类型
+     * @param int $role 用户类型（-1 未设置； 0 代表小鹿用户；1 代表客户服务；2 代表代理商管理员）
+     * @return \Mayunfeng\Supports\Collection
+     */
+    public function wxLogon(string $unionId, string $proId = EProductType::XLTG_Web, int $role = ELogonType::User)
+    {
+        return $this->parseJSON(static::POST, [
+            self::WX_LOGON,
+            [
+                'Proid' => $proId,
+                'Role' => $role,
+                'UnionId' => $unionId,
+            ]
+        ]);
+    }
+
+    /**
+     * 微信用户绑定
+     * @param int $uMid 用户主Id
+     * @param string $unionId 微信关系ID
+     * @return \Mayunfeng\Supports\Collection
+     */
+    public function wxBind(int $uMid, string $unionId)
+    {
+        return $this->parseJSON(static::POST, [
+            self::WX_BIND,
+            [
+                'UMainId' => $uMid,
+                'UnionId' => $unionId,
+            ]
+        ]);
+    }
+
+    /**
+     * 用户取消绑定微信
+     * @param int $uMid 用户主Id
+     * @param string $unionId 微信关系ID
+     * @return \Mayunfeng\Supports\Collection
+     */
+    public function wxDisBind(int $uMid, string $unionId)
+    {
+        return $this->parseJSON(static::POST, [
+            self::WX_DIS_BIND,
+            [
+                'UMainId' => $uMid,
+                'UnionId' => $unionId,
             ]
         ]);
     }

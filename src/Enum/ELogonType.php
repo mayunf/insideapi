@@ -13,5 +13,5 @@ class ELogonType
     const User = 0; // 普通用户
     const Agent = 1; // 代理商用户
     const Agent_manage = 2; // 代理商管理员
-    const Customer = -1; // 全部
+    const All = -1; // 全部
 }
