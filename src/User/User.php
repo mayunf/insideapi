@@ -73,6 +73,8 @@ class User extends AbstractAPI
 
     const WX_DIS_BIND = 'ins/v2/user/wxdisbind'; // 微信用户取消绑定
 
+    const SET_PER = 'ins/v2/user/setper'; // 开通商品权限
+
     /**
      * API 心跳.
      *
@@ -635,4 +637,26 @@ class User extends AbstractAPI
             ]
         ]);
     }
+
+    /**
+     * 开通商品权限
+     * @param int $uid 用户ID
+     * @param int $goodsId 商品ID
+     * @param int $payDay 开通时间
+     * @param string $realPay 付款金额
+     * @return \Mayunfeng\Supports\Collection
+     */
+    public function setPer(int $uid, int $goodsId, int $payDay, string $realPay)
+    {
+        return $this->parseJSON(static::POST, [
+            self::SET_PER,
+            [
+                'Uid' => $uid,
+                'Goodsid' => $goodsId,
+                'PayDay' => $payDay,
+                'RealPay' => $realPay,
+            ]
+        ]);
+    }
+
 }
