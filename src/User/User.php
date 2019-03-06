@@ -659,8 +659,10 @@ class User extends AbstractAPI
     }
 
     /**
-     * 微信用户是否绑定
+     * 微信用户是否绑定.
+     *
      * @param string $unionId 微信用户unionid
+     *
      * @return \Mayunfeng\Supports\Collection
      */
     public function wxIsBind(string $unionId)
