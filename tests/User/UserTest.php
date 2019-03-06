@@ -94,6 +94,12 @@ class UserTest extends TestCase
         $this->assertArrayHasKey('Uid', $users[0]);
     }
 
+    public function testWxIsBind()
+    {
+        $res = $this->getInstance()->user->wxIsBind('omKPp1EZxQXufYoeePEAtw5xw-MI');
+        $this->assertFalse(boolval($res['head']['s']), $res['head']['des']);
+    }
+
     /*
      * @depends testGenToken
      */

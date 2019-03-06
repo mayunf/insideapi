@@ -73,6 +73,8 @@ class User extends AbstractAPI
 
     const WX_DIS_BIND = 'ins/v2/user/wxdisbind'; // 微信用户取消绑定
 
+    const WX_IS_BIND = 'ins/v2/user/wxisbind'; // 微信用户是否绑定
+
     const SET_PER = 'ins/v2/user/setper'; // 开通商品权限
 
     /**
@@ -641,7 +643,7 @@ class User extends AbstractAPI
      * 用户取消绑定微信
      *
      * @param int    $uMid    用户主Id
-     * @param string $unionId 微信关系ID
+     * @param string $unionId 微信用户ID
      *
      * @return \Mayunfeng\Supports\Collection
      */
@@ -651,6 +653,21 @@ class User extends AbstractAPI
             self::WX_DIS_BIND,
             [
                 'UMainId' => $uMid,
+                'UnionId' => $unionId,
+            ],
+        ]);
+    }
+
+    /**
+     * 微信用户是否绑定
+     * @param string $unionId 微信用户unionid
+     * @return \Mayunfeng\Supports\Collection
+     */
+    public function wxIsBind(string $unionId)
+    {
+        return $this->parseJSON(static::POST, [
+            self::WX_IS_BIND,
+            [
                 'UnionId' => $unionId,
             ],
         ]);
