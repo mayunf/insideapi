@@ -67,13 +67,13 @@ class User extends AbstractAPI
 
     const USERS_BY_MOBILE = 'ins/v2/user/usersbymobile'; // 根据手机号获取用户信息
 
-    const WX_LOGON = 'ins/v2/user/wxlogon'; // 微信用户登录
+    const WX_LOGON = 'ins/v2/user/logonwx'; // 微信用户登录
 
-    const WX_BIND = 'ins/v2/user/wxbind'; // 微信用户绑定
+    const WX_BIND = 'ins/v2/user/bindwx'; // 微信用户绑定
 
-    const WX_DIS_BIND = 'ins/v2/user/wxdisbind'; // 微信用户取消绑定
+    const WX_DIS_BIND = 'ins/v2/user/disbindwx'; // 微信用户取消绑定
 
-    const WX_IS_BIND = 'ins/v2/user/wxisbind'; // 微信用户是否绑定
+    const WX_IS_BIND = 'ins/v2/user/isbindwx'; // 微信用户是否绑定
 
     const SET_PER = 'ins/v2/user/setper'; // 开通商品权限
 
