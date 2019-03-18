@@ -3,8 +3,9 @@
  * Created by PhpStorm.
  * User: lenovo
  * Date: 2019/3/18
- * Time: 16:23
+ * Time: 16:23.
  */
+
 namespace InsideAPI\Foundation\ServiceProviders;
 
 use InsideAPI\Mobj\Mobj;
