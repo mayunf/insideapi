@@ -24,11 +24,13 @@ use Symfony\Component\HttpFoundation\Request;
  * @property \InsideAPI\Goods\Goods             $goods
  * @property \InsideAPI\Soft\Soft               $soft
  * @property \InsideAPI\Per\Per                 $per
+ * @property \InsideAPI\Mobj\Mobj               $mobj
  * @property \InsideAPI\AccessToken\AccessToken $access_token
  */
 class Application extends Container
 {
     protected $providers = [
+        ServiceProviders\MobjServiceProvider::class,
         ServiceProviders\PerServiceProvider::class,
         ServiceProviders\UserServiceProvider::class,
         ServiceProviders\GoodsServiceProvider::class,

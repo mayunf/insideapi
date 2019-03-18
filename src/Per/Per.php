@@ -24,34 +24,34 @@ class Per extends AbstractAPI
     /**
      * 根据权限Id获取权限
      *
-     * @param string $Perid 权限id
+     * @param string $perid 权限id
      *
      * @return \Mayunfeng\Supports\Collection
      */
-    public function PerById(string $Perid)
+    public function perById(string $perid)
     {
         return $this->parseJSON(static::POST, [
             self::PER_BY_ID,
             [
-                'Perid'  => $Perid,
+                'Perid'  => $perid,
             ],
         ]);
     }
 
  /**
  * 根据用户Id获取权限
- *@param array $Proids    产品id
+ *@param array $proIds    产品id
  * @param int    $uid     用户ID
  *{"Proids":[117],"Uid":13}
  * @return \Mayunfeng\Supports\Collection
  */
-    public function PerByUid(array $Proids , int $Uid)
+    public function perByUid(array $proIds , int $uid)
     {
         return $this->parseJSON(static::POST, [
             self::PER_BY_UID,
             [
-                'Uid'    => $Uid,
-                'Proids' => $Proids
+                'Uid'    => $uid,
+                'Proids' => $proIds
             ],
         ]);
     }
@@ -60,22 +60,23 @@ class Per extends AbstractAPI
      *  添加用户产品账户权限
      *
      *@param int     $uid     用户ID
-     *@param string  $Proid    产品id
+     *@param string  $proid    产品id
      *@param int     $plat 平台类型（0 百度，1 点睛，2 搜狗，3 神马）
-     *@param datetime   $BDate    开始时间
-     *@param datetime   $EDate    结束时间
+     *@param string   $bDate    开始时间
+     *@param string   $eDate    结束时间
+     * {"Proid":113,"Plat":1,"Uid":13,"BDate":"2019-03-05","EDate":"2020-03-05"}
      * @return \Mayunfeng\Supports\Collection
      */
-    public function AccPerAdd(int $Uid , string $Proid , int $plat,$BDate ,$EDate  )
+    public function accPerAdd(int $uid , string $proid , int $plat , string $bDate , string $eDate  )
     {
         return $this->parseJSON(static::POST, [
             self::ACC_PER_ADD,
             [
-                'Uid'      => $Uid,
-                'Proid'    => $Proid,
+                'Uid'      => $uid,
+                'Proid'    => $proid,
                 'Plat'     => $plat,
-                'BDate'    => $BDate,
-                'EDate '   => $EDate,
+                'BDate'    => $bDate,
+                'EDate '   => $eDate,
             ],
         ]);
     }
