@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: lenovo
  * Date: 2019/3/18
- * Time: 14:04
+ * Time: 14:04.
  */
 
 namespace InsideAPI\Foundation\ServiceProviders;
