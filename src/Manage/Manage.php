@@ -60,7 +60,6 @@ class Manage extends AbstractAPI
 
     const USER_PER_ADD = 'InsideManage/userperadd'; // 给用户开通权限
 
-
     /**
      * 获取用户信息.
      *
