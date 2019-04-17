@@ -56,6 +56,11 @@ class Manage extends AbstractAPI
 
     const ADD_AGENT_PER = 'insidemanage/addagentper'; //添加代理商权限
 
+    const GET_PRO_LIST = 'InsideManage/getprolist'; // 获取权限列表
+
+    const USER_PER_ADD = 'InsideManage/userperadd'; // 给用户开通权限
+
+
     /**
      * 获取用户信息.
      *
@@ -382,5 +387,15 @@ class Manage extends AbstractAPI
     public function addAgentPer($params = [])
     {
         return $this->parseJSON(static::POST, [self::ADD_AGENT_PER, $params]);
+    }
+
+    public function getProList($params = [])
+    {
+        return $this->parseJSON(static::POST, [self::GET_PRO_LIST, $params]);
+    }
+
+    public function userPerAdd($params = [])
+    {
+        return $this->parseJSON(static::POST, [self::USER_PER_ADD, $params]);
     }
 }
