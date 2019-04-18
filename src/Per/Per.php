@@ -78,7 +78,7 @@ class Per extends AbstractAPI
                 'Proid'    => $proid,
                 'Plat'     => $plat,
                 'BDate'    => $bDate,
-                'EDate '   => $eDate,
+                'EDate'   => $eDate,
             ],
         ]);
     }
@@ -101,7 +101,7 @@ class Per extends AbstractAPI
                 'Uid'      => $uid,
                 'Aid'      => $aid,
                 'Proid'    => $proid,
-                'Plat '    => $plat ,
+                'Plat'    => $plat ,
             ],
         ]);
     }
