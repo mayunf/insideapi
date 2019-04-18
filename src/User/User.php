@@ -704,7 +704,6 @@ class User extends AbstractAPI
         ]);
     }
 
-
     /**
      * 更新邀请码.
      *
@@ -721,40 +720,43 @@ class User extends AbstractAPI
             ],
         ]);
     }
+
     /**
      * 更新绑定手机号.
      *
      * @param string $mobile 手机号
-     * @param bool $isM 手机号是否验证过（0表示未验证，1表示验证成功）
+     * @param bool   $isM    手机号是否验证过（0表示未验证，1表示验证成功）
      *
      * @return \Mayunfeng\Supports\Collection
      */
-    public function updateMobile(string $mobile , bool $isM)
+    public function updateMobile(string $mobile, bool $isM)
     {
         return $this->parseJSON(static::POST, [
             self::UPDATE_MOBILE,
             [
                 'Mob'     => $mobile,
-                'IsM'     => $isM
+                'IsM'     => $isM,
             ],
         ]);
     }
+
     /**
      * 更新绑定邮箱.
      *
-     * @param string $email 用户Email
-     * @param bool $isEmail 邮箱是否验证过（0表示为验证，1表示验证成功）
+     * @param string $email   用户Email
+     * @param bool   $isEmail 邮箱是否验证过（0表示为验证，1表示验证成功）
      *
      *{"Email":"lupeng@jwsem.com","IsEmail":True}
+     *
      * @return \Mayunfeng\Supports\Collection
      */
-    public function updateEmail(string $email , bool $isEmail)
+    public function updateEmail(string $email, bool $isEmail)
     {
         return $this->parseJSON(static::POST, [
             self::UPDATE_EMAIL,
             [
                 'Email'     => $email,
-                'IsEmail'   => $isEmail
+                'IsEmail'   => $isEmail,
             ],
         ]);
     }

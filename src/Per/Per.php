@@ -82,8 +82,9 @@ class Per extends AbstractAPI
             ],
         ]);
     }
+
     /**
-     *  账户权限激活
+     *  账户权限激活.
      *
      *@param int     $uid     用户ID
      *@param int     $aid     账户ID
@@ -101,7 +102,7 @@ class Per extends AbstractAPI
                 'Uid'      => $uid,
                 'Aid'      => $aid,
                 'Proid'    => $proid,
-                'Plat'     => $plat ,
+                'Plat'     => $plat,
             ],
         ]);
     }
