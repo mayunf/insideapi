@@ -18,6 +18,8 @@ class Per extends AbstractAPI
 
     const ACC_PER_ADD = 'ins/v2/per/accperadd'; //  添加用户产品账户权限
 
+    const ACC_PER_ACTIVE = 'ins/v2/per/accperactive'; //  账户权限激活
+
     /**
      * 根据权限Id获取权限.
      *
@@ -76,7 +78,30 @@ class Per extends AbstractAPI
                 'Proid'    => $proid,
                 'Plat'     => $plat,
                 'BDate'    => $bDate,
-                'EDate '   => $eDate,
+                'EDate'    => $eDate,
+            ],
+        ]);
+    }
+    /**
+     *  账户权限激活
+     *
+     *@param int     $uid     用户ID
+     *@param int     $aid     账户ID
+     *@param string  $proid    产品id
+     *@param int     $plat 平台类型（0 百度，1 点睛，2 搜狗，3 神马）
+     * {"Uid":13,"Aid":123,"Plat":1,"Proid":119}
+     *
+     * @return \Mayunfeng\Supports\Collection
+     */
+    public function accPerActive(int $uid, int $aid, string $proid, int $plat)
+    {
+        return $this->parseJSON(static::POST, [
+            self::ACC_PER_ACTIVE,
+            [
+                'Uid'      => $uid,
+                'Aid'      => $aid,
+                'Proid'    => $proid,
+                'Plat'     => $plat ,
             ],
         ]);
     }
