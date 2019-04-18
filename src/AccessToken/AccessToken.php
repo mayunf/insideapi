@@ -145,7 +145,7 @@ class AccessToken
     {
         $response = $this->sendRequest($arguments);
 
-        $token = json_decode($response['body'], true);
+        $token = $response['body'];
 
         if (empty($token[$this->sessionKey]) || empty($token[$this->userIdKey])) {
             throw new HttpException('Request access_token fail:'.json_encode($response, JSON_UNESCAPED_UNICODE));

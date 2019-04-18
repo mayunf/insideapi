@@ -120,10 +120,6 @@ abstract class AbstractAPI
 
         $contents = $http->parseJSON(call_user_func_array([$http, $method], $args));
 
-        if (isset($contents['body']) && !empty($contents['body'])) {
-            $contents['body'] = \GuzzleHttp\json_decode($contents['body'], true);
-        }
-
         $contents = $this->checkAndThrow($contents);
 
         return new Collection($contents);
