@@ -20,6 +20,10 @@ class Per extends AbstractAPI
 
     const ACC_PER_ACTIVE = 'ins/v2/per/accperactive'; //  账户权限激活
 
+    const USER_PER_ADD = 'ins/v2/per/userperadd'; //  添加用户产品权限
+
+    const PRO_PER_LIST = 'ins/v2/per/properlist'; //  产品权限列表
+
     /**
      * 根据权限Id获取权限.
      *
@@ -103,6 +107,47 @@ class Per extends AbstractAPI
                 'Aid'      => $aid,
                 'Proid'    => $proid,
                 'Plat'     => $plat,
+            ],
+        ]);
+    }
+
+    /**
+     *  添加用户产品权限.
+     *
+     *@param int      $uid      用户ID
+     *@param int      $objId    对象ID
+     *@param string   $bDate    开始时间
+     *@param string   $eDate    结束时间
+     *{"Uid":13,"Objid":1296,"BDate":"2019-04-01","EDate":"2019-05-01"}
+     *
+     * @return \Mayunfeng\Supports\Collection
+     */
+    public function userPerAdd(int $uid, int $objId, string $bDate, string $eDate)
+    {
+        return $this->parseJSON(static::POST, [
+            self::USER_PER_ADD,
+            [
+                'Uid'      =>  $uid,
+                'Objid'    =>  $objId,
+                'BDate'    =>  $bDate,
+                'EDate'    =>  $eDate,
+            ],
+        ]);
+    }
+    /**
+     *  添加用户产品权限.
+     *
+     *@param int  $proid    产品ID
+     *
+     *
+     * @return \Mayunfeng\Supports\Collection
+     */
+    public function proPerList(int $proid)
+    {
+        return $this->parseJSON(static::POST, [
+            self::PRO_PER_LIST,
+            [
+                'Proid'      =>  $proid,
             ],
         ]);
     }
