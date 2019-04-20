@@ -77,6 +77,12 @@ class User extends AbstractAPI
 
     const SET_PER = 'ins/v2/user/setper'; // 开通商品权限
 
+    const UPDATE_PAR_CODE = 'ins/v2/user/updateparcode'; // 更新邀请码
+
+    const UPDATE_MOBILE = 'ins/v2/user/updatemobile'; // 更新绑定手机号
+
+    const UPDATE_EMAIL = 'ins/v2/user/updateemail'; // 更新绑定邮箱
+
     /**
      * API 心跳.
      *
@@ -694,6 +700,63 @@ class User extends AbstractAPI
                 'Goodsid' => $goodsId,
                 'PayDay'  => $payDay,
                 'RealPay' => $realPay,
+            ],
+        ]);
+    }
+
+    /**
+     * 更新邀请码.
+     *
+     * @param string $code 付款金额
+     *
+     * @return \Mayunfeng\Supports\Collection
+     */
+    public function updateParCode(string $code)
+    {
+        return $this->parseJSON(static::POST, [
+            self::UPDATE_PAR_CODE,
+            [
+                'Code'     => $code,
+            ],
+        ]);
+    }
+
+    /**
+     * 更新绑定手机号.
+     *
+     * @param string $mobile 手机号
+     * @param bool   $isM    手机号是否验证过（0表示未验证，1表示验证成功）
+     *
+     * @return \Mayunfeng\Supports\Collection
+     */
+    public function updateMobile(string $mobile, bool $isM)
+    {
+        return $this->parseJSON(static::POST, [
+            self::UPDATE_MOBILE,
+            [
+                'Mob'     => $mobile,
+                'IsM'     => $isM,
+            ],
+        ]);
+    }
+
+    /**
+     * 更新绑定邮箱.
+     *
+     * @param string $email   用户Email
+     * @param bool   $isEmail 邮箱是否验证过（0表示为验证，1表示验证成功）
+     *
+     *{"Email":"lupeng@jwsem.com","IsEmail":True}
+     *
+     * @return \Mayunfeng\Supports\Collection
+     */
+    public function updateEmail(string $email, bool $isEmail)
+    {
+        return $this->parseJSON(static::POST, [
+            self::UPDATE_EMAIL,
+            [
+                'Email'     => $email,
+                'IsEmail'   => $isEmail,
             ],
         ]);
     }
