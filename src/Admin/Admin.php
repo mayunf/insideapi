@@ -102,7 +102,7 @@ class Admin extends AbstractAPI
      *
      * @return \Mayunfeng\Supports\Collection
      */
-    public function userAcc(int $uid, int $plat, int $status, string $role)
+    public function userAcc(int $uid, int $status, string $role, int $plat=-1)
     {
         return $this->parseJSON(static::POST, [
             self::USER_ACC,
