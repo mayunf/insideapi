@@ -127,18 +127,18 @@ class Per extends AbstractAPI
         return $this->parseJSON(static::POST, [
             self::USER_PER_ADD,
             [
-                'Uid'      =>  $uid,
-                'Objid'    =>  $objId,
-                'BDate'    =>  $bDate,
-                'EDate'    =>  $eDate,
+                'Uid'      => $uid,
+                'Objid'    => $objId,
+                'BDate'    => $bDate,
+                'EDate'    => $eDate,
             ],
         ]);
     }
+
     /**
      *  添加用户产品权限.
      *
      *@param int  $proid    产品ID
-     *
      *
      * @return \Mayunfeng\Supports\Collection
      */
@@ -147,7 +147,7 @@ class Per extends AbstractAPI
         return $this->parseJSON(static::POST, [
             self::PRO_PER_LIST,
             [
-                'Proid'      =>  $proid,
+                'Proid'      => $proid,
             ],
         ]);
     }
