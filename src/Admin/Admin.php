@@ -20,39 +20,38 @@ class Admin extends AbstractAPI
 
     const USER_ACC = 'ins/v2/admin/useracc'; //  获取用户推广账户列表
 
-
-
     /**
      *  获取产品列表.
      *
-     * @param string  $search    搜索内容
-     * @param string  $order     排序字段
-     * @param int     $page      搜索页码
-     * @param int     $pageSize  一页显示的数据条数
-     * @param int     $state     状态
-     * @param int     $type      产品类型
-     * @param int     $plat      平台
+     * @param string $search   搜索内容
+     * @param string $order    排序字段
+     * @param int    $page     搜索页码
+     * @param int    $pageSize 一页显示的数据条数
+     * @param int    $state    状态
+     * @param int    $type     产品类型
+     * @param int    $plat     平台
      *
      * @return \Mayunfeng\Supports\Collection
      */
-    public function productSearch(string $search, string $order, int $page, int $pageSize, int $state, int $type , int $plat)
+    public function productSearch(string $search, string $order, int $page, int $pageSize, int $state, int $type, int $plat)
     {
         return $this->parseJSON(static::POST, [
             self::PRO_SEARCH,
             [
                 'search'     => $search,
                 'order'      => $order,
-                'page'       => $page ,
-                'page_size'  => $pageSize ,
-                'state'      => $state ,
-                'type'       => $type ,
-                'plat'       => $plat ,
+                'page'       => $page,
+                'page_size'  => $pageSize,
+                'state'      => $state,
+                'type'       => $type,
+                'plat'       => $plat,
             ],
         ]);
     }
 
     /**
      * 删除用户推广账户.
+     *
      *@param int   $uid    用户ID
      *@param array $ids    账户id
      *
@@ -73,6 +72,7 @@ class Admin extends AbstractAPI
 
     /**
      * 还原删除用户推广账户.
+     *
      *@param int   $uid    用户ID
      *@param array $ids    账户id
      *
@@ -90,6 +90,7 @@ class Admin extends AbstractAPI
             ],
         ]);
     }
+
     /**
      *  获取用户推广账户列表.
      *
@@ -101,19 +102,17 @@ class Admin extends AbstractAPI
      *
      * @return \Mayunfeng\Supports\Collection
      */
-    public function userAcc(int $uid, int $plat, int $status , string $role )
+    public function userAcc(int $uid, int $plat, int $status, string $role)
     {
         return $this->parseJSON(static::POST, [
             self::USER_ACC,
             [
-                'userid'      =>  $uid,
-                'Plat'        =>  $plat,
-                'status'      =>  $status,
-                'role'        =>  $role ,
+                'userid'      => $uid,
+                'Plat'        => $plat,
+                'status'      => $status,
+                'role'        => $role,
 
             ],
         ]);
     }
-
-
 }

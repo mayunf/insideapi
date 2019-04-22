@@ -3,8 +3,9 @@
  * Created by PhpStorm.
  * User: lenovo
  * Date: 2019/4/20
- * Time: 10:57
+ * Time: 10:57.
  */
+
 namespace InsideAPI\Foundation\ServiceProviders;
 
 use InsideAPI\Admin\Admin;
