@@ -13,7 +13,7 @@ use InsideAPI\Core\AbstractAPI;
 class Goods extends AbstractAPI
 {
     const GOODS_LIST = 'ins/v2/goods/goodslist'; // 获取商品列表
-
+    const GOODS_GET_LIST = 'ins/v2/goods/getlist';//获取商品列表
     /**
      * 获取商品列表.
      *
@@ -25,7 +25,7 @@ class Goods extends AbstractAPI
      *
      * @return \Mayunfeng\Supports\Collection
      */
-    public function goodsList(array $goodsIds = [], int $proId = 0, string $search = '', int $page = 1, int $size = 10)
+    public function goodsList(int $page = 1, int $size = 10, string $search = '', int $proId = 0, array $goodsIds = [])
     {
         return $this->parseJSON(static::POST, [
             self::GOODS_LIST,
@@ -38,4 +38,27 @@ class Goods extends AbstractAPI
             ],
         ]);
     }
+
+    /**
+     * 获取商品列表.
+     *
+     * @param array $goodsIds 商品id
+     * @param array $proIds 产品id
+     *
+     * @return \Mayunfeng\Supports\Collection
+     */
+
+
+    public function getList(array $goodsIds = [], array $proIds = [])
+    {
+        return $this->parseJSON(static::POST, [
+            self::GOODS_GET_LIST,
+            [
+                'Proids' => $proIds,
+                'Goodsids' => $goodsIds
+            ],
+        ]);
+    }
+
+
 }
