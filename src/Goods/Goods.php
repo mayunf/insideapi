@@ -25,7 +25,7 @@ class Goods extends AbstractAPI
      *
      * @return \Mayunfeng\Supports\Collection
      */
-    public function goodsList(int $page = 1, int $size = 10, string $search = '', int $proId = 0, array $goodsIds = [])
+    public function goodsList(array $goodsIds = [],int $proId = 0,string $search = '',int $page = 1, int $size = 10)
     {
         return $this->parseJSON(static::POST, [
             self::GOODS_LIST,
