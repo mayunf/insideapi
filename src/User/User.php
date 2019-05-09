@@ -37,7 +37,7 @@ class User extends AbstractAPI
 
     const EDIT_U_NAME = 'ins/v2/user/edituname'; // 编辑用户名称
 
-    const OTHER_EDIT_U_NAME = 'ins/v2/user/ohteredituname'; // 编辑其他用户名称
+    const OTHER_EDIT_U_NAME = 'ins/v2/user/otheredituname'; // 编辑其他用户名称
 
     const EDIT_PWD_BY_OLD = 'ins/v2/user/editpwdbyold'; // 修改用户密码（根据旧密码）
 
