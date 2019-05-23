@@ -41,6 +41,8 @@ class User extends AbstractAPI
 
     const EDIT_PWD_BY_OLD = 'ins/v2/user/editpwdbyold'; // 修改用户密码（根据旧密码）
 
+    const EDIT_PWD_BY_MOB = 'ins/v2/user/editpwdmob'; // 修改用户密码（根据手机号）
+
     const EDIT_PWD = 'ins/v2/user/editpwd'; // 修改用户密码
 
     const ACC_ADD = 'ins/v2/user/accadd'; // 添加单个推广账户
@@ -331,6 +333,27 @@ class User extends AbstractAPI
                 'SProId' => $sProId,
                 'Old'    => $oldPwd,
                 'Pwd'    => $newPwd,
+            ],
+        ]);
+    }
+
+    /**
+     * 修改用户密码（根据手机号）.
+     *
+     * @param int    $sProId 来源的产品ID
+     * @param string $mobile 手机号
+     * @param string $newPwd 新密码
+     *
+     * @return \Mayunfeng\Supports\Collection
+     */
+    public function editPwdByMob(int $sProId, string $mobile, string $newPwd)
+    {
+        return $this->parseJSON(static::POST, [
+            self::EDIT_PWD_BY_MOB,
+            [
+                'SProId'    => $sProId,
+                'Mobile'    => $mobile ,
+                'Pwd'       => $newPwd,
             ],
         ]);
     }
