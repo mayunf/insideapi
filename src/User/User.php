@@ -352,7 +352,7 @@ class User extends AbstractAPI
             self::EDIT_PWD_BY_MOB,
             [
                 'SProId'    => $sProId,
-                'Mobile'    => $mobile ,
+                'Mobile'    => $mobile,
                 'Pwd'       => $newPwd,
             ],
         ]);
