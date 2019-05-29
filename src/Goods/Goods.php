@@ -60,15 +60,16 @@ class Goods extends AbstractAPI
             ],
         ]);
     }
+
     /**
      * 根据Tag获取商品列表.
      *
      * @param array $tags 标签
-     * {"Tags":["bidding","dianjing"]}
+     *                    {"Tags":["bidding","dianjing"]}
      *
      * @return \Mayunfeng\Supports\Collection
      */
-    public function getGoodsByTags(array $tags  = [])
+    public function getGoodsByTags(array $tags = [])
     {
         return $this->parseJSON(static::POST, [
             self::GOODS_BY_TAGS,
@@ -78,25 +79,26 @@ class Goods extends AbstractAPI
             ],
         ]);
     }
+
     /**
      * 获取优惠券信息.
      *
      * @param int $objId  对象ID
      * @param int $uid    用户ID
-     * @param int    $gAid    商品价格ID
-     * @param int    $coupId  优惠券ID
+     * @param int $gAid   商品价格ID
+     * @param int $coupId 优惠券ID
      *
      * @return \Mayunfeng\Supports\Collection
      */
-    public function getCoupons(int $objId, int $uid,int $gAid, int $coupId )
+    public function getCoupons(int $objId, int $uid, int $gAid, int $coupId)
     {
         return $this->parseJSON(static::POST, [
             self::COUPONS,
             [
                 'Objid'   => $objId,
-                'Uid' => $uid,
-                'GAid' => $gAid,
-                'CoupId' => $coupId,
+                'Uid'     => $uid,
+                'GAid'    => $gAid,
+                'CoupId'  => $coupId,
             ],
         ]);
     }

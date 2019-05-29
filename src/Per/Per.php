@@ -127,10 +127,10 @@ class Per extends AbstractAPI
         return $this->parseJSON(static::POST, [
             self::USER_PER_ADD,
             [
-                'Uid'      => $uid,
+                'Uid'       => $uid,
                 'Objids'    => $objIds,
-                'BDate'    => $bDate,
-                'EDate'    => $eDate,
+                'BDate'     => $bDate,
+                'EDate'     => $eDate,
             ],
         ]);
     }
