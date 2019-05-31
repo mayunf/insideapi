@@ -115,22 +115,22 @@ class Per extends AbstractAPI
      *  添加用户产品权限.
      *
      *@param int      $uid      用户ID
-     *@param int      $objId    对象ID
+     *@param array      $objIds    对象ID
      *@param string   $bDate    开始时间
      *@param string   $eDate    结束时间
-     *{"Uid":13,"Objid":1296,"BDate":"2019-04-01","EDate":"2019-05-01"}
+     *{"Uid":13,"Objids":[1296,1296,1296,1296],"BDate":"2019-04-01","EDate":"2019-05-01"}
      *
      * @return \Mayunfeng\Supports\Collection
      */
-    public function userPerAdd(int $uid, int $objId, string $bDate, string $eDate)
+    public function userPerAdd(int $uid, array $objIds, string $bDate, string $eDate)
     {
         return $this->parseJSON(static::POST, [
             self::USER_PER_ADD,
             [
-                'Uid'      => $uid,
-                'Objid'    => $objId,
-                'BDate'    => $bDate,
-                'EDate'    => $eDate,
+                'Uid'       => $uid,
+                'Objids'    => $objIds,
+                'BDate'     => $bDate,
+                'EDate'     => $eDate,
             ],
         ]);
     }
