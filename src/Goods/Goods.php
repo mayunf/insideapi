@@ -16,6 +16,8 @@ class Goods extends AbstractAPI
     const GOODS_GET_LIST = 'ins/v2/goods/getlist'; //获取商品列表
     const GOODS_BY_TAGS = 'ins/v2/goods/goodsbytags'; //根据Tag获取商品列表
     const COUPONS = 'ins/v2/goods/coupons'; //获取优惠券信息
+    const GOODS_OBJ = 'ins/v2/goods/getobjgoods';//获取权限集合
+
 
     /**
      * 获取商品列表.
@@ -102,4 +104,19 @@ class Goods extends AbstractAPI
             ],
         ]);
     }
+
+    /**
+     * 返回商品与权限列表.
+     * @return \Mayunfeng\Supports\Collection
+     */
+    public function getObjGoods()
+    {
+        return $this->parseJSON(static::POST, [
+            self::GOODS_OBJ,
+            [
+
+            ],
+        ]);
+    }
+
 }
