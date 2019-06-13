@@ -114,7 +114,7 @@ class Goods extends AbstractAPI
         return $this->parseJSON(static::POST, [
             self::GOODS_OBJ,
             [
-				'data'=>[]
+                'data'=> [],
             ],
         ]);
     }
