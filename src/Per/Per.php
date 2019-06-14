@@ -154,7 +154,7 @@ class Per extends AbstractAPI
         ]);
     }
 
-            /**
+    /**
      *  添加产品权限组.
      *
      *@param int      $uid      用户ID
