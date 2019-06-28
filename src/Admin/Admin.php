@@ -20,7 +20,7 @@ class Admin extends AbstractAPI
 
     const USER_ACC = 'ins/v2/admin/useracc'; //  获取用户推广账户列表
 
-	const USER_SEARCH = 'ins/v2/admin/searchusers'; //  获取用户（普通、客服、代理商）列表
+    const USER_SEARCH = 'ins/v2/admin/searchusers'; //  获取用户（普通、客服、代理商）列表
 
     /**
      *  获取产品列表.
@@ -118,26 +118,26 @@ class Admin extends AbstractAPI
         ]);
     }
 
-	/**
-	 *  获取用户（普通、客服、代理商）列表.
-	 *
-	 *@param int    $page   页码
-	 *@param int    $size   页大小
-	 *@param string $search 搜索
-	 *@param int    $role   账户角色
-	 *
-	 * @return \Mayunfeng\Supports\Collection
-	 */
-	public function searchusers(int $page = 1, int $size = 10, string $search = '', int $role = 2)
-	{
-		return $this->parseJSON(static::POST, [
-			self::USER_SEARCH,
-			[
-				'page'      => $page,
-				'page_size' => $size,
-				'search'    => $search,
-				'urole'     => $role,
-			],
-		]);
-	}
+    /**
+     *  获取用户（普通、客服、代理商）列表.
+     *
+     *@param int    $page   页码
+     *@param int    $size   页大小
+     *@param string $search 搜索
+     *@param int    $role   账户角色
+     *
+     * @return \Mayunfeng\Supports\Collection
+     */
+    public function searchusers(int $page = 1, int $size = 10, string $search = '', int $role = 2)
+    {
+        return $this->parseJSON(static::POST, [
+            self::USER_SEARCH,
+            [
+                'page'      => $page,
+                'page_size' => $size,
+                'search'    => $search,
+                'urole'     => $role,
+            ],
+        ]);
+    }
 }
