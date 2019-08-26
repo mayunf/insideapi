@@ -797,16 +797,21 @@ class User extends AbstractAPI
     }
 
     /**
-     * [网站管理] - [获取网址].
-     *
+     * [网站管理] - [获取网址]
      * @param int $id
-     *
+     * @param string $bDate
+     * @param string $eDate
      * @return \Mayunfeng\Supports\Collection
      */
-    public function siteUrl(int $id)
+    public function siteUrl(int $id, $bDate = '', $eDate = '')
     {
-        return $this->parseJSON(static::POST, [
+
+        $params = [
             'Id' => $id,
-        ]);
+            'BDate' => $bDate,
+            'EDate' => $eDate,
+        ];
+
+        return $this->parseJSON(static::POST, $params);
     }
 }
