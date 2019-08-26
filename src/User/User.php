@@ -787,23 +787,26 @@ class User extends AbstractAPI
     }
 
     /**
-     * [网站管理] - [获取网址配置列表]
+     * [网站管理] - [获取网址配置列表].
+     *
      * @return \Mayunfeng\Supports\Collection
      */
     public function siteList()
     {
-        return $this->parseJSON(static::POST,[]);
+        return $this->parseJSON(static::POST, []);
     }
 
     /**
-     * [网站管理] - [获取网址]
+     * [网站管理] - [获取网址].
+     *
      * @param int $id
+     *
      * @return \Mayunfeng\Supports\Collection
      */
     public function siteUrl(int $id)
     {
         return $this->parseJSON(static::POST, [
-            'Id' => $id
+            'Id' => $id,
         ]);
     }
 }
