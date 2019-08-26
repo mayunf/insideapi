@@ -22,6 +22,8 @@ class EPlatform
 
     const Weixin = 5; // 微信
 
+    const ALL = 999; // 没有限制
+
     public static function getPlatform($key = null)
     {
         $all = [

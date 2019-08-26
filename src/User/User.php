@@ -788,14 +788,16 @@ class User extends AbstractAPI
 
     /**
      * [网站管理] - [获取网址配置列表].
-     *
+     * @param int $platform 平台
      * @return \Mayunfeng\Supports\Collection
      */
-    public function siteList()
+    public function siteList(int $platform = EPlatform::ALL)
     {
         return $this->parseJSON(static::POST, [
             self::SITE_LIST,
-            [],
+            [
+                'Platform' => $platform
+            ],
         ]);
     }
 
