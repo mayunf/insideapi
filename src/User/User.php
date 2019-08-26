@@ -84,6 +84,8 @@ class User extends AbstractAPI
     const UPDATE_MOBILE = 'ins/v2/user/updatemobile'; // 更新绑定手机号
 
     const UPDATE_EMAIL = 'ins/v2/user/updateemail'; // 更新绑定邮箱
+    const SITE_LIST = 'ins/v2/user/SiteList'; // [网站管理] - [获取网址配置列表]
+    const SITE_URL = 'ins/v2/user/SiteUrl'; // [网站管理] - [获取网址]
 
     /**
      * API 心跳.
@@ -781,6 +783,27 @@ class User extends AbstractAPI
                 'Email'     => $email,
                 'IsEmail'   => $isEmail,
             ],
+        ]);
+    }
+
+    /**
+     * [网站管理] - [获取网址配置列表]
+     * @return \Mayunfeng\Supports\Collection
+     */
+    public function siteList()
+    {
+        return $this->parseJSON(static::POST,[]);
+    }
+
+    /**
+     * [网站管理] - [获取网址]
+     * @param int $id
+     * @return \Mayunfeng\Supports\Collection
+     */
+    public function siteUrl(int $id)
+    {
+        return $this->parseJSON(static::POST, [
+            'Id' => $id
         ]);
     }
 }
