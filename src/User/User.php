@@ -136,8 +136,8 @@ class User extends AbstractAPI
     /**
      * 发送短信
      *
-     * @param string $m  手机号
-     * @param int    $st 短信类型
+     * @param string $m 手机号
+     * @param int $st 短信类型
      *
      * @return \Mayunfeng\Supports\Collection
      */
@@ -146,7 +146,7 @@ class User extends AbstractAPI
         return $this->parseJSON(static::POST, [
             self::SEND_SMS,
             [
-                'ST'  => $st,
+                'ST' => $st,
                 'Mob' => $m,
             ],
         ]);
@@ -155,13 +155,13 @@ class User extends AbstractAPI
     /**
      * 提交用户注册信息.
      *
-     * @param int    $pt   产品类型
-     * @param string $m    手机号
-     * @param string $pwd  用户密码
-     * @param int    $isM  手机号是否验证过（0表示未验证，1表示验证成功）
-     * @param int    $agId 代理id
-     * @param string $an   代理商用户名
-     * @param string $un   用户名称
+     * @param int $pt 产品类型
+     * @param string $m 手机号
+     * @param string $pwd 用户密码
+     * @param int $isM 手机号是否验证过（0表示未验证，1表示验证成功）
+     * @param int $agId 代理id
+     * @param string $an 代理商用户名
+     * @param string $un 用户名称
      *
      * @return \Mayunfeng\Supports\Collection
      */
@@ -173,16 +173,17 @@ class User extends AbstractAPI
         string $an = '',
         string $un = '',
         int $isM = 1
-    ) {
+    )
+    {
         return $this->parseJSON(static::POST, [
             self::REGISTER,
             [
-                'Mob'    => $m,
-                'IsM'    => $isM,
-                'Pwd'    => $pwd,
-                'Agid'   => $agId,
+                'Mob' => $m,
+                'IsM' => $isM,
+                'Pwd' => $pwd,
+                'Agid' => $agId,
                 'AgName' => $an,
-                'UName'  => $un,
+                'UName' => $un,
                 'SProid' => $pt,
             ],
         ]);
@@ -191,10 +192,10 @@ class User extends AbstractAPI
     /**
      * 用户登录.
      *
-     * @param int    $proId 产品类型
-     * @param int    $role  用户类型（0 代表小鹿用户；1 代表客户服务；2 代表代理商管理员）
-     * @param string $un    用户名称
-     * @param string $pwd   用户密码
+     * @param int $proId 产品类型
+     * @param int $role 用户类型（0 代表小鹿用户；1 代表客户服务；2 代表代理商管理员）
+     * @param string $un 用户名称
+     * @param string $pwd 用户密码
      *
      * @return \Mayunfeng\Supports\Collection
      */
@@ -203,10 +204,10 @@ class User extends AbstractAPI
         return $this->parseJSON(static::POST, [
             self::LOGON,
             [
-                'UN'    => $un,
-                'Pwd'   => $pwd,
+                'UN' => $un,
+                'Pwd' => $pwd,
                 'Proid' => $proId,
-                'Role'  => $role,
+                'Role' => $role,
             ],
         ]);
     }
@@ -215,7 +216,7 @@ class User extends AbstractAPI
      * 设置当前用户.
      *
      * @param int $agId 当前代理商 ID
-     * @param int $uId  用户 ID
+     * @param int $uId 用户 ID
      *
      * @return \Mayunfeng\Supports\Collection
      */
@@ -225,7 +226,7 @@ class User extends AbstractAPI
             self::SET_USER,
             [
                 'Agid' => $agId,
-                'Uid'  => $uId,
+                'Uid' => $uId,
             ],
         ]);
         if ($response['head']['s'] == 0) {
@@ -281,8 +282,8 @@ class User extends AbstractAPI
     /**
      * 编辑用户名称.
      *
-     * @param int    $agentId 用户所属代理商信息（0 表示小鹿平台用户，大于0 表示指定代理商信息）
-     * @param string $uName   用户名称
+     * @param int $agentId 用户所属代理商信息（0 表示小鹿平台用户，大于0 表示指定代理商信息）
+     * @param string $uName 用户名称
      *
      * @return \Mayunfeng\Supports\Collection
      */
@@ -291,7 +292,7 @@ class User extends AbstractAPI
         return $this->parseJSON(static::POST, [
             self::EDIT_U_NAME,
             [
-                'Agid'  => $agentId,
+                'Agid' => $agentId,
                 'UName' => $uName,
             ],
         ]);
@@ -300,9 +301,9 @@ class User extends AbstractAPI
     /**
      * 编辑其他用户名称.
      *
-     * @param int    $agentId 用户所属代理商信息（0 表示小鹿平台用户，大于0 表示指定代理商信息）
-     * @param string $uName   用户名称
-     * @param int    $uMainId 主ID
+     * @param int $agentId 用户所属代理商信息（0 表示小鹿平台用户，大于0 表示指定代理商信息）
+     * @param string $uName 用户名称
+     * @param int $uMainId 主ID
      *
      * @return \Mayunfeng\Supports\Collection
      */
@@ -311,8 +312,8 @@ class User extends AbstractAPI
         return $this->parseJSON(static::POST, [
             self::OTHER_EDIT_U_NAME,
             [
-                'UMid'  => $uMainId,
-                'Agid'  => $agentId,
+                'UMid' => $uMainId,
+                'Agid' => $agentId,
                 'UName' => $uName,
             ],
         ]);
@@ -321,7 +322,7 @@ class User extends AbstractAPI
     /**
      * 修改用户密码（根据旧密码）.
      *
-     * @param int    $sProId 来源的产品ID
+     * @param int $sProId 来源的产品ID
      * @param string $oldPwd 老密码
      * @param string $newPwd 新密码
      *
@@ -333,8 +334,8 @@ class User extends AbstractAPI
             self::EDIT_PWD_BY_OLD,
             [
                 'SProId' => $sProId,
-                'Old'    => $oldPwd,
-                'Pwd'    => $newPwd,
+                'Old' => $oldPwd,
+                'Pwd' => $newPwd,
             ],
         ]);
     }
@@ -342,7 +343,7 @@ class User extends AbstractAPI
     /**
      * 修改用户密码（根据手机号）.
      *
-     * @param int    $sProId 来源的产品ID
+     * @param int $sProId 来源的产品ID
      * @param string $mobile 手机号
      * @param string $newPwd 新密码
      *
@@ -353,9 +354,9 @@ class User extends AbstractAPI
         return $this->parseJSON(static::POST, [
             self::EDIT_PWD_BY_MOB,
             [
-                'SProId'    => $sProId,
-                'Mobile'    => $mobile,
-                'Pwd'       => $newPwd,
+                'SProId' => $sProId,
+                'Mobile' => $mobile,
+                'Pwd' => $newPwd,
             ],
         ]);
     }
@@ -363,7 +364,7 @@ class User extends AbstractAPI
     /**
      * 修改用户密码
      *
-     * @param int    $sProId 来源的产品ID
+     * @param int $sProId 来源的产品ID
      * @param string $newPwd 新密码
      *
      * @return \Mayunfeng\Supports\Collection
@@ -374,7 +375,7 @@ class User extends AbstractAPI
             self::EDIT_PWD,
             [
                 'SProId' => $sProId,
-                'Pwd'    => $newPwd,
+                'Pwd' => $newPwd,
             ],
         ]);
     }
@@ -382,12 +383,12 @@ class User extends AbstractAPI
     /**
      * 添加单个账户.
      *
-     * @param string $pro  产品类型
-     * @param int    $plat 平台类型（0 百度，1 点睛，2 搜狗，3 神马）
-     * @param int    $aId  账户ID
-     * @param string $an   账户名称
-     * @param string $ln   账户登录名称
-     * @param string $lp   账户密码
+     * @param string $pro 产品类型
+     * @param int $plat 平台类型（0 百度，1 点睛，2 搜狗，3 神马）
+     * @param int $aId 账户ID
+     * @param string $an 账户名称
+     * @param string $ln 账户登录名称
+     * @param string $lp 账户密码
      *
      * @return \Mayunfeng\Supports\Collection
      */
@@ -397,11 +398,11 @@ class User extends AbstractAPI
             self::ACC_ADD,
             [
                 'Proid' => $pro,
-                'Plat'  => $plat,
-                'Aid'   => $aId,
+                'Plat' => $plat,
+                'Aid' => $aId,
                 'AName' => $an,
                 'LName' => $ln,
-                'LPwd'  => $lp,
+                'LPwd' => $lp,
             ],
         ]);
     }
@@ -421,12 +422,12 @@ class User extends AbstractAPI
     /**
      * 编辑单个推广账户.
      *
-     * @param string $pro  产品类型
-     * @param int    $plat 平台类型（0 百度，1 点睛，2 搜狗，3 神马）
-     * @param int    $aId  账户ID
-     * @param string $an   账户名称
-     * @param string $ln   账户登录名称
-     * @param string $lp   账户密码
+     * @param string $pro 产品类型
+     * @param int $plat 平台类型（0 百度，1 点睛，2 搜狗，3 神马）
+     * @param int $aId 账户ID
+     * @param string $an 账户名称
+     * @param string $ln 账户登录名称
+     * @param string $lp 账户密码
      *
      * @return \Mayunfeng\Supports\Collection
      */
@@ -436,11 +437,11 @@ class User extends AbstractAPI
             self::ACC_ADD,
             [
                 'Proid' => $pro,
-                'Plat'  => $plat,
-                'Aid'   => $aId,
+                'Plat' => $plat,
+                'Aid' => $aId,
                 'AName' => $an,
                 'LName' => $ln,
-                'LPwd'  => $lp,
+                'LPwd' => $lp,
             ],
         ]);
     }
@@ -448,9 +449,9 @@ class User extends AbstractAPI
     /**
      * 删除推广账户.
      *
-     * @param string $proId  产品类型
-     * @param int    $plat   平台类型（0 百度，1 点睛，2 搜狗，3 神马）
-     * @param array  $accIds 账户ID数组
+     * @param string $proId 产品类型
+     * @param int $plat 平台类型（0 百度，1 点睛，2 搜狗，3 神马）
+     * @param array $accIds 账户ID数组
      *
      * @return \Mayunfeng\Supports\Collection
      */
@@ -459,8 +460,8 @@ class User extends AbstractAPI
         return $this->parseJSON(static::POST, [
             self::ACC_DEL,
             [
-                'Proid'   => $proId,
-                'Plat'    => $plat,
+                'Proid' => $proId,
+                'Plat' => $plat,
                 'AccIds ' => $accIds,
             ],
         ]);
@@ -469,7 +470,7 @@ class User extends AbstractAPI
     /**
      * 获取推广账户列表.
      *
-     * @param array $plats  平台类型（0 百度，1 点睛，2 搜狗，3 神马）
+     * @param array $plats 平台类型（0 百度，1 点睛，2 搜狗，3 神马）
      * @param array $proIds 产品类型
      *
      * @return \Mayunfeng\Supports\Collection
@@ -479,7 +480,7 @@ class User extends AbstractAPI
         return $this->parseJSON(static::POST, [
             self::ACC_LIST,
             [
-                'Plats'   => $plats,
+                'Plats' => $plats,
                 'Proids ' => $proIds,
             ],
         ]);
@@ -505,10 +506,10 @@ class User extends AbstractAPI
     /**
      * 购买商品
      *
-     * @param string $goodsId  商品ID
-     * @param string $price    支付金额
-     * @param int    $payWay   支付方式 1：支付宝 2：微信
-     * @param int    $unit     支付单位： 1 月 ，2年
+     * @param string $goodsId 商品ID
+     * @param string $price 支付金额
+     * @param int $payWay 支付方式 1：支付宝 2：微信
+     * @param int $unit 支付单位： 1 月 ，2年
      * @param string $describe 订单描述
      *
      * @return \Mayunfeng\Supports\Collection
@@ -518,10 +519,10 @@ class User extends AbstractAPI
         return $this->parseJSON(static::POST, [
             self::PAYMENT,
             [
-                'payway'   => $payWay,
-                'goodsid'  => $goodsId,
-                'price'    => $price,
-                'unit'     => $unit,
+                'payway' => $payWay,
+                'goodsid' => $goodsId,
+                'price' => $price,
+                'unit' => $unit,
                 'describe' => $describe,
             ],
         ]);
@@ -549,7 +550,7 @@ class User extends AbstractAPI
     /**
      * 获取平台客服推广账户信息.
      *
-     * @param int $id   代理商ID
+     * @param int $id 代理商ID
      * @param int $plat 平台类型（0 百度，1 点睛，2 搜狗，3 神马）
      *
      * @return \Mayunfeng\Supports\Collection
@@ -560,7 +561,7 @@ class User extends AbstractAPI
             self::PA_INFO,
             [
                 'Plat' => $plat,
-                'Id'   => $id,
+                'Id' => $id,
             ],
         ]);
     }
@@ -568,10 +569,10 @@ class User extends AbstractAPI
     /**
      * 编辑平台客服推广账户信息.
      *
-     * @param int    $proId  产品类型
-     * @param int    $plat   平台类型（0 百度，1 点睛，2 搜狗，3 神马）
+     * @param int $proId 产品类型
+     * @param int $plat 平台类型（0 百度，1 点睛，2 搜狗，3 神马）
      * @param string $agName 代理商名称
-     * @param string $agPwd  代理商密码
+     * @param string $agPwd 代理商密码
      *
      * @return \Mayunfeng\Supports\Collection
      */
@@ -580,10 +581,10 @@ class User extends AbstractAPI
         return $this->parseJSON(static::POST, [
             self::PA_E_PWD,
             [
-                'Proid'  => $proId,
-                'Plat'   => $plat,
+                'Proid' => $proId,
+                'Plat' => $plat,
                 'AgName' => $agName,
-                'AgPwd'  => $agPwd,
+                'AgPwd' => $agPwd,
             ],
         ]);
     }
@@ -591,10 +592,10 @@ class User extends AbstractAPI
     /**
      * 获取子用户.
      *
-     * @param int    $page   页数
-     * @param int    $size   页大小
+     * @param int $page 页数
+     * @param int $size 页大小
      * @param string $search 搜索内容
-     * @param string $order  排序
+     * @param string $order 排序
      *
      * @return \Mayunfeng\Supports\Collection
      */
@@ -603,10 +604,10 @@ class User extends AbstractAPI
         return $this->parseJSON(static::POST, [
             self::USERS,
             [
-                'page'      => $page,
+                'page' => $page,
                 'page_size' => $size,
-                'search'    => $search,
-                'order'     => $order,
+                'search' => $search,
+                'order' => $order,
             ],
         ]);
     }
@@ -615,7 +616,7 @@ class User extends AbstractAPI
      * 根据手机号获取用户信息.
      *
      * @param string $mobile 手机号码
-     * @param int    $role   角色（-1：全部；0：普通用户；1：代理商用户；2：代理商管理员）
+     * @param int $role 角色（-1：全部；0：普通用户；1：代理商用户；2：代理商管理员）
      *
      * @return \Mayunfeng\Supports\Collection
      */
@@ -625,7 +626,7 @@ class User extends AbstractAPI
             self::USERS_BY_MOBILE,
             [
                 'Role' => $role,
-                'Mob'  => $mobile,
+                'Mob' => $mobile,
             ],
         ]);
     }
@@ -634,8 +635,8 @@ class User extends AbstractAPI
      * 微信用户登录.
      *
      * @param string $unionId 微信关系ID
-     * @param string $proId   产品类型
-     * @param int    $role    用户类型（-1 未设置； 0 代表小鹿用户；1 代表客户服务；2 代表代理商管理员）
+     * @param string $proId 产品类型
+     * @param int $role 用户类型（-1 未设置； 0 代表小鹿用户；1 代表客户服务；2 代表代理商管理员）
      *
      * @return \Mayunfeng\Supports\Collection
      */
@@ -644,8 +645,8 @@ class User extends AbstractAPI
         return $this->parseJSON(static::POST, [
             self::WX_LOGON,
             [
-                'Proid'   => $proId,
-                'Role'    => $role,
+                'Proid' => $proId,
+                'Role' => $role,
                 'UnionId' => $unionId,
             ],
         ]);
@@ -654,7 +655,7 @@ class User extends AbstractAPI
     /**
      * 微信用户绑定.
      *
-     * @param int    $uMid    用户主Id
+     * @param int $uMid 用户主Id
      * @param string $unionId 微信关系ID
      *
      * @return \Mayunfeng\Supports\Collection
@@ -673,7 +674,7 @@ class User extends AbstractAPI
     /**
      * 用户取消绑定微信
      *
-     * @param int    $uMid    用户主Id
+     * @param int $uMid 用户主Id
      * @param string $unionId 微信用户ID
      *
      * @return \Mayunfeng\Supports\Collection
@@ -709,9 +710,9 @@ class User extends AbstractAPI
     /**
      * 开通商品权限.
      *
-     * @param int    $uid     用户ID
-     * @param int    $goodsId 商品ID
-     * @param int    $payDay  开通时间
+     * @param int $uid 用户ID
+     * @param int $goodsId 商品ID
+     * @param int $payDay 开通时间
      * @param string $realPay 付款金额
      *
      * @return \Mayunfeng\Supports\Collection
@@ -721,9 +722,9 @@ class User extends AbstractAPI
         return $this->parseJSON(static::POST, [
             self::SET_PER,
             [
-                'Uid'     => $uid,
+                'Uid' => $uid,
                 'Goodsid' => $goodsId,
-                'PayDay'  => $payDay,
+                'PayDay' => $payDay,
                 'RealPay' => $realPay,
             ],
         ]);
@@ -741,7 +742,7 @@ class User extends AbstractAPI
         return $this->parseJSON(static::POST, [
             self::UPDATE_PAR_CODE,
             [
-                'Code'     => $code,
+                'Code' => $code,
             ],
         ]);
     }
@@ -750,7 +751,7 @@ class User extends AbstractAPI
      * 更新绑定手机号.
      *
      * @param string $mobile 手机号
-     * @param bool   $isM    手机号是否验证过（0表示未验证，1表示验证成功）
+     * @param bool $isM 手机号是否验证过（0表示未验证，1表示验证成功）
      *
      * @return \Mayunfeng\Supports\Collection
      */
@@ -759,8 +760,8 @@ class User extends AbstractAPI
         return $this->parseJSON(static::POST, [
             self::UPDATE_MOBILE,
             [
-                'Mob'     => $mobile,
-                'IsM'     => $isM,
+                'Mob' => $mobile,
+                'IsM' => $isM,
             ],
         ]);
     }
@@ -768,8 +769,8 @@ class User extends AbstractAPI
     /**
      * 更新绑定邮箱.
      *
-     * @param string $email   用户Email
-     * @param bool   $isEmail 邮箱是否验证过（0表示为验证，1表示验证成功）
+     * @param string $email 用户Email
+     * @param bool $isEmail 邮箱是否验证过（0表示为验证，1表示验证成功）
      *
      *{"Email":"lupeng@jwsem.com","IsEmail":True}
      *
@@ -780,8 +781,8 @@ class User extends AbstractAPI
         return $this->parseJSON(static::POST, [
             self::UPDATE_EMAIL,
             [
-                'Email'     => $email,
-                'IsEmail'   => $isEmail,
+                'Email' => $email,
+                'IsEmail' => $isEmail,
             ],
         ]);
     }
@@ -807,10 +808,13 @@ class User extends AbstractAPI
     {
 
         $params = [
-            'Id' => $id,
-            'BDate' => $bDate,
-            'EDate' => $eDate,
+            'Id' => $id
         ];
+
+        if (!empty($bDate) && !empty($eDate)) {
+            $params['BDate'] = date('Y-m-d', time() - 3600 * 24 * 30);
+            $params['EDate'] = date('Y-m-d', time());
+        }
 
         return $this->parseJSON(static::POST, $params);
     }
