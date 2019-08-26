@@ -793,7 +793,10 @@ class User extends AbstractAPI
      */
     public function siteList()
     {
-        return $this->parseJSON(static::POST, []);
+        return $this->parseJSON(static::POST, [
+            self::SITE_LIST,
+            [],
+        ]);
     }
 
     /**
@@ -816,6 +819,9 @@ class User extends AbstractAPI
             $params['EDate'] = date('Y-m-d', time());
         }
 
-        return $this->parseJSON(static::POST, $params);
+        return $this->parseJSON(static::POST, [
+            self::SITE_URL,
+            $params
+        ]);
     }
 }
