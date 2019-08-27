@@ -816,9 +816,11 @@ class User extends AbstractAPI
     {
         $params = [
             'Id' => $id,
+            'BDate' =>$bDate,
+            'EDate' =>$eDate
         ];
 
-        if (!empty($bDate) && !empty($eDate)) {
+        if (empty($bDate) || empty($eDate)) {
             $params['BDate'] = date('Y-m-d', time() - 3600 * 24 * 30);
             $params['EDate'] = date('Y-m-d', time());
         }
