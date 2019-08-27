@@ -815,9 +815,9 @@ class User extends AbstractAPI
     public function siteUrl(int $id, $bDate = '', $eDate = '')
     {
         $params = [
-            'Id' => $id,
-            'BDate' =>$bDate,
-            'EDate' =>$eDate
+            'Id'    => $id,
+            'BDate' => $bDate,
+            'EDate' => $eDate,
         ];
 
         if (empty($bDate) || empty($eDate)) {
