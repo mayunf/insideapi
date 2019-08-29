@@ -34,13 +34,13 @@ class Admin extends AbstractAPI
     /**
      *  获取产品列表.
      *
-     * @param string $search 搜索内容
-     * @param string $order 排序字段
-     * @param int $page 搜索页码
-     * @param int $pageSize 一页显示的数据条数
-     * @param int $state 状态
-     * @param int $type 产品类型
-     * @param int $plat 平台
+     * @param string $search   搜索内容
+     * @param string $order    排序字段
+     * @param int    $page     搜索页码
+     * @param int    $pageSize 一页显示的数据条数
+     * @param int    $state    状态
+     * @param int    $type     产品类型
+     * @param int    $plat     平台
      *
      * @return \Mayunfeng\Supports\Collection
      */
@@ -49,13 +49,13 @@ class Admin extends AbstractAPI
         return $this->parseJSON(static::POST, [
             self::PRO_SEARCH,
             [
-                'search' => $search,
-                'order' => $order,
-                'page' => $page,
+                'search'    => $search,
+                'order'     => $order,
+                'page'      => $page,
                 'page_size' => $pageSize,
-                'state' => $state,
-                'type' => $type,
-                'plat' => $plat,
+                'state'     => $state,
+                'type'      => $type,
+                'plat'      => $plat,
             ],
         ]);
     }
@@ -63,7 +63,7 @@ class Admin extends AbstractAPI
     /**
      * 删除用户推广账户.
      *
-     * @param int $uid 用户ID
+     * @param int   $uid 用户ID
      * @param array $ids 账户id
      *
      *{"Uid":13,"Ids":[1]}
@@ -84,7 +84,7 @@ class Admin extends AbstractAPI
     /**
      * 还原删除用户推广账户.
      *
-     * @param int $uid 用户ID
+     * @param int   $uid 用户ID
      * @param array $ids 账户id
      *
      *{"Uid":13,"Ids":[1]}
@@ -105,11 +105,11 @@ class Admin extends AbstractAPI
     /**
      *  获取用户推广账户列表.
      *
-     * @param int $uid 用户ID
-     * @param int $plat 平台类型（0 百度，1 点睛，2 搜狗，3 神马）
+     * @param int $uid    用户ID
+     * @param int $plat   平台类型（0 百度，1 点睛，2 搜狗，3 神马）
      * @param int $status 账户状态
-     * @param int $role 账户角色
-     * {"userid":13,"plat":-1,"status":1,"role":0}
+     * @param int $role   账户角色
+     *                    {"userid":13,"plat":-1,"status":1,"role":0}
      *
      * @return \Mayunfeng\Supports\Collection
      */
@@ -119,9 +119,9 @@ class Admin extends AbstractAPI
             self::USER_ACC,
             [
                 'userid' => $uid,
-                'Plat' => $plat,
+                'Plat'   => $plat,
                 'status' => $status,
-                'role' => $role,
+                'role'   => $role,
 
             ],
         ]);
@@ -130,10 +130,10 @@ class Admin extends AbstractAPI
     /**
      *  获取用户（普通、客服、代理商）列表.
      *
-     * @param int $page 页码
-     * @param int $size 页大小
+     * @param int    $page   页码
+     * @param int    $size   页大小
      * @param string $search 搜索
-     * @param int $role 账户角色
+     * @param int    $role   账户角色
      *
      * @return \Mayunfeng\Supports\Collection
      */
@@ -142,25 +142,26 @@ class Admin extends AbstractAPI
         return $this->parseJSON(static::POST, [
             self::USER_SEARCH,
             [
-                'page' => $page,
+                'page'      => $page,
                 'page_size' => $size,
-                'search' => $search,
-                'urole' => $role,
+                'search'    => $search,
+                'urole'     => $role,
             ],
         ]);
     }
 
     /**
-     * @param int $uid
-     * @param string $domain
-     * @param int $device
-     * @param int $status
-     * @param int $platform
-     * @param int $accId
+     * @param int         $uid
+     * @param string      $domain
+     * @param int         $device
+     * @param int         $status
+     * @param int         $platform
+     * @param int         $accId
      * @param string|null $accName
      * @param string|null $project
      * @param string|null $dashboard
-     * @param int $templateId
+     * @param int         $templateId
+     *
      * @return \Mayunfeng\Supports\Collection
      */
     public function siteAdd(int $uid, string $domain, int $device = 0, int $status = 0, int $platform = EPlatform::ALL, int $accId = 0, string $accName = null, string $project = null, string $dashboard = null, int $templateId = 0)
@@ -168,17 +169,17 @@ class Admin extends AbstractAPI
         return $this->parseJSON(static::POST, [
             self::SITE_ADD,
             [
-                'Uid' => $uid,
-                'Domain' => $domain,
-                'Device' => $device,
-                'Status' => $status,
-                'Platform' => $platform,
-                'Accid' => $accId,
-                'AccName' => $accName,
-                'Project' => $project,
+                'Uid'       => $uid,
+                'Domain'    => $domain,
+                'Device'    => $device,
+                'Status'    => $status,
+                'Platform'  => $platform,
+                'Accid'     => $accId,
+                'AccName'   => $accName,
+                'Project'   => $project,
                 'Dashboard' => $dashboard,
-                'Template' => $templateId,
-            ]
+                'Template'  => $templateId,
+            ],
         ]);
     }
 
@@ -187,13 +188,13 @@ class Admin extends AbstractAPI
         return $this->parseJSON(static::POST, [
             self::SITE_EDIT,
             [
-                'Id' => $id,
-                'Device' => $device,
-                'Status' => $status,
-                'Project' => $project,
+                'Id'        => $id,
+                'Device'    => $device,
+                'Status'    => $status,
+                'Project'   => $project,
                 'Dashboard' => $dashboard,
-                'Template' => $templateId,
-            ]
+                'Template'  => $templateId,
+            ],
         ]);
     }
 
@@ -202,8 +203,8 @@ class Admin extends AbstractAPI
         return $this->parseJSON(static::POST, [
             self::SITE_DEL,
             [
-                'Id' => $id
-            ]
+                'Id' => $id,
+            ],
         ]);
     }
 
@@ -212,8 +213,8 @@ class Admin extends AbstractAPI
         return $this->parseJSON(static::POST, [
             self::SITE_INFO,
             [
-                'Id' => $id
-            ]
+                'Id' => $id,
+            ],
         ]);
     }
 }
