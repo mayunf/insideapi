@@ -68,6 +68,14 @@ class UserTest extends TestCase
     {
         $res = $this->getInstance($user_id)->user->info();
         $this->assertFalse(boolval($res['head']['s']), $res['head']['des']);
+    }    /**
+     * @param $user_id
+     * @depends testGenToken
+     */
+    public function testGetUser($user_id)
+    {
+        $res = $this->getInstance($user_id)->user->getUser();
+        $this->assertFalse(boolval($res['head']['s']), $res['head']['des']);
     }
 
     public function testMulUser()

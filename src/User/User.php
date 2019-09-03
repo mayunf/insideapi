@@ -29,6 +29,8 @@ class User extends AbstractAPI
 
     const EXIT = 'ins/v2/user/exit'; // 用户退出登录
 
+    const GET_USER = 'ins/v2/user/getuser'; // 获取当前用户角色
+
     const SET_USER = 'ins/v2/user/setuser'; // 设置当前用户
 
     const INFO = 'ins/v2/user/info'; // 获取用户信息
@@ -251,6 +253,18 @@ class User extends AbstractAPI
         }
 
         return $response;
+    }
+
+    /**
+     * 获取当前用户角色.
+     *
+     * @param array $params
+     *
+     * @return \Mayunfeng\Supports\Collection
+     */
+    public function getUser($params = [])
+    {
+        return $this->parseJSON(static::POST, [self::GET_USER, $params]);
     }
 
     /**
