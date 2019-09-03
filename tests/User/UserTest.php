@@ -68,7 +68,9 @@ class UserTest extends TestCase
     {
         $res = $this->getInstance($user_id)->user->info();
         $this->assertFalse(boolval($res['head']['s']), $res['head']['des']);
-    }    /**
+    }
+
+    /**
      * @param $user_id
      * @depends testGenToken
      */
