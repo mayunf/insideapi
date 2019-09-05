@@ -808,9 +808,9 @@ class User extends AbstractAPI
         ]);
     }
 
-
     /**
-     * [报告] - [获取账户信息列表]
+     * [报告] - [获取账户信息列表].
+     *
      * @return \Mayunfeng\Supports\Collection
      */
     public function accountInfos()
@@ -822,9 +822,11 @@ class User extends AbstractAPI
     }
 
     /**
-     * [报告] - [账户当天报告]
-     * @param int $top 显示数据数
+     * [报告] - [账户当天报告].
+     *
+     * @param int $top  显示数据数
      * @param int $show 显示类型 （0 表示不限制， 1 表示仅显示有数据）
+     *
      * @return \Mayunfeng\Supports\Collection
      */
     public function accountTodayReport(int $top = 100, int $show = 0)
@@ -832,15 +834,17 @@ class User extends AbstractAPI
         return $this->parseJSON(static::POST, [
             self::ACCOUNT_TODAY_REPORT,
             [
-                'top' => $top,
+                'top'  => $top,
                 'show' => $show,
             ],
         ]);
     }
 
     /**
-     * [报告] - [账户历史报告]
+     * [报告] - [账户历史报告].
+     *
      * @param int $type 报告类型 （1 昨天，2 一周 ，3 最近一月）
+     *
      * @return \Mayunfeng\Supports\Collection
      */
     public function accountHistoryReport(int $type = 1)
@@ -848,11 +852,11 @@ class User extends AbstractAPI
         return $this->parseJSON(static::POST, [
             self::ACCOUNT_HISTORY_REPORT,
             [
-                'type' => $type
+                'type' => $type,
             ],
         ]);
     }
-    
+
     /**
      * [网站管理] - [获取网址配置列表].
      *
