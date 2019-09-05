@@ -86,7 +86,15 @@ class User extends AbstractAPI
     const UPDATE_MOBILE = 'ins/v2/user/updatemobile'; // 更新绑定手机号
 
     const UPDATE_EMAIL = 'ins/v2/user/updateemail'; // 更新绑定邮箱
+
+    const ACCOUNT_INFO_S = 'ins/v2/user/accountinfos'; // [报告] - [获取账户信息列表]
+
+    const ACCOUNT_TODAY_REPORT = 'ins/v2/user/accounttodayreport'; // [报告] - [获取账户信息列表]
+
+    const ACCOUNT_HISTORY_REPORT = 'ins/v2/user/historyreport'; // [报告] - [账户历史报告]
+
     const SITE_LIST = 'ins/v2/user/SiteList'; // [网站管理] - [获取网址配置列表]
+
     const SITE_URL = 'ins/v2/user/SiteUrl'; // [网站管理] - [获取网址]
 
     /**
@@ -800,6 +808,51 @@ class User extends AbstractAPI
         ]);
     }
 
+
+    /**
+     * [报告] - [获取账户信息列表]
+     * @return \Mayunfeng\Supports\Collection
+     */
+    public function accountInfos()
+    {
+        return $this->parseJSON(static::POST, [
+            self::ACCOUNT_INFO_S,
+            [],
+        ]);
+    }
+
+    /**
+     * [报告] - [账户当天报告]
+     * @param int $top 显示数据数
+     * @param int $show 显示类型 （0 表示不限制， 1 表示仅显示有数据）
+     * @return \Mayunfeng\Supports\Collection
+     */
+    public function accountTodayReport(int $top = 100, int $show = 0)
+    {
+        return $this->parseJSON(static::POST, [
+            self::ACCOUNT_TODAY_REPORT,
+            [
+                'top' => $top,
+                'show' => $show,
+            ],
+        ]);
+    }
+
+    /**
+     * [报告] - [账户历史报告]
+     * @param int $type 报告类型 （1 昨天，2 一周 ，3 最近一月）
+     * @return \Mayunfeng\Supports\Collection
+     */
+    public function accountHistoryReport(int $type = 1)
+    {
+        return $this->parseJSON(static::POST, [
+            self::ACCOUNT_HISTORY_REPORT,
+            [
+                'type' => $type
+            ],
+        ]);
+    }
+    
     /**
      * [网站管理] - [获取网址配置列表].
      *
