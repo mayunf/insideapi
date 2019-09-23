@@ -21,7 +21,7 @@ class Admin extends AbstractAPI
 
     const USER_ACC = 'ins/v2/admin/useracc'; //  获取用户推广账户列表
 
-    const USER_SEARCH = 'ins/v2/admin/searchusers'; //  获取用户（普通、客服、代理商）列表
+    const USER_SEARCH = 'ins/v2/search/users'; //  获取用户（普通、客服、代理商）列表
 
     const SITE_ADD = 'ins/v2/admin/SiteAdd'; //  网站配置 - 添加
 
