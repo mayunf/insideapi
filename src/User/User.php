@@ -915,5 +915,4 @@ class User extends AbstractAPI
     {
         return $this->parseJSON(static::POST, [self::LUCKY_RECORD, $params]);
     }
-
 }
