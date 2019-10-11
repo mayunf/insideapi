@@ -97,6 +97,8 @@ class User extends AbstractAPI
 
     const SITE_URL = 'ins/v2/user/SiteUrl'; // [网站管理] - [获取网址]
 
+    const LUCKY_CONFIG = 'ins/v2/user/LuckyConfig'; // [抽奖]-[获取抽奖配置]
+
     const LUCKY_DRAW = 'ins/v2/user/LuckyDraw'; // [抽奖]-[抽奖]
 
     const LUCKY_RECORD = 'ins/v2/user/LuckyRecord'; // [抽奖]-[中奖记录]
@@ -906,6 +908,10 @@ class User extends AbstractAPI
         ]);
     }
 
+    public function luckyConfig($params = [])
+    {
+        return $this->parseJSON(static::POST, [self::LUCKY_CONFIG, $params]);
+    }
     public function luckyDraw($params = [])
     {
         return $this->parseJSON(static::POST, [self::LUCKY_DRAW, $params]);
