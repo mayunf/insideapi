@@ -912,6 +912,7 @@ class User extends AbstractAPI
     {
         return $this->parseJSON(static::POST, [self::LUCKY_CONFIG, $params]);
     }
+
     public function luckyDraw($params = [])
     {
         return $this->parseJSON(static::POST, [self::LUCKY_DRAW, $params]);
