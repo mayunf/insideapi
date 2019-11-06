@@ -886,15 +886,17 @@ class User extends AbstractAPI
      * @param int    $id
      * @param string $bDate
      * @param string $eDate
+     * @param int $device
      *
      * @return \Mayunfeng\Supports\Collection
      */
-    public function siteUrl(int $id, $bDate = '', $eDate = '')
+    public function siteUrl(int $id, $bDate = '', $eDate = '', $device = -1)
     {
         $params = [
             'Id'    => $id,
             'BDate' => $bDate,
             'EDate' => $eDate,
+            'Device' => $device,
         ];
 
         if (empty($bDate) || empty($eDate)) {
