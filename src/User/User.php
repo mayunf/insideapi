@@ -327,20 +327,17 @@ class User extends AbstractAPI
 
     /**
      * 编辑其他用户名称.
-     *
-     * @param int    $agentId 用户所属代理商信息（0 表示小鹿平台用户，大于0 表示指定代理商信息）
+     * @param int    $uid  用户id
      * @param string $uName   用户名称
-     * @param int    $uMainId 主ID
      *
      * @return \Mayunfeng\Supports\Collection
      */
-    public function OtherEditUName(int $agentId, string $uName, int $uMainId)
+    public function OtherEditUName(int $uid, string $uName)
     {
         return $this->parseJSON(static::POST, [
             self::OTHER_EDIT_U_NAME,
             [
-                'UMid'  => $uMainId,
-                'Agid'  => $agentId,
+                'Uid'  => $uid,
                 'UName' => $uName,
             ],
         ]);
