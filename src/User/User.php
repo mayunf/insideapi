@@ -327,8 +327,9 @@ class User extends AbstractAPI
 
     /**
      * 编辑其他用户名称.
-     * @param int    $uid  用户id
-     * @param string $uName   用户名称
+     *
+     * @param int    $uid   用户id
+     * @param string $uName 用户名称
      *
      * @return \Mayunfeng\Supports\Collection
      */
@@ -337,7 +338,7 @@ class User extends AbstractAPI
         return $this->parseJSON(static::POST, [
             self::OTHER_EDIT_U_NAME,
             [
-                'Uid'  => $uid,
+                'Uid'   => $uid,
                 'UName' => $uName,
             ],
         ]);
@@ -883,16 +884,16 @@ class User extends AbstractAPI
      * @param int    $id
      * @param string $bDate
      * @param string $eDate
-     * @param int $device
+     * @param int    $device
      *
      * @return \Mayunfeng\Supports\Collection
      */
     public function siteUrl(int $id, $bDate = '', $eDate = '', $device = -1)
     {
         $params = [
-            'Id'    => $id,
-            'BDate' => $bDate,
-            'EDate' => $eDate,
+            'Id'     => $id,
+            'BDate'  => $bDate,
+            'EDate'  => $eDate,
             'Device' => $device,
         ];
 
