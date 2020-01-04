@@ -100,8 +100,8 @@ abstract class AbstractAPI
     {
         return Middleware::tap(function (RequestInterface $request, $options) {
             Log::debug("请求: {$request->getMethod()} {$request->getUri()} ".json_encode(array_merge($options, [
-                    'Sid' => $this->accessToken->getSessionId(),
-                ])));
+                'Sid' => $this->accessToken->getSessionId(),
+            ])));
 //            Log::debug('请求头:'.json_encode($request->getHeaders()));
         });
     }
