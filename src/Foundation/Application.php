@@ -21,6 +21,7 @@ use Symfony\Component\HttpFoundation\Request;
  * Class Application.
  *
  * @property \InsideAPI\User\User               $user
+ * @property \InsideAPI\Group\Group             $group
  * @property \InsideAPI\Goods\Goods             $goods
  * @property \InsideAPI\Soft\Soft               $soft
  * @property \InsideAPI\Per\Per                 $per
@@ -35,6 +36,7 @@ class Application extends Container
         ServiceProviders\MobjServiceProvider::class,
         ServiceProviders\PerServiceProvider::class,
         ServiceProviders\UserServiceProvider::class,
+        ServiceProviders\GroupServiceProvider::class,
         ServiceProviders\GoodsServiceProvider::class,
         ServiceProviders\SoftServiceProvider::class,
         ServiceProviders\AccessTokenServiceProvider::class,
