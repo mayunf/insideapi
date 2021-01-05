@@ -12,7 +12,8 @@ use InsideAPI\Core\Exceptions\HttpException;
 use Mayunfeng\Supports\Traits\HasHttpRequest;
 use Pimple\Container;
 use Psr\SimpleCache\CacheInterface;
-use Symfony\Component\Cache\Simple\FilesystemCache;
+use Symfony\Component\Cache\Psr16Cache;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
 class AccessToken
 {
@@ -185,10 +186,10 @@ class AccessToken
     /**
      * Set default cache.
      *
-     * @return FilesystemCache
+     * @return CacheInterface
      */
     private function createDefaultCache()
     {
-        return new FilesystemCache();
+        return new Psr16Cache(new FilesystemAdapter('insideapi', 1500));
     }
 }
