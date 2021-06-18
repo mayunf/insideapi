@@ -10,6 +10,8 @@ class Group extends AbstractAPI
 
     const USER_INVITE_ADD = 'ins/v2/group/GroupUserInviteAdd';
 
+    const TEAM_USER_ACCOUNT_LIST = 'ins/v2/group/GroupTeamUserAccountList';
+
     public function userInviteInfo($inviteId)
     {
         return $this->parseJSON(static::POST, [
@@ -38,6 +40,14 @@ class Group extends AbstractAPI
                 'Mobile'     => $m,
                 'Code'       => $code,
             ],
+        ]);
+    }
+
+    public function teamUserAccountList(array $pararms = [])
+    {
+        return $this->parseJSON(static::POST, [
+            self::TEAM_USER_ACCOUNT_LIST,
+            $pararms,
         ]);
     }
 }
