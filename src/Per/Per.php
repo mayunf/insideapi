@@ -14,6 +14,8 @@ class Per extends AbstractAPI
 {
     const PER_BY_ID = 'ins/v2/per/perbyid'; // 根据权限Id获取权限
 
+    const PER_BY_PRO_ID = 'ins/v2/per/perByProId'; // 根据产品Id获取权限
+
     const PER_BY_UID = 'ins/v2/per/perbyuid'; //根据用户Id获取权限
 
     const ACC_PER_ADD = 'ins/v2/per/accperadd'; //  添加用户产品账户权限
@@ -39,6 +41,16 @@ class Per extends AbstractAPI
             self::PER_BY_ID,
             [
                 'Perid'  => $perid,
+            ],
+        ]);
+    }
+
+    public function perByProId(string $proid)
+    {
+        return $this->parseJSON(static::POST, [
+            self::PER_BY_PRO_ID,
+            [
+                'Proid'  => $proid,
             ],
         ]);
     }
