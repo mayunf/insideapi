@@ -27,6 +27,7 @@ use Symfony\Component\HttpFoundation\Request;
  * @property \InsideAPI\Per\Per                 $per
  * @property \InsideAPI\Mobj\Mobj               $mobj
  * @property \InsideAPI\Admin\Admin             $admin
+ * @property \InsideAPI\Account\Account         $account
  * @property \InsideAPI\AccessToken\AccessToken $access_token
  */
 class Application extends Container
@@ -40,6 +41,7 @@ class Application extends Container
         ServiceProviders\GoodsServiceProvider::class,
         ServiceProviders\SoftServiceProvider::class,
         ServiceProviders\AccessTokenServiceProvider::class,
+        ServiceProviders\AccountServiceProvider::class,
     ];
 
     public function __construct($config)
