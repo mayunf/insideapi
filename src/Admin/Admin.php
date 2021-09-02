@@ -31,6 +31,8 @@ class Admin extends AbstractAPI
 
     const SITE_INFO = 'ins/v2/admin/SiteInfo'; //  网站配置 - 详情
 
+    const Group_Team_SubUser = 'ins/v2/admin/GroupTeamSubUser'; //  网站配置 - 详情
+
     /**
      *  获取产品列表.
      *
@@ -214,6 +216,16 @@ class Admin extends AbstractAPI
             self::SITE_INFO,
             [
                 'Id' => $id,
+            ],
+        ]);
+    }
+    public function groupTeamSubUser(int $gid, array $tid = [])
+    {
+        return $this->parseJSON(static::POST, [
+            self::Group_Team_SubUser,
+            [
+                'GId' => $gid,
+                'TIds' => $tid,
             ],
         ]);
     }
