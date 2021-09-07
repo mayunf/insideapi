@@ -12,6 +12,31 @@ class Group extends AbstractAPI
 
     const TEAM_USER_ACCOUNT_LIST = 'ins/v2/group/GroupTeamUserAccountList';
 
+    const GROUP_TEAM_TREE = 'ins/v2/group/GroupTeamTree';
+
+    const GROUP_TEAM_LIST = 'ins/v2/group/GroupTeamList';
+
+    public function groupTeamTree($gid = 2)
+    {
+        return $this->parseJSON(static::POST, [
+            self::GROUP_TEAM_TREE,
+            [
+                'GId'   => $gid,
+            ],
+        ]);
+    }
+
+    public function groupTeamList($gid = 2,$tid = 0)
+    {
+        return $this->parseJSON(static::POST, [
+            self::GROUP_TEAM_LIST,
+            [
+                'GId'   => $gid,
+                'TId'   => $tid,
+            ],
+        ]);
+    }
+
     public function userInviteInfo($inviteId)
     {
         return $this->parseJSON(static::POST, [
