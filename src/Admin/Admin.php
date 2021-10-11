@@ -33,7 +33,7 @@ class Admin extends AbstractAPI
 
     const GROUP_TEAM_LIST = 'ins/v2/admin/GroupTeamList'; // 获取部门列表
 
-    const Group_Team_SubUser = 'ins/v2/admin/GroupTeamSubUser'; //  网站配置 - 详情
+    const Group_Team_SubUser = 'ins/v2/admin/GroupTeamSubUser'; //  获取部门人员列表 - 递归
 
     public function groupTeamList(int $gid, int $tid = 0)
     {

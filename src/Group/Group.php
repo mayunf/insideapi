@@ -16,6 +16,10 @@ class Group extends AbstractAPI
 
     const GROUP_TEAM_LIST = 'ins/v2/group/GroupTeamList';
 
+    const GROUP_TEAM_ADMIN_LIST = 'ins/v2/group/GroupTeamAdminList'; // 获取部门主管
+
+    const GROUP_ROLE_USERS = 'ins/v2/group/GroupRoleUsers'; // 根据角色获取用户列表
+
     public function groupTeamTree($gid = 2)
     {
         return $this->parseJSON(static::POST, [
@@ -33,6 +37,26 @@ class Group extends AbstractAPI
             [
                 'GId'   => $gid,
                 'TId'   => $tid,
+            ],
+        ]);
+    }
+
+    public function groupTeamAdminList($tid = 0)
+    {
+        return $this->parseJSON(static::POST, [
+            self::GROUP_TEAM_ADMIN_LIST,
+            [
+                'TId'   => $tid,
+            ],
+        ]);
+    }
+
+    public function groupRoleUsers($rid = 0)
+    {
+        return $this->parseJSON(static::POST, [
+            self::GROUP_ROLE_USERS,
+            [
+                'RId'   => $rid,
             ],
         ]);
     }
